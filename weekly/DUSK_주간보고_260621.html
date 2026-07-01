@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>더스크그룹 주간현금흐름보고</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#eef1f8;color:#1e2841;font-size:13px;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.hdr{background:#16213e;color:#fff;padding:20px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-l h1{font-size:16px;font-weight:500}.hdr-l p{font-size:11px;color:#7a90b8;margin-top:3px}
+.pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 36px 0}
+.kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
+.kc.g{border-color:#a8dcbc;background:#f5fcf8}.kc.r{border-color:#e0b4b4;background:#fff7f7}
+.kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}.kvi{font-size:13px;font-weight:600;color:#be1c1c;line-height:1.4}
+.pos{color:#12874a}.neg{color:#be1c1c}
+.main{padding:16px 36px 36px}
+.card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+.ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
+th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
+tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
+.tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
+.bar{position:absolute;inset:0 auto 0 0;border-radius:0 2px 2px 0}.rv{position:relative;z-index:1}
+.bw{background:#fff0f0;border:1px solid #f0b0b0;color:#be1c1c;font-size:10px;padding:2px 9px;border-radius:20px;white-space:nowrap;font-weight:500}.ml4{margin-left:6px}
+.colink{color:#1e2841;font-weight:500}.colink:hover{color:#3a78d2;text-decoration:underline}
+.nc{background:#fffcf2;border-color:#e0d08a}
+.ni{padding:11px 20px;border-bottom:1px solid #ede8bc;font-size:12.5px;color:#5c4818;display:flex;align-items:center;gap:12px}
+.ni:last-child{border-bottom:none}.nl{display:inline-block;min-width:4px;height:15px;background:#f2b62d;border-radius:2px;flex-shrink:0}
+.ni-ok{color:#8090b0}.nl-ok{display:inline-block;min-width:4px;height:15px;background:#c0c8d8;border-radius:2px;flex-shrink:0}
+.sec-title{font-size:12px;font-weight:600;color:#8090b0;letter-spacing:.5px;text-transform:uppercase;margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid #d8e0ee}
+.dcard{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:12px;scroll-margin-top:16px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+.dct{display:flex;align-items:center;gap:8px;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee}.dco{font-weight:600;font-size:14px}
+.back{margin-left:auto;font-size:11px;color:#8090b0;padding:3px 10px;border:1px solid #d8e0ee;border-radius:20px;background:#fff}.back:hover{background:#eef1f8}
+.drow{display:grid;grid-template-columns:1fr 1fr}.dcol{padding:16px 20px}.dcol:first-child{border-right:1px solid #f0f3fa}
+.dsec{font-size:11px;font-weight:600;color:#8090b0;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px}
+.dtbl{width:100%;border-collapse:collapse}.dtbl td{padding:6px 0;border-bottom:1px solid #f4f6fa;font-size:12.5px}.dtbl tr:last-child td{border-bottom:none}
+.dlbl{color:#8090b0;width:55%}.dval{text-align:right;font-variant-numeric:tabular-nums}
+.tsum td{border-top:2px solid #d8e0ee!important;padding-top:8px!important;font-size:13px}.tdiff td{padding-top:4px!important;font-size:12px}
+.dbar-wrap{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:14px 0 6px;background:#eef1f8}
+.dbar-in{background:#12874a;min-width:3px}.dbar-out{background:#be1c1c;min-width:3px}
+.dbar-lbl{display:flex;justify-content:space-between;font-size:11px;color:#8090b0}
+.foot{text-align:center;font-size:11px;color:#a8b4c8;padding:18px 36px;border-top:1px solid #d8e0ee;background:#fff;margin-top:8px}
+.exp-wrap{border-top:1px solid #e4eaf5}
+.etabs{display:flex;gap:0;border-bottom:1px solid #d8e0ee;background:#f9fafd;padding:0 16px}
+.etab{border:none;background:none;padding:10px 16px;font-size:12px;color:#8090b0;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;margin-bottom:-1px}
+.etab.on{color:#1e2841;border-bottom-color:#3a78d2;font-weight:600}
+.etab:hover{color:#3a78d2}
+.ecnt{display:inline-block;background:#e4eaf5;color:#5060a0;font-size:10px;padding:1px 7px;border-radius:10px;margin-left:6px;font-weight:600}
+.etab.on .ecnt{background:#3a78d220;color:#3a78d2}
+.epanel{overflow-x:auto}
+.etbl{width:100%;border-collapse:collapse;font-size:12px}
+.etbl thead th{font-size:11px;color:#8090b0;font-weight:500;padding:7px 12px;border-bottom:1px solid #e4eaf5;background:#fafbfe;white-space:nowrap;text-align:left}
+.etbl thead th:last-child{text-align:right}
+.etbl tbody tr:hover td{background:#edf1fc}
+.etbl tbody tr:nth-child(even) td{background:#fafbfe}
+.ec{padding:7px 12px;border-bottom:1px solid #f0f3fa;color:#2a3450;white-space:nowrap}
+.ev{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.er{padding:7px 12px;border-bottom:1px solid #f0f3fa;text-align:right;font-variant-numeric:tabular-nums;color:#be1c1c;font-weight:500;white-space:nowrap}
+.pgn{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;border-top:1px solid #f0f3fa;background:#fafbfe}
+.pgn button{border:1px solid #d8e0ee;background:#fff;color:#4060a0;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit}
+.pgn button:hover:not(:disabled){background:#eef1f8;border-color:#b0bcd8}
+.pgn button:disabled{color:#c0c8d8;cursor:default;border-color:#e8ecf4}
+.pgn .pi{font-size:12px;color:#6070a0;min-width:100px;text-align:center}
+@media print{body{background:#fff}.pbtn,.back{display:none}.hdr,.kc,.card,.dcard{-webkit-print-color-adjust:exact;print-color-adjust:exact}.kpi,.main{padding-left:16px;padding-right:16px}.card,.dcard{box-shadow:none;break-inside:avoid}.etabs{display:none}.epanel{display:block!important}.pgn{display:none}}
+</style>
+</head>
+<body id="top">
+<div class="hdr">
+  <div class="hdr-l"><h1>더스크그룹 &nbsp;|&nbsp; 주간현금흐름보고</h1><p>2026년 06월 21일 기준 &nbsp;·&nbsp; 6/15~6/21</p></div>
+  <button class="pbtn" onclick="window.print()">인쇄 / PDF 저장</button>
+</div>
+<div class="kpi">
+  <div class="kc"><div class="kl">총 원화 통장잔액</div><div class="kv">143억</div></div>
+  <div class="kc"><div class="kl">총 자산 합계</div><div class="kv">227억</div></div>
+  <div class="kc g"><div class="kl">이번 주 순현금 (6/15~6/21)</div><div class="kv pos">+7.4억</div></div>
+  <div class="kc r"><div class="kl">이슈 법인</div><div class="kvi">가론지, 더스크랙</div></div>
+</div>
+<div class="main">
+  <div class="card"><div class="ct">법인별 현금흐름 요약</div>
+    <table><thead><tr><th>법인</th><th>통장잔액</th><th>전주대비</th><th>순현금</th><th>입금</th><th>지출</th><th>비고</th></tr></thead>
+    <tbody><tr onclick="location.href='#co-데이즈'"><td class='tn'><a href='#co-데이즈' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:90%;background:#3a78d230'></div><span class='rv'>47억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:7%;background:#12874430'></div><span class='rv'>+0.9억</span></td><td class='tr2 pos'>+0.9억</td><td class='tr2'>9.6억</td><td class='tr2'>8.7억</td><td class='tc'></td></tr><tr onclick="location.href='#co-제노바'"><td class='tn'><a href='#co-제노바' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:45%;background:#3a78d230'></div><span class='rv'>24억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:8%;background:#12874430'></div><span class='rv'>+0.4억</span></td><td class='tr2 pos'>+0.4억</td><td class='tr2'>3.2억</td><td class='tr2'>2.8억</td><td class='tc'></td></tr><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:43%;background:#3a78d230'></div><span class='rv'>23억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:23%;background:#be1c1c30'></div><span class='rv'>-329만</span></td><td class='tr2 neg'>-329만</td><td class='tr2'>804만</td><td class='tr2'>0.1억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr><tr onclick="location.href='#co-크롬스'"><td class='tn'><a href='#co-크롬스' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:41%;background:#3a78d230'></div><span class='rv'>22억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:14%;background:#12874430'></div><span class='rv'>+1.4억</span></td><td class='tr2 pos'>+1.4억</td><td class='tr2'>7.3억</td><td class='tr2'>6.0억</td><td class='tc'></td></tr><tr onclick="location.href='#co-드래프터'"><td class='tn'><a href='#co-드래프터' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:35%;background:#3a78d230'></div><span class='rv'>19억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:19%;background:#12874430'></div><span class='rv'>+4.8억</span></td><td class='tr2 pos'>+4.8억</td><td class='tr2'>20억</td><td class='tr2'>15억</td><td class='tc'></td></tr><tr onclick="location.href='#co-발전존중'"><td class='tn'><a href='#co-발전존중' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:6%;background:#3a78d230'></div><span class='rv'>3.5억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:1%;background:#12874430'></div><span class='rv'>+0.1억</span></td><td class='tr2 pos'>+0.1억</td><td class='tr2'>5.1억</td><td class='tr2'>5.0억</td><td class='tc'></td></tr><tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:5%;background:#3a78d230'></div><span class='rv'>3.0억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:7%;background:#be1c1c30'></div><span class='rv'>-0.7억</span></td><td class='tr2 neg'>-0.7억</td><td class='tr2'>7.5억</td><td class='tr2'>8.2억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr><tr onclick="location.href='#co-썸웨어코드'"><td class='tn'><a href='#co-썸웨어코드' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:4%;background:#3a78d230'></div><span class='rv'>2.5억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:41%;background:#12874430'></div><span class='rv'>+0.5억</span></td><td class='tr2 pos'>+0.5억</td><td class='tr2'>1.0억</td><td class='tr2'>0.5억</td><td class='tc'></td></tr><tr onclick="location.href='#co-플라이코퍼레이션'"><td class='tn'><a href='#co-플라이코퍼레이션' class='colink'>플라이코퍼레이션</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:0%;background:#3a78d230'></div><span class='rv'>295만</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:79%;background:#12874430'></div><span class='rv'>+989만</span></td><td class='tr2 pos'>+989만</td><td class='tr2'>0.1억</td><td class='tr2'>11만</td><td class='tc'></td></tr>
+</tbody></table>
+  </div>
+  <div class="card nc"><div class="ct">이번 주 특이사항</div><div class='ni'><span class='nl'></span>가론지 — 입금 <b>804만</b> / 지출 <b>0.1억</b>. 순현금 <span class='neg'>-329만</span></div><div class='ni'><span class='nl'></span>더스크랙 — 입금 <b>7.5억</b> / 지출 <b>8.2억</b>. 순현금 <span class='neg'>-0.7억</span></div>
+</div>
+  <div class="sec-title">법인별 상세</div>
+  <div class='dcard' id='co-데이즈'>
+<div class='dct'><span class='dco'>데이즈</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>47억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>18억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>3.0억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>68억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+0.9억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>9.6억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>8.7억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+0.9억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:52%'></div><div class='dbar-out' style='width:48%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 9.6억</span><span class='neg'>■ 지출 8.7억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-데이즈")'>당주 지출 (6/15~6/21) <span class='ecnt'>62</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-데이즈")'>전주 지출 (6/8~6/14) <span class='ecnt'>69</span></button>
+  </div>
+  <div id='curr-데이즈' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈</td><td class='ec ev'>외화 매입($100,000 @1,512.01)</td><td class='er'>1.5억</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>홍한빛</td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈 하나은행</td><td class='ec ev'>하나은행(하나해외카드사용목적)</td><td class='er'>1.5억</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>틱톡충전금</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,066 @1,510.00)</td><td class='er'>7,560만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>5,429만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>송지은</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,400만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>4,000만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>2,077만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA_2</td><td class='er'>2,000만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>1,989만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>1,971만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>1,580만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>임직원</td><td class='ec ev'>백성희 인센_202605</td><td class='er'>1,573만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>1,200만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606225</td><td class='er'>1,189만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드법인</td><td class='ec ev'>법인카드 사용분</td><td class='er'>780만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>770만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>550만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>임직원</td><td class='ec ev'>임채빈 인센_202605</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 쇼핑파트너센터</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>백성희</td><td class='ec'>광고선전비</td><td class='ec ev'>씨제이대한통운(주)</td><td class='ec ev'>아치핀 네이버 도착보장 물류비 (5월 정산 건)</td><td class='er'>360만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 부스트셀</td><td class='ec ev'>6월 아큐스터 블로그 바이럴 충전대금</td><td class='er'>330만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>300만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>(주)아이보스</td><td class='ec ev'>아이보스 채용포털 광고비 </td><td class='er'>268만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>임채빈</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 부스트쉘</td><td class='ec ev'>부스트쉘 충전</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606253</td><td class='er'>170만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606256</td><td class='er'>160만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606236</td><td class='er'>134만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>홍한빛</td><td class='ec'>용역비</td><td class='ec ev'>김갑연</td><td class='ec ev'>프리랜서 용역비</td><td class='er'>100만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 2주차 아큐스터 콘텐츠 제작비</td><td class='er'>82만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이태윤</td><td class='ec'>운영비</td><td class='ec ev'>산은캐피탈</td><td class='ec ev'>138오 5682 차량 리스비 20/60회차</td><td class='er'>66만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>홍한빛</td><td class='ec'>용역비</td><td class='ec ev'>김갑연</td><td class='ec ev'>프리랜서 용역비</td><td class='er'>50만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>44만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>HIGGSFIELD INC</td><td class='er'>32만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>32만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>GOOGLE*GOOGLE</td><td class='er'>30만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>전소현</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>주식회사 119퀵화물</td><td class='ec ev'>5월 퀵 사용료</td><td class='er'>27만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>주식회사 한스시설관리</td><td class='ec ev'>사무실 정기 청소 비용_(덜 빠져나간 금액)</td><td class='er'>24만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>미스터</td><td class='ec ev'>빨래업체 비용_202605</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>전승혁</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>강영아</td><td class='ec ev'>6월 아큐스터 셀프캠 모델비</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>안아영</td><td class='ec ev'>6월 아큐스터 협찬 인플루언서 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>구글플레이</td><td class='er'>18만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 2주차 아치핀 맥스 영상 콘텐츠 제작비</td><td class='er'>18만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>남다연</td><td class='ec'>용역비</td><td class='ec ev'>강경아</td><td class='ec ev'>6월 2주차 영상 제작비 </td><td class='er'>17만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>남다연</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월 2째주 광고 영상 제작비</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>송승연</td><td class='ec ev'>6월 아큐스터 협찬 인플루언서 비용</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 3주차 아큐스터 영상 콘텐츠 제작비</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>GOOGLE *Google</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>OPENAI *CHATGP</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>저녁식대</td><td class='er'>2만</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-데이즈' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈</td><td class='ec ev'>외화 매입($100,000 @1,518.29)</td><td class='er'>1.5억</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍한빛</td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈 하나은행</td><td class='ec ev'>하나은행(하나해외카드사용목적)</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,058 @1,518.40)</td><td class='er'>7,601만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>한주희</td><td class='ec'>원재료</td><td class='ec ev'>(주)주니글로벌</td><td class='ec ev'>헤어리듬 패키지 5만개 발주 잔금 (선금 결제 X 잔금 100%) </td><td class='er'>7,590만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>틱톡 충전금</td><td class='er'>6,600만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>6,000만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>5,974만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)퍼스트옵션</td><td class='ec ev'>6월 한혜진 아치핀 맥스 PPL 2차활용 추가금</td><td class='er'>5,500만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>한주희</td><td class='ec'>원재료</td><td class='ec ev'>(주)코스모코스</td><td class='ec ev'>260511_헤어리듬 루트너 발주의 건 (MOQ 30,000개)</td><td class='er'>5,115만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>로버트 월터스 코리아 주식회사</td><td class='ec ev'>채용 헤드헌터 리테이너 비용</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>2,366만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>1,977만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>1,650만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>1,631만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606201</td><td class='er'>1,191만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>세금</td><td class='ec ev'>역삼세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>687만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>457만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>황현익</td><td class='ec ev'>직원복지숙소 월세</td><td class='er'>430만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>426만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>400만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박영서</td><td class='ec'>운반비</td><td class='ec ev'>한국파렛트풀(주)</td><td class='ec ev'>26.05월 KPP파레트 임차료 지급 요청건</td><td class='er'>334만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606224</td><td class='er'>274만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>백성희</td><td class='ec'>원재료</td><td class='ec ev'>더아이엠(주)</td><td class='ec ev'>보더리 클렌징 튜브 용기 10,000개 발주 잔금 50%</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606229</td><td class='er'>208만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>200만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>198만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606213</td><td class='er'>143만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>백성희</td><td class='ec'>용역비</td><td class='ec ev'>서유진</td><td class='ec ev'>스카이팀 프리랜서 알바 건 (5월 9일~6월 8일)</td><td class='er'>96만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>90만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>세금</td><td class='ec ev'>강남구청</td><td class='ec ev'>지방소득세_20260</td><td class='er'>74만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>70만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>배승진</td><td class='ec'>운영비</td><td class='ec ev'>롯데캐피탈</td><td class='ec ev'>차량리스 19/60회</td><td class='er'>66만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>세금</td><td class='ec ev'>역삼세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>57만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍한빛</td><td class='ec'>용역비</td><td class='ec ev'>김갑연</td><td class='ec ev'>프리랜서 용역비</td><td class='er'>55만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>51만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>백서연</td><td class='ec ev'>6월 아큐스터 영상 콘텐츠 제작비</td><td class='er'>40만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 아톡비즈</td><td class='ec ev'>통신비</td><td class='er'>39만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>HIGGSFIELD INC</td><td class='er'>33만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>정혜련</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>장종훈</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>구글플레이, 더시드 AI계정 크레딧 충전</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>장종훈</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>구글플레이, 더시드 AI계정 크레딧 충전</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>장동훈</td><td class='ec'>운영비</td><td class='ec ev'>마크인포</td><td class='ec ev'>보더리 상표등록 3류</td><td class='er'>26만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>장동훈</td><td class='ec'>운영비</td><td class='ec ev'>마크인포</td><td class='ec ev'>보더리 상표등록 35류</td><td class='er'>26만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>노소정</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>24만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김준형</td><td class='ec'>운영비</td><td class='ec ev'>BMW파이낸셜서비스</td><td class='ec ev'>차량 리스료 납부</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>안창민</td><td class='ec ev'>5월 아치핀 맥스 협찬 인플루언서 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>백광렬</td><td class='ec ev'>6월 아큐스터 셀프캠 모델비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>이진재</td><td class='ec ev'>6월 아큐스터 협찬 인플루언서 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>최장원</td><td class='ec ev'>6월 아치핀 맥스 협찬 인플루언서 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>남다연</td><td class='ec'>용역비</td><td class='ec ev'>강경아</td><td class='ec ev'>6월 1주차 영상 제작비 </td><td class='er'>17만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>박지혜</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>손민수</td><td class='ec ev'>6월 아큐스터 협찬 인플루언서 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>김연아</td><td class='ec ev'>6월 아치핀 맥스 협찬 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>김수안</td><td class='ec ev'>6월 아치핀 맥스 협찬 인플루언서 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>윤정아</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 1주차 아큐스터, 아치핀맥스 콘텐츠 제작비</td><td class='er'>13만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>남다연</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월1째주 광고영상 제작비</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>아이템스타우트유료결제(대표님 요청건)</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체 수수료</td><td class='er'>300원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-제노바'>
+<div class='dct'><span class='dco'>제노바</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>24억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>547만</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>24억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+0.4억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>3.2억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>2.8억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+0.4억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:52%'></div><div class='dbar-out' style='width:48%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 3.2억</span><span class='neg'>■ 지출 2.8억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-제노바")'>당주 지출 (6/15~6/21) <span class='ecnt'>11</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-제노바")'>전주 지출 (6/8~6/14) <span class='ecnt'>12</span></button>
+  </div>
+  <div id='curr-제노바' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-19</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>보니스 랩앤팩토리</td><td class='ec ev'>0616 아시모토 노젠 50,000개 선금</td><td class='er'>6,050만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>보니스 랩앤팩토리</td><td class='ec ev'>260427 아시모토 노젠 발주(3만개) 잔금</td><td class='er'>3,630만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,410만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,750만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>장동훈</td><td class='ec'>광고선전비</td><td class='ec ev'>청명종합선전</td><td class='ec ev'>광고대행</td><td class='er'>811만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>이룸 디앤피</td><td class='ec ev'>0616 아시모토 노젠 EX 단상자 50,000개</td><td class='er'>610만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드법인</td><td class='ec ev'>법인카드사용액_26년 05월분</td><td class='er'>591만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>임채빈</td><td class='ec'>운영비</td><td class='ec ev'>법무법인 정향</td><td class='ec ev'>아시모토 식약처 행정심판 변호사 착수금 지급 </td><td class='er'>440만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>남다연</td><td class='ec'>용역비</td><td class='ec ev'>박정헌</td><td class='ec ev'>6월2째주 영상 제작비</td><td class='er'>37만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>22만</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-제노바' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,500만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김준형</td><td class='ec'>운영비</td><td class='ec ev'>노규동</td><td class='ec ev'>본부장님 오피스텔 지급임차료</td><td class='er'>385만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김준형</td><td class='ec'>운영비</td><td class='ec ev'>우리금융캐피탈  </td><td class='ec ev'>렌트차량 관련 비용</td><td class='er'>58만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>정지원</td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>환불건_이중영</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>시흥세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9,000원</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>시흥시청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>5,930원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김준형</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체수수료</td><td class='er'>300원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-가론지'>
+<div class='dct'><span class='dco'>가론지</span><span class='bw ml4'>지출 초과</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>23억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>0.4억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>23억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-329만</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>804만</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>0.1억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-329만</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:41%'></div><div class='dbar-out' style='width:59%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 804만</span><span class='neg'>■ 지출 0.1억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-가론지")'>당주 지출 (6/15~6/21) <span class='ecnt'>19</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-가론지")'>전주 지출 (6/8~6/14) <span class='ecnt'>28</span></button>
+  </div>
+  <div id='curr-가론지' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>기타</td><td class='ec ev'>주식회사 플라이코퍼레이션</td><td class='ec ev'>플라이코퍼레이션 설립 자본금</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>애니홍콩(김일)</td><td class='ec ev'>홍콩법인 폐업 수수료</td><td class='er'>63만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>20만</td></tr>
+<tr><td class='ec'>6-21</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)이마트 김</td><td class='er'>13만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>태리알뜰주유소</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-21</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>부광셀프주유소</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>에스엠하이플러</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>깐부치킨(성수)</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>이케아코리아</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>이마트 트레이</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-21</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)자연에너지</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>찐만이네</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>별내역 KFC</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>성수오렌지약국</td><td class='er'>9,000원</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>한국맥도날드(</td><td class='er'>8,900원</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>킹콩백화점 주</td><td class='er'>8,500원</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>파킹클라우드</td><td class='er'>5,700원</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)프리텔레콤</td><td class='er'>4,990원</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>김밥나라</td><td class='er'>4,500원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-가론지' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>1,243만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>185만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>기타</td><td class='ec ev'>박진희</td><td class='ec ev'>사비</td><td class='er'>180만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>99만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>토성농협하나로</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>이화주유소</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>속초카뱅크</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 케이</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>이안약국</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)사조마트</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>민들레 정육식</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>목동충전소</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 가보</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>한남주유소</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>하이카피랜드</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>굽네치킨(천진</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>한화솔루션(주)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>삼성전자서비스</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>세븐일레븐 토</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>티머니택시(법</td><td class='er'>8,200원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>바다정원 주식</td><td class='er'>7,300원</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>한화솔루션(주)</td><td class='er'>7,000원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>키다리식품 (주</td><td class='er'>6,400원</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>이마트 에브리</td><td class='ec ev'>이마트 에브리</td><td class='er'>5,760원</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>LG  U+통신요금</td><td class='er'>4,950원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>CU 고성바다풍</td><td class='er'>2,500원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>지에스(GS)25</td><td class='er'>2,200원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-크롬스'>
+<div class='dct'><span class='dco'>크롬스</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>22억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>12억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>3.9억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>38억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+1.4억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>7.3억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>6.0억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+1.4억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:55%'></div><div class='dbar-out' style='width:45%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 7.3억</span><span class='neg'>■ 지출 6.0억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-크롬스")'>당주 지출 (6/15~6/21) <span class='ecnt'>78</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-크롬스")'>전주 지출 (6/8~6/14) <span class='ecnt'>82</span></button>
+  </div>
+  <div id='curr-크롬스' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-19</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>1.5억</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>주식회사 노베라</td><td class='ec ev'>니프젠 9차 잔금</td><td class='er'>1.3억</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,500만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김남</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,500만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡충전금</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>은평구청</td><td class='ec ev'>2025년 법인 지방소득세 2/2차분</td><td class='er'>2,095만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드법인</td><td class='ec ev'>법인카드 사용분_202605</td><td class='er'>2,038만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,500만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>한주희</td><td class='ec'>광고선전비</td><td class='ec ev'>조이애드</td><td class='ec ev'>광고비</td><td class='er'>1,285만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>배승진</td><td class='ec'>광고선전비</td><td class='ec ev'>이츠나우</td><td class='ec ev'>광고비</td><td class='er'>834만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이태윤</td><td class='ec'>광고선전비</td><td class='ec ev'>태도</td><td class='ec ev'>광고비</td><td class='er'>521만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이나연</td><td class='ec ev'>프리랜서용역비</td><td class='er'>338만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>330만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 마케팅모먼트</td><td class='ec ev'>니프젠 브랜드 ccfm 계약 연장</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>dable</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 부스트셀</td><td class='ec ev'>블로그 건 충전</td><td class='er'>110만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>94만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>79만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>장종훈</td><td class='ec'>운영비</td><td class='ec ev'>강옥경</td><td class='ec ev'>직원복지숙소 임차료(장종훈)</td><td class='er'>69만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠 영상제작 8건</td><td class='er'>48만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>박준필</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>38만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>장종훈</td><td class='ec'>운영비</td><td class='ec ev'>마곡엠코부동산</td><td class='ec ev'>중개수수료</td><td class='er'>35만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>김서연</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>31만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>김태림</td><td class='ec ev'>옵틱 영상 4건</td><td class='er'>31만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김남</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>루노비전 영상 4개</td><td class='er'>30만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_탕비실 과자 구매</td><td class='er'>28만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>27만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>김미강</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>25만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>롯데쇼핑(주)롯</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_탕비실 음료 구매</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>20만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>김민지</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임성환</td><td class='ec'>운영비</td><td class='ec ev'>이경림 (힘(HIM)특허사무소)</td><td class='ec ev'>닥터아멜리아 리톡젠 상표권 5년 등록</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>임성환</td><td class='ec'>운영비</td><td class='ec ev'>이경림 (힘(HIM)특허사무소)</td><td class='ec ev'>닥터아멜리아 리톡젠 상표권 5년 등록</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>고희선</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>17만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>네이버파이낸셜㈜</td><td class='ec ev'>네이버페이 구매확정 후 반품요청건 직권취소 필요_충전금</td><td class='er'>17만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김단영</td><td class='ec'>용역비</td><td class='ec ev'>이헌섭</td><td class='ec ev'>ai 추출 영상 2건</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>황정아</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김민영</td><td class='ec'>운영비</td><td class='ec ev'>해태드림타운상가</td><td class='ec ev'>은평사무실 관리비_202605</td><td class='er'>12만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>사람인_정규직 무료 공고 게시 초과분 등록</td><td class='er'>12만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>박나현</td><td class='ec ev'>루노비전 영상 3개 디벨롭</td><td class='er'>12만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>김지윤</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>12만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김단영</td><td class='ec'>용역비</td><td class='ec ev'>정우경</td><td class='ec ev'>영상 편집5건</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>윤서아</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_우산꽂이 2개 구매</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>사람인_프리랜서 채용 광고비(포인트 일부 사용)</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>이서희</td><td class='ec ev'>26.06.15 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>이서희</td><td class='ec ev'>26.06.16 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>이서희</td><td class='ec ev'>26.06.17 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>서종열</td><td class='ec ev'>26.06.17 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>이서희</td><td class='ec ev'>26.06.18 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>서종열</td><td class='ec ev'>26.06.18 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>유해진</td><td class='ec ev'>26.06.18 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>이서희</td><td class='ec ev'>26.06.19 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>서종열</td><td class='ec ev'>26.06.19 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>유해진</td><td class='ec ev'>26.06.19 프리랜서 용역비 지급 요청</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>정유순</td><td class='ec ev'>26.06.15 프리랜서 용역비 지급 요청</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>최은자</td><td class='ec ev'>26.06.15 프리랜서 용역비 지급 요청</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>석암생소금구이(5681카드)</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김단영</td><td class='ec'>용역비</td><td class='ec ev'>강보미</td><td class='ec ev'>니프젠 AI 영상 추출1건</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.15 프리랜서 용역비 지급 요청</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>박서윤</td><td class='ec ev'>루노비전 성우 8건</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이하루</td><td class='ec ev'>루노비전 성우 7건</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>정다영</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.16 프리랜서 용역비 지급 요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)상암에너지</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>가수민</td><td class='ec ev'>26.06.16_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_종이컵 구매</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>플라이코퍼레이션 명판 제작비</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>음식물 쓰레기 봉투 구매(5묶음)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>저녁식대</td><td class='er'>1만</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-크롬스' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-10</td><td class='ec'>장성훈</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 노빅코리아</td><td class='ec ev'>광고비</td><td class='er'>2.1억</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>2.0억</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>김남</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,500만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡충전금</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김남</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>크리테오</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>800만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김준형</td><td class='ec'>광고선전비</td><td class='ec ev'>틸리드코퍼레이션</td><td class='ec ev'>신규 스킨케어 브랜드 런칭 및 제품 개발 프로젝트 중도금</td><td class='er'>627만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>청소플래닛</td><td class='ec ev'>청소용역비</td><td class='er'>350만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>dable</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>dable</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>186만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>184만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>101만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>정지원</td><td class='ec'>운영비</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>카페24 고객 안내용 카카오알림톡 충전</td><td class='er'>100만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>90만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>65만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>61만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 8건</td><td class='er'>53만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>박준필</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>51만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>51만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>은평세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>41만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>40만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>김태림</td><td class='ec ev'>옵틱3 영상 5건</td><td class='er'>39만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>은평세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>36만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>윤서아</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>32만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김남</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>루노비전 영상 4개</td><td class='er'>30만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_탕비실 음료, 초콜릿 구매</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>18만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>김민지</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>18만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>모두싸인 결제(커머스본부용)</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>최지현</td><td class='ec ev'>닥터아멜리아 캡슐크림 셀프캠모델</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정지원</td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>환불건_송유나</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>고희선</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>김지윤</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김단영</td><td class='ec'>용역비</td><td class='ec ev'>이헌섭</td><td class='ec ev'>ai 추출 영상 2건</td><td class='er'>13만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>박나현</td><td class='ec ev'>루노비전 영상 3개 디벨롭</td><td class='er'>12만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>김미강</td><td class='ec ev'>폴리샷 영상 편집 2건</td><td class='er'>11만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>김서연</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>최은자</td><td class='ec ev'>26.06.08 프리랜서 용역비 지급 요청</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>정유순</td><td class='ec ev'>26.06.08 프리랜서 용역비 지급 요청</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>니프젠 영상제작 1건</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김단영</td><td class='ec'>용역비</td><td class='ec ev'>정우경</td><td class='ec ev'>영상 편집4건</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김단영</td><td class='ec'>용역비</td><td class='ec ev'>김신희</td><td class='ec ev'>ai 영상제작 1건</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이하루</td><td class='ec ev'>루노비전 성우 11건</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>은평구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.08 프리랜서 용역비 지급 요청</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이은영</td><td class='ec'>용역비</td><td class='ec ev'>박민선</td><td class='ec ev'>5월 PA 광고 운영 지원 비용</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_생수, 체단실 소모품 구매</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>사람인_정규직 무료 공고 초과 등록비</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이은영</td><td class='ec'>용역비</td><td class='ec ev'>유송미</td><td class='ec ev'>5월 PA 광고 운영 지원 비용</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>황정아</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김시우</td><td class='ec'>용역비</td><td class='ec ev'>정다영</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.09 프리랜서 용역비 지급 요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.10 프리랜서 용역비 지급 요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.11 프리랜서 용역비 지급 요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>이승로</td><td class='ec'>용역비</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.12 프리랜서 용역비 지급 요청</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>박서윤</td><td class='ec ev'>루노비전 성우 6건</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>도서공연자동이</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_플라이코퍼레이션 사무실</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_플라이코퍼레이션 사무실</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>박서윤</td><td class='ec ev'>루노비전 성우 4건</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>애드위브</td><td class='ec ev'>이미지 제작건 </td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이하루</td><td class='ec ev'>루노비전 성우 3건</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>저녁식대</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>티머니 개인택(5681카드)</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>7,700원</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>7,600원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>6,500원</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>6,200원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>우체국 등기 비용</td><td class='er'>3,160원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-드래프터'>
+<div class='dct'><span class='dco'>드래프터</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>19억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>17억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>5.4억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>41억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+4.8억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>20억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>15억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+4.8억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:56%'></div><div class='dbar-out' style='width:44%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 20억</span><span class='neg'>■ 지출 15억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-드래프터")'>당주 지출 (6/15~6/21) <span class='ecnt'>72</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-드래프터")'>전주 지출 (6/8~6/14) <span class='ecnt'>72</span></button>
+  </div>
+  <div id='curr-드래프터' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>드래프터</td><td class='ec ev'>외화 매입($200,000 @1,512.41)</td><td class='er'>3.0억</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>1.5억</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>8,008만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,058 @1,520.40)</td><td class='er'>7,611만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,069 @1,512.80)</td><td class='er'>7,574만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,039 @1,513.50)</td><td class='er'>7,573만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,049 @1,510.00)</td><td class='er'>7,557만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,600만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,600만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>5,000만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>5,000만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,884만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>3,000만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606226</td><td class='er'>2,280만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,650만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,500만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606246</td><td class='er'>1,221만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 쇼핑파트너센터</td><td class='er'>1,200만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>이룸디앤피</td><td class='ec ev'>0619 MTA, 솔루션 셀라큐어 단상자 발주건</td><td class='er'>990만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 전대미문스튜디오</td><td class='ec ev'>전대미문 스튜디오 김용건 셀라큐어 5분 코너 진행 </td><td class='er'>880만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>770만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>539만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>390만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>370만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드법인</td><td class='ec ev'>법인카드사용액_202605</td><td class='er'>365만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>320만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>300만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>300만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>우연주</td><td class='ec'>용역비</td><td class='ec ev'>김나윤</td><td class='ec ev'>소누스 인플루언서 영상 제작 관련 (윤너스)</td><td class='er'>242만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>송준섭</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)망고</td><td class='ec ev'>쿠팡 깔아두기 15건</td><td class='er'>236만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>124만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>120만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>현금</td><td class='ec ev'>면접비 인출</td><td class='er'>120만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>61만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>43만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>40만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 2주차 써마드, 뉴베로 콘텐츠 제작비</td><td class='er'>39만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 2주차 써마드, 뉴베로 영상 콘텐츠 제작비</td><td class='er'>35만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 3주차 써마드, 뉴베로 영상 콘텐츠 제작비</td><td class='er'>35만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>남다연</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트티라노</td><td class='ec ev'>셀라큐어 외주영상 6건</td><td class='er'>33만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>남다연</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월 2째주 광고 영상 제작비</td><td class='er'>31만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월2주차 영상제작 외주 비용</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>토스페이먼츠_오프에고 pg사 연동 수수료</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이수</td><td class='ec'>용역비</td><td class='ec ev'>이우찬</td><td class='ec ev'>6월 써마드 협찬 인플루언서 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>윤성민</td><td class='ec ev'>6월 뉴베로 셀프캠 모델비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>송준섭</td><td class='ec'>용역비</td><td class='ec ev'>현정선</td><td class='ec ev'>5월 압력이불 배우촬영</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>김소희</td><td class='ec ev'>6월 뉴베로 협찬 인플루언서 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>서은비</td><td class='ec ev'>6월 뉴베로 IMG 콘텐츠 제작비</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 크몽</td><td class='ec ev'>엔스페이스_크몽 블로그 체험단</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>한규리</td><td class='ec'>용역비</td><td class='ec ev'>엄기영</td><td class='ec ev'>시순 영양흑채 셀프캠 배우 입금</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>김다솔</td><td class='ec ev'>6월 뉴베로 협찬 인플루언서 비용</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월2주차 영상제작 외주 비용</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>한주희</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 씨엠테스</td><td class='ec ev'>나스 월 정기 유지보수</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월2주차 영상제작 외주 비용</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>굳센</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>굳센</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>송준섭</td><td class='ec'>광고선전비</td><td class='ec ev'>상위 노출 연구소</td><td class='ec ev'>준최4 블로그 아이디 구매 5개</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>플라이코퍼레이션 OTP 발급</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>한주희</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체 수수료</td><td class='er'>300원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-드래프터' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>드래프터</td><td class='ec ev'>외화 매입($200,000 @1,518.49)</td><td class='er'>3.0억</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>2.5억</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>2.0억</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,060 @1,546.50)</td><td class='er'>7,742만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,065 @1,543.00)</td><td class='er'>7,725만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,049 @1,527.00)</td><td class='er'>7,642만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,050 @1,522.40)</td><td class='er'>7,620만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,600만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,600만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,357만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,400만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606202</td><td class='er'>2,271만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>백성희</td><td class='ec'>운영비</td><td class='ec ev'>피엔케이피부임상연구센타 주식회사</td><td class='ec ev'>보더리 제품 6종 임상시험 진행</td><td class='er'>1,760만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>운영비</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>6월 보더리 해외 상표등록 비용</td><td class='er'>1,056만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>백성희</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 탑지엘에스</td><td class='ec ev'>보더리 3종(세럼,토너,클렌저) 태국 수출 해상 비용 </td><td class='er'>779만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>730만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>백성희</td><td class='ec'>운영비</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>보더리 해외(태국, 대만) 상표권</td><td class='er'>682만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>쇼핑파트너센터</td><td class='er'>600만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>장동훈</td><td class='ec'>운영비</td><td class='ec ev'>(주)캠데이터부설 국제특성분석연구소</td><td class='ec ev'>액상 10가지맛 무니코틴 검사</td><td class='er'>550만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>440만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>429만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>390만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>백성희</td><td class='ec'>운영비</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>보더리 해외(홍콩) 상표권 출원 </td><td class='er'>374만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>330만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>우연주</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>300만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>290만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>248만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>김남</td><td class='ec'>운영비</td><td class='ec ev'>민티소</td><td class='ec ev'>티즈네일 홈페이지 셋팅 선금</td><td class='er'>165만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>150만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>송준섭</td><td class='ec'>광고선전비</td><td class='ec ev'>윤별</td><td class='ec ev'>카페 바이럴 5건</td><td class='er'>110만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>임채빈</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)망고</td><td class='ec ev'>시순 영양흑채 리뷰 가구매</td><td class='er'>96만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>서하이</td><td class='ec'>운영비</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>6월 마크인포 상표등록 비용</td><td class='er'>96만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>플렉스 결제</td><td class='er'>81만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>삼성세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>79만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>64만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>61만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>55만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>50만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>백성희</td><td class='ec'>운영비</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>국내 상표권 권리 이전 (데이즈-&gt;드래프터)</td><td class='er'>46만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 1주차 써마드, 뉴베로 콘텐츠 제작비</td><td class='er'>44만</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_소누스</td><td class='er'>44만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>37만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>33만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>남다연</td><td class='ec'>용역비</td><td class='ec ev'>강경아</td><td class='ec ev'>6월 1주차 영상 제작비 </td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이수</td><td class='ec'>용역비</td><td class='ec ev'>권병희</td><td class='ec ev'>6월 써마드 협찬 인플루언서 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>백서연</td><td class='ec ev'>6월 써마드 영상 콘텐츠 제작비</td><td class='er'>24만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>삼성세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>20만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>강보경</td><td class='ec ev'>6월 뉴베로 협찬 인플루언서 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>김예인</td><td class='ec ev'>6월 뉴베로 셀프캠 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>백서연</td><td class='ec ev'>6월 뉴베로 영상 콘텐츠 제작비</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>한규리</td><td class='ec'>용역비</td><td class='ec ev'>이호원</td><td class='ec ev'>시순 영양흑채 셀프캠 배우 입금</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>박아름</td><td class='ec ev'>6월 뉴베로 협찬 인플루언서 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>서은비</td><td class='ec ev'>6월 써마드 IMG 콘텐츠 제작비</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>서하이</td><td class='ec'>용역비</td><td class='ec ev'>서은비</td><td class='ec ev'>6월 뉴베로 IMG 콘텐츠 제작비</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>11만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치(HH)</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>11만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>강남구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605276 (2차 통관건)</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>서하이</td><td class='ec'>광고선전비</td><td class='ec ev'>호 컴퍼니</td><td class='ec ev'>6월 뉴베로 악성글 삭제비</td><td class='er'>3만</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-발전존중'>
+<div class='dct'><span class='dco'>발전존중</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>3.5억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>4.0억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>11억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>18억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+0.1억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>5.1억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>5.0억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+0.1억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:50%'></div><div class='dbar-out' style='width:50%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 5.1억</span><span class='neg'>■ 지출 5.0억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-발전존중")'>당주 지출 (6/15~6/21) <span class='ecnt'>53</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-발전존중")'>전주 지출 (6/8~6/14) <span class='ecnt'>45</span></button>
+  </div>
+  <div id='curr-발전존중' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-19</td><td class='ec'>홍한빛</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행(해외)</td><td class='ec ev'>메타 충전용</td><td class='er'>1.5억</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>박영서</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 비앤비솔루션</td><td class='ec ev'>26.05월 비앤비솔루션(3pl) 월 비용 지급건</td><td class='er'>1.4억</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>홍한빛</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행(해외)</td><td class='ec ev'>메타 충전용</td><td class='er'>5,000만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,823만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,212만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>임연락(장종훈)_6/18 오입금건</td><td class='er'>1,947만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,650만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>1,097만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>335만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드법인</td><td class='ec ev'>법인카드 사용액_202605</td><td class='er'>314만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>152만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>87만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>69만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>박하은</td><td class='ec ev'>6월 로그린팀 AI추출</td><td class='er'>57만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>48만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>키즈픽션, 슬로우픽션 광고 영상 제작 비용 지급</td><td class='er'>46만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이의규</td><td class='ec ev'>루노비전 ai 영상 4건 제작</td><td class='er'>39만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>38만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>38만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>송영혜</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 영상 광고 콘텐츠 제작비</td><td class='er'>38만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>35만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>31만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>애드위브</td><td class='ec ev'>키즈픽션 gif 제작 비용 지급</td><td class='er'>23만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>메트로타워 관리단</td><td class='ec ev'>관리비 26년 5월분</td><td class='er'>20만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>이영석</td><td class='ec ev'>키즈픽션 광고 영상 5건 제작 비용 지급</td><td class='er'>20만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>이초희</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>최진나</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>김지은</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>김희재</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>차하은</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>장희원</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>이한나</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>조아라</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>박태하</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>굳센</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>이영석</td><td class='ec ev'>키즈픽션, 슬로우픽션 광고 영상 3건 제작</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>이용기</td><td class='ec ev'>6월 영상 편집비</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이의규</td><td class='ec ev'>루노비전 pa 1건</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>김소리</td><td class='ec ev'>6월 리더뮨 디자인 외주 용역비</td><td class='er'>12만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>노석웅</td><td class='ec ev'>6월 리더뮨 영상 편집비</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>박수지</td><td class='ec ev'>키즈픽션 PA 콘텐츠 제작 비용 지급</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>최효선</td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>박수지 님_오입금 건 환불</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>이용기</td><td class='ec ev'>6월 영상 편집비</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>장동훈</td><td class='ec'>운영비</td><td class='ec ev'>LG U+</td><td class='ec ev'>LGU+인터넷</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>200원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-발전존중' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-8</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>주식회사 피비에이치</td><td class='ec ev'>오메가3멀티팩(가칭) 1차 선금</td><td class='er'>1.1억</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>4,500만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,300만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>주식회사 노베라</td><td class='ec ev'>템퍼픽션 2차 선금</td><td class='er'>2,718만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,650만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>배승진</td><td class='ec'>광고선전비</td><td class='ec ev'>전대미문스튜디오</td><td class='ec ev'>키즈픽션 연예인 협찬 (샘 해밍턴)</td><td class='er'>1,540만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>김준형</td><td class='ec'>운영비</td><td class='ec ev'>우즈스튜디오㈜</td><td class='ec ev'>브랜딩, 제품 기획/패키지 디자인 개발 프로젝트 용역 계약 중도금</td><td class='er'>1,430만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 크리테오</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>337만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>333만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>법무법인 산음</td><td class='ec ev'>전체 브랜드 리셀러 관련 의뢰건</td><td class='er'>165만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>은평세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>160만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>배승진</td><td class='ec'>용역비</td><td class='ec ev'>이솝이</td><td class='ec ev'>PA 인플루언서 작업</td><td class='er'>99만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>송영혜</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 영상 광고 콘텐츠 제작비</td><td class='er'>86만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>정정희</td><td class='ec ev'>은평구사무실 임차료(후불)</td><td class='er'>55만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>키즈픽션, 슬로우픽션 광고 영상 제작</td><td class='er'>54만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>44만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>34만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>노석웅</td><td class='ec ev'>6월 리더뮨 영상 편집비</td><td class='er'>34만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>배승진</td><td class='ec'>용역비</td><td class='ec ev'>류지은</td><td class='ec ev'>PA 인플루언서 작업</td><td class='er'>34만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>김소리</td><td class='ec ev'>6월 리더뮨 디자인 외주 용역비</td><td class='er'>33만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>27만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>27만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>장동훈</td><td class='ec'>운영비</td><td class='ec ev'>마크인포</td><td class='ec ev'>리더뮨 상표등록 05류</td><td class='er'>26만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>장동훈</td><td class='ec'>운영비</td><td class='ec ev'>마크인포</td><td class='ec ev'>리더뮨 상표등록 29류</td><td class='er'>26만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>박하은</td><td class='ec ev'>6월 로그린팀 AI추출</td><td class='er'>25만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>문선혜</td><td class='ec'>용역비</td><td class='ec ev'>이용기</td><td class='ec ev'>6월 영상 편집비</td><td class='er'>25만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>pg사 수수료_토스</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍한빛</td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>pg사 수수료_이니시스</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>최효선</td><td class='ec'>용역비</td><td class='ec ev'>이영석</td><td class='ec ev'>키즈픽션 광고 영상 4건 제작 비용 지급</td><td class='er'>20만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이의규</td><td class='ec ev'>루노비전 ai 영상 3건 제작</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>배승진</td><td class='ec'>용역비</td><td class='ec ev'>차예지</td><td class='ec ev'>PA 협찬</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>배승진</td><td class='ec'>용역비</td><td class='ec ev'>이영진</td><td class='ec ev'>PA 협찬</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>은평구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김남</td><td class='ec'>용역비</td><td class='ec ev'>이의규</td><td class='ec ev'>루노비전 pa 1건</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>애드위브</td><td class='ec ev'>키즈픽션 gif 제작 비용 지급</td><td class='er'>13만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>최효선</td><td class='ec'>광고선전비</td><td class='ec ev'>애드위브</td><td class='ec ev'>슬로우픽션 gif 제작 비용 지급</td><td class='er'>11만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>송영혜</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트티라노</td><td class='ec ev'>6월 영상 광고 콘텐츠 제작비</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>문선혜</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>4만</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-더스크랙'>
+<div class='dct'><span class='dco'>더스크랙</span><span class='bw ml4'>지출 초과</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>3.0억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>8.2억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>0.7억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>12억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-0.7억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>7.5억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>8.2억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-0.7억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:47%'></div><div class='dbar-out' style='width:53%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 7.5억</span><span class='neg'>■ 지출 8.2억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-더스크랙")'>당주 지출 (6/15~6/21) <span class='ecnt'>91</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-더스크랙")'>전주 지출 (6/8~6/14) <span class='ecnt'>100</span></button>
+  </div>
+  <div id='curr-더스크랙' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-16</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>9,570만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>더스크랙</td><td class='ec ev'>외화 매입($50,069 @1,516.33)</td><td class='er'>7,592만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,069 @1,513.50)</td><td class='er'>7,578만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>7,465만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타 광고비 충전금</td><td class='er'>7,000만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>더스크랙</td><td class='ec ev'>외화 매입($27,349.02 @1,522.88)</td><td class='er'>4,165만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>WUYI RUTONG LEISURE GOODS CO.,LTD.</td><td class='ec ev'>제품수입($27,349.02 @1,512.80)</td><td class='er'>4,137만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타 광고비 충전금</td><td class='er'>3,000만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타 광고비 충전금</td><td class='er'>3,000만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>틱톡+카카오모먼트 광고비 충전금</td><td class='er'>3,000만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,949만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,911만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,421만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>장종훈</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,024만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,500만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA_크립볼</td><td class='er'>1,500만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>1,300만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>장종훈</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,100만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드법인</td><td class='ec ev'>법인카드 이용대금_202605</td><td class='er'>1,058만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606218</td><td class='er'>975만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606227</td><td class='er'>920만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606234</td><td class='er'>882만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606245</td><td class='er'>709만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>프롬더스트릿 하남미사점</td><td class='ec ev'>이준명님 유튜브 협업비용</td><td class='er'>660만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>임성환</td><td class='ec'>원재료</td><td class='ec ev'>박스올라잇</td><td class='ec ev'>파로덱스 단상자 봉인지스티커 카톤박스, 샘플링 비용 입금</td><td class='er'>602만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>PREMIA TNC LIMITED</td><td class='ec ev'>식품라이선스 취득,현지유심 개통비용(HKD 19,737 @195.07)</td><td class='er'>385만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>임직원</td><td class='ec ev'>박종인 인센_202605</td><td class='er'>300만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 롯데카드</td><td class='ec ev'>틱톡 광고비 충전금</td><td class='er'>200만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>132만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임성환</td><td class='ec'>원재료</td><td class='ec ev'>(주) 신승하이켐</td><td class='ec ev'>파로덱스 폴리샷 제품 제조에 필요한 PLA 성분 구매 2kg </td><td class='er'>106만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>블리스오가 주식회사</td><td class='ec ev'>5월 올리브영 행사 분담금</td><td class='er'>76만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>55만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>퇴직연금수수료</td><td class='er'>54만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>김환</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>41만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>박영서</td><td class='ec'>운영비</td><td class='ec ev'>명군전력</td><td class='ec ev'>신규물류센터 추가 전기공사 대금 지급건</td><td class='er'>33만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>경복궁 마포 로이넷호텔점 (주)엔타스(8377카드)</td><td class='er'>31만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>양희수</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>임태관</td><td class='ec ev'>6월 바운스번 인플루언서 협업비</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>양동현</td><td class='ec ev'>6월 더스크랙 외주 영상제작비</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>정지영</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>27만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>메리츠화재</td><td class='ec ev'>인천 물류창고 화재보험(24.09.10~39.09.10, 22/180)</td><td class='er'>26만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>김정현</td><td class='ec ev'>6월 코어큐브 퍼포먼스 모델 촬영비</td><td class='er'>24만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>이재우</td><td class='ec ev'>6월 코어큐브 퍼포먼스 모델 촬영비</td><td class='er'>24만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>더현대서울)바이레도(8377카드)</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>허지우</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>이미소</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>이영난</td><td class='ec ev'>6월 바운스번 인플루언서 협업비</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>김경은</td><td class='ec ev'>6월 코어큐브 인플루언서 협업 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>김환</td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>환불건_최정애,박재준,김미란</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>이예빈</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>이예빈</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>12만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>박진</td><td class='ec ev'>6월 쇼호스트 용역비</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>김환</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)신세계엘앤비 와인앤모어 합정역점(8377카드)</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이정훈</td><td class='ec'>용역비</td><td class='ec ev'>송승현</td><td class='ec ev'>6월 더스크랙 외주 영상 제작비</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>박예나</td><td class='ec ev'>6월 바운스번 인플루언서 협업 컨텐츠 추가활용 비용</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>㈜엘지유플러스</td><td class='ec ev'>LGU+오피스넷</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>캐롯(한화)손해보험 333어 9594 법인차량(가입)</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카쿠레(8377카드)</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>㈜엘지유플러스</td><td class='ec ev'>LGU+인터넷</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-20</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>보돌미역 메세나폴리스점(8377카드)</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-21</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사네이처스파엠알오(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-17</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>2만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>9,400원</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>텐퍼센트커피(8377카드)</td><td class='er'>9,100원</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>씨유(CU) 마곡(8377카드)	</td><td class='er'>7,300원</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>7,100원</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>6,800원</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>㈜엘지유플러스</td><td class='ec ev'>LGU+레터링</td><td class='er'>6,530원</td></tr>
+<tr><td class='ec'>6-21</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사네이처스파엠알오(8377카드)</td><td class='er'>6,500원</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>6,400원</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>6,100원</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>5,200원</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>텐퍼센트커피(8377카드)</td><td class='er'>4,800원</td></tr>
+<tr><td class='ec'>6-21</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사네이처스파엠알오(8377카드)</td><td class='er'>4,500원</td></tr>
+<tr><td class='ec'>6-21</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사네이처스파엠알오(8377카드)</td><td class='er'>4,500원</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>씨유(CU) 마곡(8377카드)</td><td class='er'>3,500원</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>3,000원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-더스크랙' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-9</td><td class='ec'>박종인</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타(본,바운스번,크립볼 통합) 7일치 광고비 충전 진행</td><td class='er'>1.0억</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>9,703만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>9,350만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($48,415 @1,518.40)</td><td class='er'>7,351만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)피아미디어그룹</td><td class='ec ev'>김사랑님 유튜브 및 인스타그램 브랜디드 협업 비용 1차분</td><td class='er'>7,150만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>주상서</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)피아미디어그룹</td><td class='ec ev'>김사랑님 유튜브 및 인스타그램 브랜디드 협업 비용 잔여 비용</td><td class='er'>6,600만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>3,621만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>3,469만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>3,000만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>박종인</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타(본,바운스번,크립볼 통합) 7일치 광고비 충전 진행</td><td class='er'>3,000만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,922만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>더스크랙</td><td class='ec ev'>계좌간이체</td><td class='er'>2,600만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,580만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 핀드포스트</td><td class='ec ev'>바운스번 밈고리즘 협업 잔여 비용 + 2차 라이선스 비용</td><td class='er'>2,530만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>틱톡+카카오모먼트 7일치 광고비 충전 진행</td><td class='er'>2,500만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>NINGBO POWERFUL ELECTRICAL APPLIANC</td><td class='ec ev'>제품수입($15,536.40 @1,529.20)</td><td class='er'>2,376만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>틱톡+카카오모먼트 7일치 광고비 충전 진행</td><td class='er'>2,000만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 핀드포스트</td><td class='ec ev'>홍범석님_협업_잔여분</td><td class='er'>1,650만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 디앤비아이앤씨</td><td class='ec ev'>크립볼 황현구님 유튜브 협업 비용 1차분</td><td class='er'>1,485만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 엘바 (ELBA Corp.)</td><td class='ec ev'>크립볼 덱스 유튜브 협업 비용 잔여</td><td class='er'>1,375만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>1,000만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)피아미디어그룹</td><td class='ec ev'>마선호님 협업 영상 2차 활용 비용</td><td class='er'>880만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>주상성</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 엘바 (ELBA Corp.)</td><td class='ec ev'>크립볼 해외 운동선수 유튜브 협업</td><td class='er'>825만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>수호천사동양생명</td><td class='ec ev'>동양생명-004 생활비보장형(장해)보험(5년납)</td><td class='er'>800만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606214</td><td class='er'>779만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>이슬기</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606219</td><td class='er'>692만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 쇼핑파트너센터</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA_크립볼</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 쇼핑파트너센터</td><td class='er'>500만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>주상성</td><td class='ec'>용역비</td><td class='ec ev'>이장군</td><td class='ec ev'>크립볼 SNS 마케팅 협업 비용 연장</td><td class='er'>484만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>잡플래닛 유한회사</td><td class='ec ev'>잡플래닛 기업플랜(올인원 서비스) 연간 이용비</td><td class='er'>462만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>441만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>403만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA_크립볼</td><td class='er'>400만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>웍스피어 유한책임회사</td><td class='ec ev'>잡코리아 채용광고 충전 비용</td><td class='er'>300만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>박영서</td><td class='ec'>운영비</td><td class='ec ev'>철거성지</td><td class='ec ev'>원창동 기존 창고 원상복구 공사 잔금 입금 요청</td><td class='er'>283만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이슬기</td><td class='ec'>원재료</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($1,651 @1,527.30)</td><td class='er'>252만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>주상성</td><td class='ec'>운반비</td><td class='ec ev'>씨제이대한통운㈜</td><td class='ec ev'>대한통운 풀필먼트 서비스 운임 비용</td><td class='er'>227만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>PREMIA TNC LIMITED</td><td class='ec ev'>연간갱신비용(USD 1,392 @1,543.00)</td><td class='er'>215만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>194만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>주상성</td><td class='ec'>운영비</td><td class='ec ev'>(재)한국건설생활환경시험연구원</td><td class='ec ev'>바운스번 내구성 테스트 비용 입금 요청</td><td class='er'>176만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>장종훈</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>165만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>113만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>윤별</td><td class='ec ev'>핏레일러+코어큐브 카페바이럴 각 5건 진행</td><td class='er'>110만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>강서세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>102만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>건강한 운동(8377카드)</td><td class='er'>100만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>89만</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>레이호(8377카드)</td><td class='er'>71만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>강서세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>57만</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>네이버페이(8377카드)</td><td class='er'>56만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박영서</td><td class='ec'>운반비</td><td class='ec ev'>(주)고고밴코리아</td><td class='ec ev'>26년 5월 고고벤코리아(배차업체) 비용 입금 요청</td><td class='er'>50만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김환</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>46만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>1주년 근속상 상품_백예림</td><td class='er'>44만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정지원</td><td class='ec'>운영비</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>카페24 메시지 충전</td><td class='er'>40만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>정은미</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>39만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>OPENAI *CHATGP_종인님</td><td class='er'>32만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>임효창</td><td class='ec'>광고선전비</td><td class='ec ev'>웰로</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>30만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>김규나</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>이동은</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>김민선</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>조은혜</td><td class='ec ev'>6월 바운스번 인플루언서 협업</td><td class='er'>29만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>주상성</td><td class='ec'>운영비</td><td class='ec ev'>이경림(힘(HIM)특허사무소)</td><td class='ec ev'>GMS 크립볼 상표권 10년 등록비</td><td class='er'>27만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>임효창</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 더스크랙 외주 영상 제작비용</td><td class='er'>26만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>정희선</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>24만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>박종인</td><td class='ec'>광고선전비</td><td class='ec ev'>제이피알</td><td class='ec ev'>크립볼X팔씨름 연맹 협력 기사 발행 (3건)</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>BOXHERO_박스히어로</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>나슬아</td><td class='ec ev'>6월 바운스번 인플루언서 협업</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>나보람</td><td class='ec ev'>6월 바운스번 인플루언서 협업비</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>김화경</td><td class='ec ev'>6월 코어큐브 인플루언서 협업비</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>임성환</td><td class='ec'>운영비</td><td class='ec ev'>마크힘 특허사무소</td><td class='ec ev'>베로자 상표권 5년 등록</td><td class='er'>19만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>임효창</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>18만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>강서구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>16만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>현수경</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>박채은</td><td class='ec ev'>6월 바운스번 인플루언서 협업</td><td class='er'>15만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>김환</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>네이버페이(8377카드)</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>박진</td><td class='ec ev'>6월 쇼호스트 용역비</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>임효창</td><td class='ec'>용역비</td><td class='ec ev'>김성아</td><td class='ec ev'>6월 코어큐브 인플루언서 협업 비</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>김환</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김환</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>1주년 근속상 상품_백예림</td><td class='er'>9만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>임효창</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>파이브가이즈_K(8377카드)</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>CU 상암2단지점(8377카드)</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이슬기</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>4만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 문리버(8377카드)</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>상계처리</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>1만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>박정태</td><td class='ec'>운영비</td><td class='ec ev'>박창원</td><td class='ec ev'>착불 반품 회송건 착불비 지급 요청</td><td class='er'>4,500원</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>박정태</td><td class='ec'>운영비</td><td class='ec ev'>이광복</td><td class='ec ev'>착불 반품 회송건 착불비 지급 요청</td><td class='er'>3,200원</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>3,000원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-썸웨어코드'>
+<div class='dct'><span class='dco'>썸웨어코드</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>2.5억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>28만</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>2.5억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+0.5억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>1.0억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>0.5억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+0.5억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:67%'></div><div class='dbar-out' style='width:33%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 1.0억</span><span class='neg'>■ 지출 0.5억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-썸웨어코드")'>당주 지출 (6/15~6/21) <span class='ecnt'>18</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-썸웨어코드")'>전주 지출 (6/8~6/14) <span class='ecnt'>17</span></button>
+  </div>
+  <div id='curr-썸웨어코드' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>시흥시청</td><td class='ec ev'>2025년 법인 지방소득세 1/2차분</td><td class='er'>1,355만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>(주)오투바이오</td><td class='ec ev'>260515 샐러그리스 잔금(26-1차)</td><td class='er'>1,183만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>715만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>506만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드법인</td><td class='ec ev'>법인카드사용액_202505</td><td class='er'>281만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>240만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>160만</td></tr>
+<tr><td class='ec'>6-19</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>100만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이태윤</td><td class='ec'>운영비</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>상표 등록</td><td class='er'>96만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월2주차 영상제작 외주 비용</td><td class='er'>81만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>삼도회계법인</td><td class='ec ev'>기장수수료</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월2주차 영상제작 외주 비용</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이태윤</td><td class='ec'>광고선전비</td><td class='ec ev'>제이피알</td><td class='ec ev'>뉴스발행 3건</td><td class='er'>21만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>이태윤</td><td class='ec'>광고선전비</td><td class='ec ev'>제이피알</td><td class='ec ev'>뉴스발행 1건</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-15</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>10만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월2주차 영상제작 외주 비용</td><td class='er'>8만</td></tr>
+<tr><td class='ec'>6-16</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치(HH)</td><td class='ec ev'>6월2주차 영상제작 외주 비용</td><td class='er'>6만</td></tr>
+<tr><td class='ec'>6-18</td><td class='ec'>이태윤</td><td class='ec'>운반비</td><td class='ec ev'>씨제이대한통운㈜</td><td class='ec ev'>4월 풀필먼트 이용 (네이버 N배송)</td><td class='er'>2만</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-썸웨어코드' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-8</td><td class='ec'>김보경</td><td class='ec'>원재료</td><td class='ec ev'>(주)오투바이오</td><td class='ec ev'>260513 그래니살라 잔금(26-3차) (그래니샐러드 제품명 변경_차수 유지)</td><td class='er'>4,758만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>270만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>220만</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>이태윤</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>신규 홈페이지 제작</td><td class='er'>165만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>43만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>31만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>24만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>이태윤</td><td class='ec'>운영비</td><td class='ec ev'>토스페이먼츠</td><td class='ec ev'>토스페이먼츠 pg사 수수료(샐러그리스)</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>22만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>대경빌딩</td><td class='ec ev'>썸웨어코드 사무실 관리비_202606</td><td class='er'>18만</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>정지원</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>14만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>이은영</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치(HH)</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>7만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>5만</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>정현정</td><td class='ec'>광고선전비</td><td class='ec ev'>호 컴퍼니</td><td class='ec ev'>6월 12일자 2차 바이럴게시글 삭제 외주 비용 </td><td class='er'>3만</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>시흥세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>7,490원</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>시흥시청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>730원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-플라이코퍼레이션'>
+<div class='dct'><span class='dco'>플라이코퍼레이션</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>295만</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>0.1억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>0.1억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+989만</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/15~6/21)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>0.1억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>11만</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+989만</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:98%'></div><div class='dbar-out' style='width:2%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 0.1억</span><span class='neg'>■ 지출 11만</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-플라이코퍼레이션")'>당주 지출 (6/15~6/21) <span class='ecnt'>1</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-플라이코퍼레이션")'>전주 지출 (6/8~6/14) <span class='ecnt'>0</span></button>
+  </div>
+  <div id='curr-플라이코퍼레이션' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-18</td><td class='ec'>김다슬</td><td class='ec'>운영비</td><td class='ec ev'>범용인증수수료</td><td class='ec ev'>신규 공인인증서 발급</td><td class='er'>11만</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-플라이코퍼레이션' class='epanel' style='display:none'>
+    <p style="padding:16px;color:#8090b0;font-size:12px;">지출 내역 없음</p>
+  </div>
+</div>
+</div>
+</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-01 12:05</div>
+<script>
+var PS = 10;
+var pg = {};
+
+function renderPage(id) {
+  var panel = document.getElementById(id);
+  if (!panel) return;
+  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var total = rows.length;
+  var pages = Math.max(1, Math.ceil(total / PS));
+  var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
+  pg[id] = p;
+  rows.forEach(function(r, i) {
+    r.style.display = (i >= p * PS && i < (p + 1) * PS) ? '' : 'none';
+  });
+  var pi = panel.querySelector('.pi');
+  var pp = panel.querySelector('.pprev');
+  var pn = panel.querySelector('.pnext');
+  if (pi) pi.textContent = total === 0 ? '—' : (p + 1) + ' / ' + pages + '  (' + total + '건)';
+  if (pp) pp.disabled = p === 0;
+  if (pn) pn.disabled = p >= pages - 1;
+}
+
+function goPage(id, dir) {
+  pg[id] = (pg[id] || 0) + dir;
+  renderPage(id);
+}
+
+function switchTab(btn, panelId) {
+  var wrap = btn.closest('.exp-wrap');
+  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  btn.classList.add('on');
+  document.getElementById(panelId).style.display = 'block';
+  renderPage(panelId);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.epanel').forEach(function(panel) {
+    var id = panel.id;
+    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var pages = Math.max(1, Math.ceil(rows.length / PS));
+    var pgn = document.createElement('div');
+    pgn.className = 'pgn';
+    pgn.innerHTML =
+      '<button class="pprev" onclick="goPage(\'' + id + '\',-1)">&#9664; 이전</button>' +
+      '<span class="pi"></span>' +
+      '<button class="pnext" onclick="goPage(\'' + id + '\',1)">다음 &#9654;</button>';
+    panel.appendChild(pgn);
+    pg[id] = 0;
+    renderPage(id);
+  });
+});
+</script>
+</body>
+</html>
