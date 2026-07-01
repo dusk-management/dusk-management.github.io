@@ -9,27 +9,28 @@
 body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#eef1f8;color:#1e2841;font-size:13px;line-height:1.5;min-height:100vh}
 a{color:inherit;text-decoration:none}
 .hdr{background:#16213e;color:#fff;padding:24px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.hdr-l h1{font-size:20px;font-weight:600;letter-spacing:-.3px}
 .hdr-l p{font-size:11px;color:#7a90b8;margin-top:4px}
 .logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.5px}
 .logo span{color:#4e8ef7}
 .main{padding:36px}
 .section-title{font-size:11px;font-weight:600;color:#8090b0;letter-spacing:.8px;text-transform:uppercase;margin-bottom:14px;margin-top:32px}
 .section-title:first-child{margin-top:0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:8px}
-.card{background:#fff;border:1px solid #d8e0ee;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(30,40,65,.06);transition:box-shadow .15s,transform .15s;cursor:pointer}
+.grid{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:8px}
+.card{background:#fff;border:1px solid #d8e0ee;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(30,40,65,.06);transition:box-shadow .15s,transform .15s;cursor:pointer;width:220px;flex-shrink:0}
 .card:hover{box-shadow:0 4px 16px rgba(30,40,65,.13);transform:translateY(-2px)}
-.card a{display:block;padding:22px 24px}
-.card-icon{font-size:28px;margin-bottom:12px}
-.card-type{font-size:10px;font-weight:600;color:#8090b0;letter-spacing:.6px;text-transform:uppercase;margin-bottom:6px}
-.card-title{font-size:15px;font-weight:600;color:#1e2841;margin-bottom:6px}
-.card-desc{font-size:11px;color:#8090b0;line-height:1.6}
-.card-footer{background:#f4f6fc;border-top:1px solid #d8e0ee;padding:10px 24px;display:flex;align-items:center;justify-content:space-between}
+.card a{display:block;padding:20px 20px 14px}
+.card.disabled{opacity:.5;pointer-events:none}
+.card-icon{font-size:26px;margin-bottom:10px}
+.card-week{font-size:14px;font-weight:700;color:#1e2841;margin-bottom:4px}
+.card-period{font-size:11px;color:#8090b0;margin-bottom:10px}
+.card-type{font-size:10px;font-weight:600;color:#8090b0;letter-spacing:.6px;text-transform:uppercase}
+.card-footer{background:#f4f6fc;border-top:1px solid #d8e0ee;padding:9px 20px;display:flex;align-items:center;justify-content:space-between}
 .card-date{font-size:11px;color:#8090b0}
 .card-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;background:#e8f0fe;color:#3a78d2}
 .card-badge.new{background:#e6f9f0;color:#12874a}
 .card-badge.soon{background:#f5f5f5;color:#aaa}
-.empty{background:#fff;border:1px dashed #c8d4e8;border-radius:12px;padding:28px 24px;color:#a0adc4;font-size:12px;text-align:center}
+.monthly-card{background:#fff;border:1px solid #d8e0ee;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(30,40,65,.06);width:220px;opacity:.5;pointer-events:none}
+.monthly-card a{display:block;padding:20px 20px 14px}
 .footer{text-align:center;padding:32px;color:#a0adc4;font-size:11px;margin-top:8px}
 </style>
 </head>
@@ -46,30 +47,70 @@ a{color:inherit;text-decoration:none}
 
 <div class="main">
 
-  <div class="section-title">주간 보고</div>
+  <div class="section-title">주간 보고 · 2026년 6월</div>
   <div class="grid">
+
+    <div class="card disabled">
+      <a href="#">
+        <div class="card-icon">📊</div>
+        <div class="card-week">주간 현금흐름 보고 - 1주차</div>
+        <div class="card-period">06/01 – 06/07</div>
+        <div class="card-type">Weekly Report</div>
+      </a>
+      <div class="card-footer">
+        <span class="card-date">준비 중</span>
+        <span class="card-badge soon">–</span>
+      </div>
+    </div>
+
+    <div class="card disabled">
+      <a href="#">
+        <div class="card-icon">📊</div>
+        <div class="card-week">주간 현금흐름 보고 - 2주차</div>
+        <div class="card-period">06/08 – 06/14</div>
+        <div class="card-type">Weekly Report</div>
+      </a>
+      <div class="card-footer">
+        <span class="card-date">준비 중</span>
+        <span class="card-badge soon">–</span>
+      </div>
+    </div>
+
+    <div class="card disabled">
+      <a href="#">
+        <div class="card-icon">📊</div>
+        <div class="card-week">주간 현금흐름 보고 - 3주차</div>
+        <div class="card-period">06/15 – 06/21</div>
+        <div class="card-type">Weekly Report</div>
+      </a>
+      <div class="card-footer">
+        <span class="card-date">준비 중</span>
+        <span class="card-badge soon">–</span>
+      </div>
+    </div>
+
     <div class="card">
       <a href="/weekly/">
         <div class="card-icon">📊</div>
+        <div class="card-week">주간 현금흐름 보고 - 4주차</div>
+        <div class="card-period">06/22 – 06/30</div>
         <div class="card-type">Weekly Report</div>
-        <div class="card-title">주간 현금흐름 보고</div>
-        <div class="card-desc">전사 주간 입출금 현황, KPI 요약, 회사별 현금 흐름 분석</div>
       </a>
       <div class="card-footer">
-        <span class="card-date">최근 업데이트: 2026-06-28</span>
+        <span class="card-date">2026-06-28</span>
         <span class="card-badge new">최신</span>
       </div>
     </div>
+
   </div>
 
   <div class="section-title">월간 보고</div>
   <div class="grid">
-    <div class="card" style="opacity:.6;pointer-events:none">
+    <div class="monthly-card">
       <a href="#">
-        <div class="card-icon">📋</div>
+        <div class="card-week">📋 월간 재무 보고</div>
+        <div class="card-period">월간 손익 · 재무상태 · 예산 대비 실적</div>
         <div class="card-type">Monthly Report</div>
-        <div class="card-title">월간 재무 보고</div>
-        <div class="card-desc">월간 손익, 재무상태, 예산 대비 실적 분석</div>
       </a>
       <div class="card-footer">
         <span class="card-date">준비 중</span>
