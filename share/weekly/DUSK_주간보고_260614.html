@@ -1,0 +1,1312 @@
+﻿﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>더스크그룹 주간현금흐름보고</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#eef1f8;color:#1e2841;font-size:13px;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.hdr{background:#16213e;color:#fff;padding:20px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-l h1{font-size:16px;font-weight:500}.hdr-l p{font-size:11px;color:#7a90b8;margin-top:3px}
+.pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 36px 0}
+.kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
+.kc.g{border-color:#a8dcbc;background:#f5fcf8}.kc.r{border-color:#e0b4b4;background:#fff7f7}
+.kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}.kvi{font-size:13px;font-weight:600;color:#be1c1c;line-height:1.4}
+.pos{color:#12874a}.neg{color:#be1c1c}
+.main{padding:16px 36px 36px}
+.card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+.ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
+th{text-align:center}
+td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
+tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
+.tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
+.bar{position:absolute;inset:0 auto 0 0;border-radius:0 2px 2px 0}.rv{position:relative;z-index:1}
+.bw{background:#fff0f0;border:1px solid #f0b0b0;color:#be1c1c;font-size:10px;padding:2px 9px;border-radius:20px;white-space:nowrap;font-weight:500}.ml4{margin-left:6px}
+.colink{color:#1e2841;font-weight:500}.colink:hover{color:#3a78d2;text-decoration:underline}
+.nc{background:#fffcf2;border-color:#e0d08a}
+.ni{padding:11px 20px;border-bottom:1px solid #ede8bc;font-size:12.5px;color:#5c4818;display:flex;align-items:center;gap:12px}
+.ni:last-child{border-bottom:none}.nl{display:inline-block;min-width:4px;height:15px;background:#f2b62d;border-radius:2px;flex-shrink:0}
+.ni-ok{color:#8090b0}.nl-ok{display:inline-block;min-width:4px;height:15px;background:#c0c8d8;border-radius:2px;flex-shrink:0}
+.sec-title{font-size:12px;font-weight:600;color:#8090b0;letter-spacing:.5px;text-transform:uppercase;margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid #d8e0ee}
+.dcard{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:12px;scroll-margin-top:16px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+.dct{display:flex;align-items:center;gap:8px;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee}.dco{font-weight:600;font-size:14px}
+.back{margin-left:auto;font-size:11px;color:#8090b0;padding:3px 10px;border:1px solid #d8e0ee;border-radius:20px;background:#fff}.back:hover{background:#eef1f8}
+.drow{display:grid;grid-template-columns:1fr 1fr}.dcol{padding:16px 20px}.dcol:first-child{border-right:1px solid #f0f3fa}
+.dsec{font-size:11px;font-weight:600;color:#8090b0;letter-spacing:.4px;text-transform:uppercase;margin-bottom:10px}
+.dtbl{width:100%;border-collapse:collapse}.dtbl td{padding:6px 0;border-bottom:1px solid #f4f6fa;font-size:12.5px}.dtbl tr:last-child td{border-bottom:none}
+.dlbl{color:#8090b0;width:55%}.dval{text-align:right;font-variant-numeric:tabular-nums}
+.tsum td{border-top:2px solid #d8e0ee!important;padding-top:8px!important;font-size:13px}.tdiff td{padding-top:4px!important;font-size:12px}
+.dbar-wrap{display:flex;height:8px;border-radius:4px;overflow:hidden;margin:14px 0 6px;background:#eef1f8}
+.dbar-in{background:#12874a;min-width:3px}.dbar-out{background:#be1c1c;min-width:3px}
+.dbar-lbl{display:flex;justify-content:space-between;font-size:11px;color:#8090b0}
+.foot{text-align:center;font-size:11px;color:#a8b4c8;padding:18px 36px;border-top:1px solid #d8e0ee;background:#fff;margin-top:8px}
+.exp-wrap{border-top:1px solid #e4eaf5}
+.etabs{display:flex;gap:0;border-bottom:1px solid #d8e0ee;background:#f9fafd;padding:0 16px}
+.etab{border:none;background:none;padding:10px 16px;font-size:12px;color:#8090b0;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit;margin-bottom:-1px}
+.etab.on{color:#1e2841;border-bottom-color:#3a78d2;font-weight:600}
+.etab:hover{color:#3a78d2}
+.ecnt{display:inline-block;background:#e4eaf5;color:#5060a0;font-size:10px;padding:1px 7px;border-radius:10px;margin-left:6px;font-weight:600}
+.etab.on .ecnt{background:#3a78d220;color:#3a78d2}
+.epanel{overflow-x:auto}
+.etbl{width:100%;border-collapse:collapse;font-size:12px}
+
+.etbl thead th{font-size:11px;color:#8090b0;font-weight:500;padding:7px 12px;border-bottom:1px solid #e4eaf5;background:#fafbfe;text-align:center;white-space:nowrap}
+
+.etbl tbody tr:hover td{background:#edf1fc}
+.etbl tbody tr:nth-child(even) td{background:#fafbfe}
+.ec{padding:7px 12px;border-bottom:1px solid #f0f3fa;color:#2a3450;text-align:center;white-space:nowrap}
+.ev{}
+.er{padding:7px 12px;border-bottom:1px solid #f0f3fa;text-align:center;font-variant-numeric:tabular-nums;color:#be1c1c;font-weight:500;white-space:nowrap}
+.pgn{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;border-top:1px solid #f0f3fa;background:#fafbfe}
+.pgn button{border:1px solid #d8e0ee;background:#fff;color:#4060a0;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit}
+.pgn button:hover:not(:disabled){background:#eef1f8;border-color:#b0bcd8}
+.pgn button:disabled{color:#c0c8d8;cursor:default;border-color:#e8ecf4}
+.pgn .pi{font-size:12px;color:#6070a0;min-width:100px;text-align:center}
+@media print{body{background:#fff}.pbtn,.back{display:none}.hdr,.kc,.card,.dcard{-webkit-print-color-adjust:exact;print-color-adjust:exact}.kpi,.main{padding-left:16px;padding-right:16px}.card,.dcard{box-shadow:none;break-inside:avoid}.etabs{display:none}.epanel{display:block!important}.pgn{display:none}}
+</style>
+</head>
+<body id="top">
+<div class="hdr">
+  <div class="hdr-l"><h1>더스크그룹 &nbsp;|&nbsp; 주간현금흐름보고</h1><p>2026년 06월 14일 기준 &nbsp;·&nbsp; 6/8~6/14</p></div>
+  <div style="display:flex;gap:8px">
+    <a href="https://dusk-management.github.io" class="pbtn">← 메인으로</a>
+    <button class="pbtn" onclick="window.print()">인쇄 / PDF 저장</button>
+  </div>
+</div>
+<div class="kpi">
+  <div class="kc"><div class="kl">총 원화 통장잔액</div><div class="kv">8.1억</div></div>
+  <div class="kc"><div class="kl">총 자산 합계</div><div class="kv">9.2억</div></div>
+  <div class="kc g"><div class="kl">이번 주 순현금 (6/8~6/14)</div><div class="kv pos">+7.5억</div></div>
+  <div class="kc r"><div class="kl">이슈 법인</div><div class="kvi">가론지, 발전존중, 더스크랙</div></div>
+</div>
+<div class="main">
+  <div class="card"><div class="ct">법인별 현금흐름 요약</div>
+    <table><thead><tr><th>법인</th><th>통장잔액</th><th>전주대비</th><th>순현금</th><th>입금</th><th>지출</th><th>비고</th></tr></thead>
+    <tbody><tr onclick="location.href='#co-데이즈'"><td class='tn'><a href='#co-데이즈' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:90%;background:#3a78d230'></div><span class='rv'>2.2억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:14%;background:#12874430'></div><span class='rv'>+7.7억</span></td><td class='tr2 pos'>+7.6억</td><td class='tr2'>7.8억</td><td class='tr2'>1.4억</td><td class='tc'></td></tr><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:51%;background:#3a78d230'></div><span class='rv'>9.9억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:57%;background:#be1c1c30'></div><span class='rv'>-4.2억</span></td><td class='tr2 neg'>-3.2억</td><td class='tr2'>738만</td><td class='tr2'>4.7억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr><tr onclick="location.href='#co-제노바'"><td class='tn'><a href='#co-제노바' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:45%;background:#3a78d230'></div><span class='rv'>6.2억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:24%;background:#12874430'></div><span class='rv'>+7.2억</span></td><td class='tr2 pos'>+7.2억</td><td class='tr2'>6.1억</td><td class='tr2'>6.8억</td><td class='tc'></td></tr><tr onclick="location.href='#co-크롬스'"><td class='tn'><a href='#co-크롬스' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:35%;background:#3a78d230'></div><span class='rv'>4.4억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:10%;background:#12874430'></div><span class='rv'>+9.6억</span></td><td class='tr2 pos'>+8.1억</td><td class='tr2'>2.5억</td><td class='tr2'>7.7억</td><td class='tc'></td></tr><tr onclick="location.href='#co-드래프터'"><td class='tn'><a href='#co-드래프터' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:22%;background:#3a78d230'></div><span class='rv'>6.1억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:9%;background:#12874430'></div><span class='rv'>+7.9억</span></td><td class='tr2 pos'>+2.0억</td><td class='tr2'>8.1억</td><td class='tr2'>1.5억</td><td class='tc'></td></tr><tr onclick="location.href='#co-발전존중'"><td class='tn'><a href='#co-발전존중' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:4%;background:#3a78d230'></div><span class='rv'>5.5억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:32%;background:#be1c1c30'></div><span class='rv'>-2.2억</span></td><td class='tr2 neg'>-0.2억</td><td class='tr2'>7.4억</td><td class='tr2'>9.0억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr><tr onclick="location.href='#co-썸웨어코드'"><td class='tn'><a href='#co-썸웨어코드' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:4%;background:#3a78d230'></div><span class='rv'>2.6억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:40%;background:#12874430'></div><span class='rv'>+0.9억</span></td><td class='tr2 pos'>+4.3억</td><td class='tr2'>2.7억</td><td class='tr2'>6.0억</td><td class='tc'></td></tr><tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:2%;background:#3a78d230'></div><span class='rv'>1.7억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:20%;background:#be1c1c30'></div><span class='rv'>-8.9억</span></td><td class='tr2 neg'>-5.4억</td><td class='tr2'>6.2억</td><td class='tr2'>8.2억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr><tr onclick="location.href='#co-플라이코퍼레이션'"><td class='tn'><a href='#co-플라이코퍼레이션' class='colink'>플라이코퍼레이션</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:0%;background:#3a78d230'></div><span class='rv'>0</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:0%;background:#12874430'></div><span class='rv'>0</span></td><td class='tr2 pos'>0</td><td class='tr2'>0</td><td class='tr2'>0</td><td class='tc'></td></tr>
+</tbody></table>
+  </div>
+  <div class="card nc"><div class="ct">이번 주 특이사항</div><div class='ni'><span class='nl'></span>가론지 — 입금 <b>8699만</b> / 지출 <b>5.3억</b>. 순현금 <span class='neg'>-0.8억</span></div><div class='ni'><span class='nl'></span>발전존중 — 입금 <b>6.6억</b> / 지출 <b>7.7억</b>. 순현금 <span class='neg'>-5.1억</span></div><div class='ni'><span class='nl'></span>더스크랙 — 입금 <b>1.9억</b> / 지출 <b>5.8억</b>. 순현금 <span class='neg'>-0.7억</span></div>
+</div>
+  <div class="sec-title">법인별 상세</div>
+  <div class='dcard' id='co-데이즈'>
+<div class='dct'><span class='dco'>데이즈</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>7.0억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>2.9억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>8.7억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>2.1억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+0.1억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>3.5억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>3.7억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+5.9억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:54%'></div><div class='dbar-out' style='width:46%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 0.5억</span><span class='neg'>■ 지출 8.3억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-데이즈")'>당주 지출 (6/8~6/14) <span class='ecnt'>69</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-데이즈")'>전주 지출 (6/1~6/7) <span class='ecnt'>68</span></button>
+  </div>
+  <div id='curr-데이즈' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈</td><td class='ec ev'>외화 매입($100,000 @1,518.29)</td><td class='er'>8,938,521</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈 하나은행</td><td class='ec ev'>하나은행(하나해외카드사용목적)</td><td class='er'>6,359,010</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,058 @1,518.40)</td><td class='er'>751,419</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)주니글로벌</td><td class='ec ev'>헤어리듬 패키지 1812만개 발주 잔금 (선금 결제 X 잔금 100%) </td><td class='er'>2,008,639</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>틱톡 충전금</td><td class='er'>9,311,505</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>424,670</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>6,251,251</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)퍼스트옵션</td><td class='ec ev'>6월 한혜진 아치핀 맥스 PPL 2차활용 추가금</td><td class='er'>8,490,266</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)코스모코스</td><td class='ec ev'>260511_헤어리듬 루트너 발주의 건 (MOQ 30,000개)</td><td class='er'>6,267,470</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,485,556</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>로버트 월터스 코리아 주식회사</td><td class='ec ev'>채용 헤드헌터 리테이너 비용</td><td class='er'>6,244,657</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>6,099,450</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,926,233</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>8,030,441</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>6,726,405</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>9,703,678</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606201</td><td class='er'>8,582,355</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,693,077</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>9,367,515</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,118,642</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>역삼세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>9,691,606</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>5,713,089</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>5,494,851</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>황현익</td><td class='ec ev'>직원복지숙소 월세</td><td class='er'>9,496,382</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>5,722,824</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>6,846,675</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>한국파렛트풀(주)</td><td class='ec ev'>26.05월 KPP파레트 임차료 지급 요청건</td><td class='er'>1,594,388</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606224</td><td class='er'>5,152,830</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>더아이엠(주)</td><td class='ec ev'>보더리 클렌징 튜브 용기 10,000개 발주 잔금 50%</td><td class='er'>9,937,408</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606229</td><td class='er'>2,804,449</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>6,736,632</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>4,989,285</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606213</td><td class='er'>8,139,189</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>서유진</td><td class='ec ev'>스카이팀 프리랜서 알바 건 (5월 9일~6월 8일)</td><td class='er'>7,373,023</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>2,188,990</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>강남구청</td><td class='ec ev'>지방소득세_20260</td><td class='er'>1,045,025</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>6,883,740</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>롯데캐피탈</td><td class='ec ev'>차량리스 19/60회</td><td class='er'>9,492,186</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>역삼세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>8,056,894</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김갑연</td><td class='ec ev'>프리랜서 용역비</td><td class='er'>9,136,877</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>7,379,746</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백서연</td><td class='ec ev'>6월 아큐스터 영상 콘텐츠 제작비</td><td class='er'>151,679</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 아톡비즈</td><td class='ec ev'>통신비</td><td class='er'>2,606,711</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>HIGGSFIELD INC</td><td class='er'>4,731,263</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정혜련</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>9,974,601</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>구글플레이, 더시드 AI계정 크레딧 충전</td><td class='er'>6,570,617</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>구글플레이, 더시드 AI계정 크레딧 충전</td><td class='er'>9,695,483</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포</td><td class='ec ev'>보더리 상표등록 3류</td><td class='er'>3,126,071</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포</td><td class='ec ev'>보더리 상표등록 35류</td><td class='er'>4,043,802</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>노소정</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>7,771,069</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>BMW파이낸셜서비스</td><td class='ec ev'>차량 리스료 납부</td><td class='er'>3,872,249</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>안창민</td><td class='ec ev'>5월 아치핀 맥스 협찬 인플루언서 비용</td><td class='er'>2,740,907</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백광렬</td><td class='ec ev'>6월 아큐스터 셀프캠 모델비용</td><td class='er'>2,200,601</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이진재</td><td class='ec ev'>6월 아큐스터 협찬 인플루언서 비용</td><td class='er'>418,511</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최장원</td><td class='ec ev'>6월 아치핀 맥스 협찬 인플루언서 비용</td><td class='er'>5,766,979</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강경아</td><td class='ec ev'>6월 1주차 영상 제작비 </td><td class='er'>3,020,945</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박지혜</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>423,349</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>손민수</td><td class='ec ev'>6월 아큐스터 협찬 인플루언서 비용</td><td class='er'>6,206,724</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김연아</td><td class='ec ev'>6월 아치핀 맥스 협찬 비용</td><td class='er'>8,170,005</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김수안</td><td class='ec ev'>6월 아치핀 맥스 협찬 인플루언서 비용</td><td class='er'>9,167,361</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>윤정아</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>7,315,851</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9,197,415</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 1주차 아큐스터, 아치핀맥스 콘텐츠 제작비</td><td class='er'>562,378</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5,002,508</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월1째주 광고영상 제작비</td><td class='er'>2,072,788</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>684,413</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>590,935</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>아이템스타우트유료결제(대표님 요청건)</td><td class='er'>7,375,186</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체 수수료</td><td class='er'>300원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-데이즈' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>씨제이대한통운(주)</td><td class='ec ev'>26.05월 CJ대한통운 배송운임 비용 지급 요청건(데이즈)</td><td class='er'>2,980,319</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈 하나은행</td><td class='ec ev'>하나은행(하나해외카드사용목적)</td><td class='er'>1,312,477</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈 하나은행</td><td class='ec ev'>하나은행(하나해외카드사용목적)</td><td class='er'>6,193,792</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,057 @1,515.60)</td><td class='er'>4,750,806</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>714,349</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>충전금</td><td class='er'>4,793,504</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>직원급여_202605</td><td class='er'>51,970</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>9,133,659</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,517,328</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,178,710</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>씨제이대한통운(주)</td><td class='ec ev'>26.05월 CJ_패키징(부자재) 매입 대금 입금 요청</td><td class='er'>8,649,967</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,578,973</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>6,674,513</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>5,014,538</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>페이스북 광고비</td><td class='er'>9,778,476</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>피엔케이피부임상연구센타㈜</td><td class='ec ev'>보더리 제품 6종 임상시험 진행_피엔케이</td><td class='er'>6,324,435</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 비투비컴퍼니</td><td class='ec ev'>26. 05월 인력 사용 비용 지급(비투비컴퍼니)</td><td class='er'>6,769,827</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 전대미문스튜디오</td><td class='ec ev'>아치핀맥스 연예인(이소라) + 썸네일/브검 사용 권한</td><td class='er'>9,895,742</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)오투바이오</td><td class='ec ev'>260210 제나그램 잔금(26-1차)</td><td class='er'>6,900,946</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,983,867</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>리더스애비뉴 2층</td><td class='ec ev'>사무실임차료_202606</td><td class='er'>3,579,584</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>김규태</td><td class='ec ev'>사무실임차료_202606</td><td class='er'>9,933,062</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>면승프라텍</td><td class='ec ev'>보더리 토너, 세럼 용기 1차 발주 잔금</td><td class='er'>9,093,321</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>쇼핑파트너센터</td><td class='er'>9,450,386</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)아더넥트</td><td class='ec ev'>데스크탑 PC 2대 구매_디자인&amp;영상용</td><td class='er'>516,429</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>씨제이대한통운(주)</td><td class='ec ev'>아치핀 네이버 도착보장 물류비 (4월 정산 건)</td><td class='er'>2,827,068</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606208</td><td class='er'>5,818,185</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정대성</td><td class='ec ev'>딥퍼플팀 프리렌서(사무실 상주)</td><td class='er'>5,489,807</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>마스터 국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>4,685,595</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605381</td><td class='er'>6,276,460</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 스튜디오앤공존</td><td class='ec ev'>5월 아큐스터 영상 콘텐츠 제작비</td><td class='er'>6,616,892</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)아더넥트</td><td class='ec ev'>데스크탑 PC 1대 구매_마케터용</td><td class='er'>230,262</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>카페24 고객 안내용 카카오 알림톡 충전</td><td class='er'>5,173,423</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_아치핀</td><td class='er'>986,090</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>5월 5주차 아큐스터, 아치핀 맥스 콘텐츠 제작비</td><td class='er'>3,021,968</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>벤츠파이낸셜</td><td class='ec ev'>185두 9654 차량리스비 14/60회차</td><td class='er'>7,921,380</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>뱅크다 기간 연장 결제</td><td class='er'>4,269,397</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>쓱싹브라더스</td><td class='ec ev'>폐기물처리비용(델타빌딩)</td><td class='er'>8,853,447</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김갑연</td><td class='ec ev'>프리랜서 용역비</td><td class='er'>9,757,599</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>5월 4째주 광고영상 제작비</td><td class='er'>2,626,010</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_더시드</td><td class='er'>9,645,123</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강경아</td><td class='ec ev'>5월 4주차 영상 제작비</td><td class='er'>7,949,899</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_헤어리듬</td><td class='er'>269,168</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이도경</td><td class='ec ev'>6월 아큐스터 협찬 인플루언서  비용</td><td class='er'>7,512,409</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김예지</td><td class='ec ev'>6월 아큐스터 인플루언서 협찬비용</td><td class='er'>8,520,277</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김정훈</td><td class='ec ev'>6월 아치핀맥스 협찬 인플루언서 비용</td><td class='er'>9,161,083</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>구글플레이, 더시드 AI계정 크레딧 충전</td><td class='er'>6,165,427</td></tr>
+<tr><td class='ec'>6-6</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>구글플레이, 더시드 AI계정 크레딧 충전</td><td class='er'>1,274,740</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 스튜디오앤공존</td><td class='ec ev'>5월 아치핀 맥스 영상 콘텐츠 제작비</td><td class='er'>644,309</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 1주차 아치핀 맥스, 아큐스터 영상 콘텐츠 제작비</td><td class='er'>355,463</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백서연</td><td class='ec ev'>5월 아큐스터 영상 콘텐츠 제작비</td><td class='er'>6,307,819</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이가은</td><td class='ec ev'>6월 아치핀 맥스 협찬 인플루언서 비용</td><td class='er'>9,499,079</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>차수연</td><td class='ec ev'>6월 뉴베로 협찬 인플루언서 비용</td><td class='er'>9,599,342</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5,317,155</td></tr>
+<tr><td class='ec'>6-6</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>스니핏 유료결제(대표님 요청건)</td><td class='er'>7,828,429</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이지선</td><td class='ec ev'>5월 4쨰주 광고영상 제작비</td><td class='er'>9,034,101</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>3,507,825</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>신규입사자 경영지원팀 식사</td><td class='er'>1,735,428</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이지연</td><td class='ec ev'>5월 헤어리듬 루트너 인플루언서 협업 콘텐츠 제작비</td><td class='er'>8,440,985</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>팽유미</td><td class='ec ev'>6월 헤어리듬 루트너 인플루언서 협업 콘텐츠 제작비</td><td class='er'>9,113,273</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신서영</td><td class='ec ev'>6월 아치핀 맥스 인플루언서 협찬비용</td><td class='er'>80,545</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>기업메일 계정 수 추가 결제</td><td class='er'>4,679,156</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>4,020,096</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>신규입사자 경영지원팀 음료</td><td class='er'>935,916</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최수정</td><td class='ec ev'>임직원 개인경비 정산(홈쇼핑 촬영 후 야근 택시비용)</td><td class='er'>4,259,488</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,800원</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체 수수료</td><td class='er'>300원</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체 수수료</td><td class='er'>300원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-가론지'>
+<div class='dct'><span class='dco'>가론지</span><span class='bw ml4'>지출 초과</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>9.2억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>5.9억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>4.9억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-6.4억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>8895만</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>5.1억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-5.7억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:22%'></div><div class='dbar-out' style='width:78%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 4523만</span><span class='neg'>■ 지출 8.4억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-가론지")'>당주 지출 (6/8~6/14) <span class='ecnt'>28</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-가론지")'>전주 지출 (6/1~6/7) <span class='ecnt'>17</span></button>
+  </div>
+  <div id='curr-가론지' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>6,476,916</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>5,909,895</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>355,442</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>박진희</td><td class='ec ev'>사비</td><td class='er'>3,946,244</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>4,103,877</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>토성농협하나로</td><td class='er'>6,112,181</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>이화주유소</td><td class='er'>9,752,260</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>속초카뱅크</td><td class='er'>1,335,032</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 케이</td><td class='er'>2,087,335</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>이안약국</td><td class='er'>7,655,927</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)사조마트</td><td class='er'>123,464</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>민들레 정육식</td><td class='er'>231,262</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>목동충전소</td><td class='er'>1,948,301</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 가보</td><td class='er'>966,803</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>한남주유소</td><td class='er'>597,635</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>하이카피랜드</td><td class='er'>4,935,529</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>굽네치킨(천진</td><td class='er'>9,902,004</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>한화솔루션(주)</td><td class='er'>7,086,862</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>삼성전자서비스</td><td class='er'>9,061,861</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>세븐일레븐 토</td><td class='er'>9,910,351</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>티머니택시(법</td><td class='er'>8,200원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>바다정원 주식</td><td class='er'>7,300원</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>한화솔루션(주)</td><td class='er'>7,000원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>키다리식품 (주</td><td class='er'>6,400원</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>이마트 에브리</td><td class='ec ev'>이마트 에브리</td><td class='er'>5,760원</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>LG  U+통신요금</td><td class='er'>4,950원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>CU 고성바다풍</td><td class='er'>2,500원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>지에스(GS)25</td><td class='er'>2,200원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-가론지' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>오피알</td><td class='ec ev'>광고대행</td><td class='er'>6,317,828</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>직원급여_202605(배승진 4월 공제액 반영)</td><td class='er'>2,122,675</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>박진희</td><td class='ec ev'>사비</td><td class='er'>3,292,183</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>박진희</td><td class='ec ev'>사비</td><td class='er'>4,987,154</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>장승식</td><td class='ec ev'>사비</td><td class='er'>6,490,871</td></tr>
+<tr><td class='ec'>6-3</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)상원푸드</td><td class='er'>749,169</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>김포IC충전소</td><td class='er'>4,622,654</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이태윤</td><td class='ec ev'>개인경비_타입캐스트 정기 결제(4월분)</td><td class='er'>9,916,979</td></tr>
+<tr><td class='ec'>6-3</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>자동결제_1</td><td class='er'>4,634,442</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>깐부치킨(성수)</td><td class='er'>4,435,269</td></tr>
+<tr><td class='ec'>6-7</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주)사조마트</td><td class='er'>7,082,023</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>광덕약국</td><td class='er'>9,306,693</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>Adyen</td><td class='er'>772,226</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>유키가츠&amp;텐동</td><td class='er'>8,610,359</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 진로</td><td class='er'>6,960원</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 에스</td><td class='er'>5,200원</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>GS25성수테크노</td><td class='er'>5,000원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-제노바'>
+<div class='dct'><span class='dco'>제노바</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>3.1억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>7652만</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>8.3억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+2.2억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>7.1억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>3.5억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+3.5억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:58%'></div><div class='dbar-out' style='width:42%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 9.3억</span><span class='neg'>■ 지출 5.5억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-제노바")'>당주 지출 (6/8~6/14) <span class='ecnt'>12</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-제노바")'>전주 지출 (6/1~6/7) <span class='ecnt'>11</span></button>
+  </div>
+  <div id='curr-제노바' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>8,610,843</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>3,788,483</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,064,543</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,994,693</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>노규동</td><td class='ec ev'>본부장님 오피스텔 지급임차료</td><td class='er'>2,171,531</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>우리금융캐피탈  </td><td class='ec ev'>렌트차량 관련 비용</td><td class='er'>4,344,528</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>599,463</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>환불건_이중영</td><td class='er'>9,455,865</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>시흥세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>9,728,317</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9,000원</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>시흥시청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>5,930원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체수수료</td><td class='er'>300원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-제노바' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>3,878,937</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>5,493,827</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,773,143</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>카페24 고객 안내용 카카오알림톡 충전</td><td class='er'>6,506,636</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박정헌</td><td class='ec ev'>5월 4째주 영상 제작비</td><td class='er'>3,539,739</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박정헌</td><td class='ec ev'>6월 1째주 영상 제작비</td><td class='er'>8,353</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_아시모토</td><td class='er'>6,265,741</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9,663,279</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,227,833</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>367,819</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>Seaart(텍스트·이미지·비디오를 AI로 생성·편집)</td><td class='er'>3,987,674</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-크롬스'>
+<div class='dct'><span class='dco'>크롬스</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>0.6억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>7.6억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>9.2억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>8.8억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+9.3억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>2.9억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>6.2억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+8.1억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:53%'></div><div class='dbar-out' style='width:47%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 3.2억</span><span class='neg'>■ 지출 2.7억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-크롬스")'>당주 지출 (6/8~6/14) <span class='ecnt'>82</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-크롬스")'>전주 지출 (6/1~6/7) <span class='ecnt'>91</span></button>
+  </div>
+  <div id='curr-크롬스' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 노빅코리아</td><td class='ec ev'>광고비</td><td class='er'>1,238,535</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>9,699,800</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>545,940</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,523,389</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,534,191</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>9,509,714</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡충전금</td><td class='er'>7,669,237</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>9,923,388</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>크리테오</td><td class='er'>3,582,457</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>4,112,785</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>틸리드코퍼레이션</td><td class='ec ev'>신규 스킨케어 브랜드 런칭 및 제품 개발 프로젝트 중도금</td><td class='er'>3,362,936</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,592,795</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,176,591</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>청소플래닛</td><td class='ec ev'>청소용역비</td><td class='er'>8,013,151</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>dable</td><td class='er'>3,189,816</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>dable</td><td class='er'>2,882,107</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>368,761</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>4,140,307</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>2,426,909</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>8,292,347</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>카페24 고객 안내용 카카오알림톡 충전</td><td class='er'>7,895,893</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,776,428</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>1,092,983</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>5,519,203</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 8건</td><td class='er'>4,177,074</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박준필</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>6,581,029</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>8,519,684</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>은평세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>7,652,077</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>5,306,993</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김태림</td><td class='ec ev'>옵틱3 영상 5건</td><td class='er'>1,378,688</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>은평세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>9,526,349</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>윤서아</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>4,136,107</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>루노비전 영상 4개</td><td class='er'>2,182,411</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_탕비실 음료, 초콜릿 구매</td><td class='er'>9,447,348</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>5,989,446</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김민지</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>813,569</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>모두싸인 결제(커머스본부용)</td><td class='er'>5,881,006</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5,677,331</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최지현</td><td class='ec ev'>닥터아멜리아 캡슐크림 셀프캠모델</td><td class='er'>3,284,448</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>환불건_송유나</td><td class='er'>9,540,041</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>고희선</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>5,559,865</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김지윤</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>816,418</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이헌섭</td><td class='ec ev'>ai 추출 영상 2건</td><td class='er'>9,488,441</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박나현</td><td class='ec ev'>루노비전 영상 3개 디벨롭</td><td class='er'>7,991,587</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김미강</td><td class='ec ev'>폴리샷 영상 편집 2건</td><td class='er'>4,958,104</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김서연</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>103,558</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최은자</td><td class='ec ev'>26.06.08 프리랜서 용역비 지급 요청</td><td class='er'>1,230,512</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정유순</td><td class='ec ev'>26.06.08 프리랜서 용역비 지급 요청</td><td class='er'>7,908,119</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>니프젠 영상제작 1건</td><td class='er'>7,989,351</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정우경</td><td class='ec ev'>영상 편집4건</td><td class='er'>2,428,308</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김신희</td><td class='ec ev'>ai 영상제작 1건</td><td class='er'>7,131,165</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이하루</td><td class='ec ev'>루노비전 성우 11건</td><td class='er'>9,770,179</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>은평구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>3,714,804</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.08 프리랜서 용역비 지급 요청</td><td class='er'>7,859,671</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박민선</td><td class='ec ev'>5월 PA 광고 운영 지원 비용</td><td class='er'>8,616,801</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_생수, 체단실 소모품 구매</td><td class='er'>4,629,149</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>사람인_정규직 무료 공고 초과 등록비</td><td class='er'>3,588,709</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>유송미</td><td class='ec ev'>5월 PA 광고 운영 지원 비용</td><td class='er'>7,973,117</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>황정아</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>4,878,414</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정다영</td><td class='ec ev'>26.06.09_딥퍼플 프리렌서 용역비 입금요청</td><td class='er'>1,022,227</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.09 프리랜서 용역비 지급 요청</td><td class='er'>2,605,951</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.10 프리랜서 용역비 지급 요청</td><td class='er'>3,451,895</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.11 프리랜서 용역비 지급 요청</td><td class='er'>1,404,787</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.12 프리랜서 용역비 지급 요청</td><td class='er'>3,838,501</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박서윤</td><td class='ec ev'>루노비전 성우 6건</td><td class='er'>4,791,137</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>도서공연자동이</td><td class='er'>9,860,011</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_플라이코퍼레이션 사무실</td><td class='er'>2,015,507</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_플라이코퍼레이션 사무실</td><td class='er'>2,587,105</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박서윤</td><td class='ec ev'>루노비전 성우 4건</td><td class='er'>1,264,259</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>애드위브</td><td class='ec ev'>이미지 제작건 </td><td class='er'>9,179,187</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이하루</td><td class='ec ev'>루노비전 성우 3건</td><td class='er'>565,705</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>저녁식대</td><td class='er'>8,970,194</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>9,799,585</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>1,605,886</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>9,471,922</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>4,101,465</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>티머니 개인택(5681카드)</td><td class='er'>6,678,170</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>7,700원</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>7,600원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>6,500원</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>외근 택시비_LG 노트북 수리센터 방문</td><td class='er'>6,200원</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>우체국 등기 비용</td><td class='er'>3,160원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-크롬스' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>2,056,144</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>9,422,524</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,139,019</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 피비에이치</td><td class='ec ev'>올리브3000 1차 잔금</td><td class='er'>8,402,556</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 오투바이오</td><td class='ec ev'>260602 루노비전 선금(26-7차)</td><td class='er'>6,001,757</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 오투바이오</td><td class='ec ev'>260413 루노비전 잔금(26-6차)</td><td class='er'>9,734,791</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>동서바이오팜㈜</td><td class='ec ev'>260306 옵틱3 26-1차 잔금</td><td class='er'>3,373,248</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>성안종합광고</td><td class='ec ev'>광고비</td><td class='er'>3,183,727</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,836,254</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡충전금</td><td class='er'>3,732,888</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 피비에이치</td><td class='ec ev'>올리브앤코(가칭) 1차 선금</td><td class='er'>5,605,047</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>직원급여_202605</td><td class='er'>9,046,263</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,680,479</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>1,948,045</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 피비에이치</td><td class='ec ev'>싱코프라임 1차 잔금</td><td class='er'>4,051,134</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)노디너리</td><td class='ec ev'>리톡셀 캡슐 크림 제조 비용 입금 (창고 입고 완료)</td><td class='er'>5,640,522</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>크리테오</td><td class='er'>6,008,585</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 SA</td><td class='er'>2,891,830</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,825,722</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>슈퍼코즈</td><td class='ec ev'>광고비</td><td class='er'>5,319,273</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>6,096,825</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)호텔롯데</td><td class='ec ev'>2026년 1차 워크샵 대관료 예약금(20%)</td><td class='er'>2,092,788</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>에프알엘코리아</td><td class='ec ev'>하계유니폼 구매</td><td class='er'>1,756,102</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>8,473,981</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>dable</td><td class='er'>2,947,311</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>1,594,420</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>770,359</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>8,652,631</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>8,712,531</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>7,691,831</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>3,298,159</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>5,706,422</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>2년이상 근속자 5월 상품권 지급(14명)</td><td class='er'>7,009,668</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>최효선_1주년 근속상품(한도 7350만원)</td><td class='er'>1,968,290</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>저녁식대 </td><td class='er'>6,652,773</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_클라헤르츠</td><td class='er'>3,343,877</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김승환</td><td class='ec ev'>사무실 임차료_202605</td><td class='er'>1,308,089</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>씨에스쏠루션</td><td class='ec ev'>CS 서비스 위탁 대행</td><td class='er'>1,315,730</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>사람인_정규직 공고(무료공고 초과 비용)</td><td class='er'>5,716,653</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김규리</td><td class='ec ev'>루노비전 영상 제작 7건</td><td class='er'>1,714,909</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박준필</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>6,641,030</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤별</td><td class='ec ev'>루노비전,옵틱3 바이럴 5건</td><td class='er'>9,568,109</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_실장님 요청건, 입사키트 등</td><td class='er'>1,179,281</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김재영</td><td class='ec ev'>5월 더스크랙 프리랜서 컨택 건당 정산 (교육 시급 포함)</td><td class='er'>3,256,604</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>오은혜 근속상 1주년 상품</td><td class='er'>9,395,872</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>윤서아</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>6,268,782</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김민지</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>4,492,825</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최재현</td><td class='ec ev'>AI 추출자 프리랜서 5월 용역비</td><td class='er'>2,209,802</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김지윤</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>9,563,037</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>유세헌</td><td class='ec ev'>레드팀 프리렌서 광고 등록</td><td class='er'>9,064,622</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>루노비전 영상 4개</td><td class='er'>6,569,810</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>안은연</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>7,740,203</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정근정</td><td class='ec ev'>옵틱3 푸티지 영상 촬영</td><td class='er'>7,926,169</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최태영</td><td class='ec ev'>옵틱3 푸티지 영상 촬영</td><td class='er'>4,012,897</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이영진</td><td class='ec ev'>옵틱3 푸티지 영상 촬영</td><td class='er'>2,315,321</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김지한</td><td class='ec ev'>옵틱3 푸티지 영상 촬영</td><td class='er'>7,388,426</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>8,818,031</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김태림</td><td class='ec ev'>루노비전 영상 2건</td><td class='er'>366,137</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이의규</td><td class='ec ev'>루노비전 ai 영상 2건 제작</td><td class='er'>6,029,749</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백송현</td><td class='ec ev'>ai 추출 영상 제작 2건</td><td class='er'>528,900</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김아연</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>3,180,295</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡 소모품 구매_탕비실 소모품, 노트북 파우치 등</td><td class='er'>6,868,849</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>1,893,196</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>황정아</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>4,143,337</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김서연</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>8,487,256</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>니프젠 영상제작 1건</td><td class='er'>568,418</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최은자</td><td class='ec ev'>26.06.01 프리랜서 용역비 지급 요청</td><td class='er'>5,761,064</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이헌섭</td><td class='ec ev'>ai 추출 영상 1건</td><td class='er'>3,070,995</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강보미</td><td class='ec ev'>니프젠 AI 영상 추출1건</td><td class='er'>925,413</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김신희</td><td class='ec ev'>ai 영상제작 1건</td><td class='er'>4,194,753</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>컴퓨터 수리 비용(미래컴119)</td><td class='er'>6,132,796</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.02 프리랜서 용역비 지급 요청</td><td class='er'>2,491,342</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최슬기</td><td class='ec ev'>5월 더스크랙 프리랜서 컨택 건당 정산 (교육 시급 포함)</td><td class='er'>1,983,258</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.01 프리랜서 용역비 지급 요청</td><td class='er'>1,597,326</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.01 프리랜서 용역비 지급 요청</td><td class='er'>6,498,889</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정우경</td><td class='ec ev'>영상 편집3건</td><td class='er'>3,084,908</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>고희선</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>3,401,827</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정다영</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>3,725,494</td></tr>
+<tr><td class='ec'>6-3</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>대성산업(주)아천충전소(5681카드)</td><td class='er'>6,697,092</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김기택</td><td class='ec ev'>26.06.05 프리랜서 용역비 지급 요청</td><td class='er'>6,878,117</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9,333,931</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,544,995</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>저녁식대</td><td class='er'>6,652,031</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>저녁식대 </td><td class='er'>9,014,501</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>9,707,415</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>알바몬_프리랜서 공고 등록비</td><td class='er'>9,650,432</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>사무실 상비약 구매</td><td class='er'>91,298</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>더스크랙 영문 명판 제작</td><td class='er'>3,130,365</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>델타빌딩 외근 택시비</td><td class='er'>5,900원</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>델타빌딩 외근 택시비</td><td class='er'>4,800원</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_올리비앤코</td><td class='er'>1,000원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-드래프터'>
+<div class='dct'><span class='dco'>드래프터</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>5.1억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>5.2억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>8.3억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>4.7억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+4.1억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>5.7억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>3.5억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+5.8억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:53%'></div><div class='dbar-out' style='width:47%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 3.0억</span><span class='neg'>■ 지출 3.0억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-드래프터")'>당주 지출 (6/8~6/14) <span class='ecnt'>72</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-드래프터")'>전주 지출 (6/1~6/7) <span class='ecnt'>83</span></button>
+  </div>
+  <div id='curr-드래프터' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>드래프터</td><td class='ec ev'>외화 매입($200,000 @1,518.49)</td><td class='er'>139,157</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>3,241,183</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>6,180,450</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,060 @1,546.50)</td><td class='er'>9,897,823</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,065 @1,543.00)</td><td class='er'>8,148,608</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,049 @1,527.00)</td><td class='er'>5,522,408</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,050 @1,522.40)</td><td class='er'>4,245,720</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,301,761</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,784,513</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,981,344</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,775,287</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>8,191,314</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606202</td><td class='er'>8,237,782</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>피엔케이피부임상연구센타 주식회사</td><td class='ec ev'>보더리 제품 6종 임상시험 진행</td><td class='er'>346,704</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>6월 보더리 해외 상표등록 비용</td><td class='er'>2,501,181</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>8,074,088</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 탑지엘에스</td><td class='ec ev'>보더리 3종(세럼,토너,클렌저) 태국 수출 해상 비용 </td><td class='er'>2,977,252</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>4,869,731</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>보더리 해외(태국, 대만) 상표권</td><td class='er'>9,685,720</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>쇼핑파트너센터</td><td class='er'>2,842,404</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)캠데이터부설 국제특성분석연구소</td><td class='ec ev'>액상 10가지맛 무니코틴 검사</td><td class='er'>1,167,359</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,132,588</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,473,148</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>9,373,430</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>7,848,637</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>보더리 해외(홍콩) 상표권 출원 </td><td class='er'>203,560</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,239,480</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>4,137,576</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>8,569,565</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>9,569,784</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>민티소</td><td class='ec ev'>티즈네일 홈페이지 셋팅 선금</td><td class='er'>8,895,009</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>953,328</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤별</td><td class='ec ev'>카페 바이럴 5건</td><td class='er'>3,604,705</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)망고</td><td class='ec ev'>시순 영양흑채 리뷰 가구매</td><td class='er'>6,809,563</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>6월 마크인포 상표등록 비용</td><td class='er'>9,282,743</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>플렉스 결제</td><td class='er'>4,749,205</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>삼성세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>279,335</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>7,780,413</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5,572,395</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>6,216,602</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>1,446,612</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>국내 상표권 권리 이전 (데이즈-&gt;드래프터)</td><td class='er'>7,948,029</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 1주차 써마드, 뉴베로 콘텐츠 제작비</td><td class='er'>9,531,998</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_소누스</td><td class='er'>7,878,849</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9,730,236</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>8,801,262</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강경아</td><td class='ec ev'>6월 1주차 영상 제작비 </td><td class='er'>1,117,011</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>권병희</td><td class='ec ev'>6월 써마드 협찬 인플루언서 비용</td><td class='er'>2,007,549</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>7,089,649</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백서연</td><td class='ec ev'>6월 써마드 영상 콘텐츠 제작비</td><td class='er'>799,225</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>1,183,027</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>9,575,411</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>삼성세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>2,908,791</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>6,269,158</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>7,161,336</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강보경</td><td class='ec ev'>6월 뉴베로 협찬 인플루언서 비용</td><td class='er'>9,301,492</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김예인</td><td class='ec ev'>6월 뉴베로 셀프캠 비용</td><td class='er'>9,180,191</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백서연</td><td class='ec ev'>6월 뉴베로 영상 콘텐츠 제작비</td><td class='er'>4,812,241</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이호원</td><td class='ec ev'>시순 영양흑채 셀프캠 배우 입금</td><td class='er'>6,777,198</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박아름</td><td class='ec ev'>6월 뉴베로 협찬 인플루언서 비용</td><td class='er'>9,042,979</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>서은비</td><td class='ec ev'>6월 써마드 IMG 콘텐츠 제작비</td><td class='er'>43,030</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>서은비</td><td class='ec ev'>6월 뉴베로 IMG 콘텐츠 제작비</td><td class='er'>3,985,160</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>7,787,749</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치(HH)</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>9,327,121</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강남구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>330,203</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>7,024,830</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>1,757,401</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605276 (2차 통관건)</td><td class='er'>2,158,740</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>3,226,525</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>8,657,711</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>2,579,169</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>호 컴퍼니</td><td class='ec ev'>6월 뉴베로 악성글 삭제비</td><td class='er'>6,450,857</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-드래프터' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>드래프터</td><td class='ec ev'>외화 매입($150,000 @1,505.73)</td><td class='er'>2,312,456</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>397,092</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>7,631,313</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>4,914,399</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,038 @1,528.60)</td><td class='er'>7,677,632</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,059 @1,511.30)</td><td class='er'>4,359,039</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,066 @1,503.20)</td><td class='er'>4,975,975</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($50,067 @1,515.60)</td><td class='er'>4,343,243</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>3,692,926</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>씨제이대한통운㈜</td><td class='ec ev'>26.05월 CJ대한통운 운임비용 입금 요청(드래프터)</td><td class='er'>5,734,677</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>8,328,360</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,538,663</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,949,159</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>4,937,298</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>1,870,983</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>직원급여_202605</td><td class='er'>2,681,409</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>8,053,151</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>7,432,508</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605271</td><td class='er'>7,158,050</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>8,527,177</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605294</td><td class='er'>1,474,594</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강남구청</td><td class='ec ev'>2025년 법인 지방소득세 2/2차분</td><td class='er'>4,946,649</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,019,462</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 엘이와이</td><td class='ec ev'>써마드 홈쇼핑 쇼호스트 비용</td><td class='er'>331,991</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>8,808,256</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>㈜시큐어넷</td><td class='ec ev'>전기안전(배터리) 시험 수수료 결제</td><td class='er'>5,056,517</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,384,938</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>7,328,429</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>7,401,215</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>658,658</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>79,593</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>469,397</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>5,993,963</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>844,356</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 마케팅모먼트</td><td class='ec ev'>소누스_GFA_구독료 (6월분)</td><td class='er'>9,066,228</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>손채은</td><td class='ec ev'>5월 3-5주 시딩 컨택비용 입금</td><td class='er'>1,953,787</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)스튜디오앤공존</td><td class='ec ev'>5월 써마드 영상 콘텐츠 제작비</td><td class='er'>2,785,085</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_리칼지메디</td><td class='er'>2,157,011</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>4,461,472</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드</td><td class='ec ev'>뱅크다 기간 연장 결제</td><td class='er'>8,265,204</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_베이스튠</td><td class='er'>4,696,310</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>2,188,082</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>5월 5주차 써마드, 뉴베로 영상 콘텐츠 제작비</td><td class='er'>6,093,819</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>장은별</td><td class='ec ev'>6월 써마드 인플루언서 협찬비용</td><td class='er'>8,682,742</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최은수</td><td class='ec ev'>6월 써마드 인플루언서 협찬비용</td><td class='er'>14,579</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>4,928,961</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_셀라큐어</td><td class='er'>397,991</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_시순</td><td class='er'>3,438,929</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>카페24 소누스 고객 안내용 카카오 알림톡 충전</td><td class='er'>6,371,367</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>6,707,891</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)스튜디오앤공존</td><td class='ec ev'>5월 뉴베로 영상 콘텐츠 제작비</td><td class='er'>7,035,503</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>5월 5주차 써마드, 뉴베로 콘텐츠 제작비</td><td class='er'>4,211,069</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_포디온</td><td class='er'>3,942,868</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_해트케</td><td class='er'>1,955,522</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 SA</td><td class='er'>8,159,237</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김태욱</td><td class='ec ev'>6월 써마드 인플루언서 협찬비용</td><td class='er'>1,902,237</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>안창민</td><td class='ec ev'>6월 써마드 인플루언서 협찬비용</td><td class='er'>5,218,647</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>셀라큐어 영상 5건</td><td class='er'>3,479,169</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>직원급여_202605(신현지 차액)</td><td class='er'>5,172,201</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>서은비</td><td class='ec ev'>6월 써마드 GIF 콘텐츠 제작비</td><td class='er'>434,832</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>7,345,920</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>8,511,317</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>육채연</td><td class='ec ev'>5월 뉴베로 협찬 인플루언서 비용</td><td class='er'>1,272,591</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 1주차 써마드 영상 콘텐츠 제작비</td><td class='er'>7,425,865</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백서연</td><td class='ec ev'>5월 써마드 영상 콘텐츠 제작비</td><td class='er'>5,646,244</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백서연</td><td class='ec ev'>5월 뉴베로 영상 콘텐츠 제작비</td><td class='er'>1,811,361</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>5,053,066</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>3,665,671</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>직원급여_202605(이경수 차액)</td><td class='er'>9,542,855</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치(HH)</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>6,280,309</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>강성부</td><td class='ec ev'>롯데택배로 입고된 드래프터 제품들 착불비용</td><td class='er'>2,298,812</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>서울보증보험</td><td class='ec ev'>우리홈쇼핑 서울보증보험 추가 증액 보험료</td><td class='er'>6,815,482</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>5월 4째주 광고영상 제작비</td><td class='er'>4,926,810</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>9,053,780</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>1,612,790</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>1,806,195</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>2,100,080</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>5,610,870</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>하계유니폼 구매(3XL)</td><td class='er'>7,505,306</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정지윤</td><td class='ec ev'>6월 인스타 파트너쉽 광고 협찬 제작</td><td class='er'>4,597,111</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정지윤</td><td class='ec ev'>6월 인스타 파트너쉽 광고 협찬 제작</td><td class='er'>8,916,774</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>호 컴퍼니</td><td class='ec ev'>6월 뉴베로 악성글 삭제비</td><td class='er'>8,791,083</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>지윤석</td><td class='ec ev'>네이버 블로그 최적 아이디 구매</td><td class='er'>8,236,615</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-발전존중'>
+<div class='dct'><span class='dco'>발전존중</span><span class='bw ml4'>지출 초과</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>4.5억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>4.3억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>4.8억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>1.2억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-9.5억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>1.7억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>4.1억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-5.3억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:37%'></div><div class='dbar-out' style='width:63%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 8.3억</span><span class='neg'>■ 지출 8.9억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-발전존중")'>당주 지출 (6/8~6/14) <span class='ecnt'>45</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-발전존중")'>전주 지출 (6/1~6/7) <span class='ecnt'>44</span></button>
+  </div>
+  <div id='curr-발전존중' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 피비에이치</td><td class='ec ev'>오메가3멀티팩(가칭) 1차 선금</td><td class='er'>7,797,109</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>7,142,518</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,440,442</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 노베라</td><td class='ec ev'>템퍼픽션 2차 선금</td><td class='er'>2,176,669</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,384,945</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>전대미문스튜디오</td><td class='ec ev'>키즈픽션 연예인 협찬 (샘 해밍턴)</td><td class='er'>4,026,660</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>우즈스튜디오㈜</td><td class='ec ev'>브랜딩, 제품 기획/패키지 디자인 개발 프로젝트 용역 계약 중도금</td><td class='er'>5,959,825</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>카페24 크리테오</td><td class='er'>7,049,252</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내 하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>5,296,585</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>829,394</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>5,415,834</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>법무법인 산음</td><td class='ec ev'>전체 브랜드 리셀러 관련 의뢰건</td><td class='er'>3,121,984</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>은평세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>841,123</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이솝이</td><td class='ec ev'>PA 인플루언서 작업</td><td class='er'>4,135,775</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 영상 광고 콘텐츠 제작비</td><td class='er'>2,804,098</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>정정희</td><td class='ec ev'>은평구사무실 임차료(후불)</td><td class='er'>8,079,957</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>키즈픽션, 슬로우픽션 광고 영상 제작</td><td class='er'>7,782,606</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>223,325</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>5,799,306</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>노석웅</td><td class='ec ev'>6월 리더뮨 영상 편집비</td><td class='er'>9,210,703</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>류지은</td><td class='ec ev'>PA 인플루언서 작업</td><td class='er'>4,642,752</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김소리</td><td class='ec ev'>6월 리더뮨 디자인 외주 용역비</td><td class='er'>9,358,421</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,256,425</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>7,527,391</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포</td><td class='ec ev'>리더뮨 상표등록 05류</td><td class='er'>9,464,699</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포</td><td class='ec ev'>리더뮨 상표등록 29류</td><td class='er'>7,051,374</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박하은</td><td class='ec ev'>6월 로그린팀 AI추출</td><td class='er'>104,894</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이용기</td><td class='ec ev'>6월 영상 편집비</td><td class='er'>1,999,794</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>pg사 수수료_토스</td><td class='er'>8,417,904</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>pg사 수수료_이니시스</td><td class='er'>8,293,902</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이영석</td><td class='ec ev'>키즈픽션 광고 영상 4건 제작 비용 지급</td><td class='er'>5,204,152</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이의규</td><td class='ec ev'>루노비전 ai 영상 3건 제작</td><td class='er'>8,650,622</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>차예지</td><td class='ec ev'>PA 협찬</td><td class='er'>8,786,423</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이영진</td><td class='ec ev'>PA 협찬</td><td class='er'>1,178,029</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>3,116,314</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>은평구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>3,706,655</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이의규</td><td class='ec ev'>루노비전 pa 1건</td><td class='er'>5,278,174</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>애드위브</td><td class='ec ev'>키즈픽션 gif 제작 비용 지급</td><td class='er'>2,712,642</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>애드위브</td><td class='ec ev'>슬로우픽션 gif 제작 비용 지급</td><td class='er'>2,007,972</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>2,504,634</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>8,203,469</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>2,647,837</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>6,401,612</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트티라노</td><td class='ec ev'>6월 영상 광고 콘텐츠 제작비</td><td class='er'>1,196,863</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월 외주 영상편집비</td><td class='er'>8,192,544</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-발전존중' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>6,280,638</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>리더스애비뉴 2층(안흥진)</td><td class='ec ev'>사무실 임차료(리더스애비뉴)</td><td class='er'>4,926,163</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>노빅코리아</td><td class='ec ev'>노빅코리아</td><td class='er'>9,383,460</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>4,235,943</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>253,101</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>유미리</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>4,514,761</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박누리</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>8,617,517</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김수빈</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>2,554,493</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김유정</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>1,185,038</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박유나</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>505,209</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김승욱</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>9,385,583</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>연지민</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>1,307,302</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박수진</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>8,012,007</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>오입금 환불건_김가영, 천승란</td><td class='er'>8,427,478</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>홍수정</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>7,474,455</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>5월 외주 영상편집비</td><td class='er'>5,975,092</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_리더뮨</td><td class='er'>4,089,630</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>5월 외주 영상편집비</td><td class='er'>9,434,534</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>5월 외주 영상편집비</td><td class='er'>9,577,425</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>5월 외주 영상편집비</td><td class='er'>3,659,536</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김성일</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>5,374,853</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>배근아</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>3,872,070</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>뱅크다 기간 연장 결제</td><td class='er'>3,793,000</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이의규</td><td class='ec ev'>옵틱3 pa 광고 협찬 2건</td><td class='er'>182,864</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이주현</td><td class='ec ev'>PA 협찬</td><td class='er'>95,059</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5,336,284</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_아웃코마</td><td class='er'>2,578,469</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>5월 외주 영상편집비</td><td class='er'>1,607,326</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박하은</td><td class='ec ev'>6월 로그린팀 AI추출</td><td class='er'>5,033,213</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김소현</td><td class='ec ev'>PA 협찬</td><td class='er'>8,293,655</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김태현</td><td class='ec ev'>PA 협찬</td><td class='er'>6,380,002</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최승미</td><td class='ec ev'>PA 협찬</td><td class='er'>8,064,116</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이아름</td><td class='ec ev'>소재등록, 영상 리사이징(5월 근무 정산)</td><td class='er'>3,765,621</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>5월 외주 영상편집비</td><td class='er'>9,752,339</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이영석</td><td class='ec ev'>키즈픽션 광고 영상 제작 3건</td><td class='er'>2,013,311</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박하은</td><td class='ec ev'>6월 로그린팀 AI추출</td><td class='er'>9,902,695</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>황규범</td><td class='ec ev'>PA 협찬(선금)</td><td class='er'>7,499,238</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이용기</td><td class='ec ev'>5월 4주차 영상 편집비</td><td class='er'>428,467</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이용기</td><td class='ec ev'>5월 4주차 영상 편집비</td><td class='er'>1,813,517</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김태훈</td><td class='ec ev'>5월 전 사업자 브랜드 프리랜서 용역비</td><td class='er'>6,666,231</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>5월 외주 영상편집비</td><td class='er'>8,524,542</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정지우</td><td class='ec ev'>5월 프리랜서 컨택 건당 정산</td><td class='er'>3,154,082</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>노석웅</td><td class='ec ev'>6월 리더뮨 영상 편집비</td><td class='er'>6,869,670</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체수수료</td><td class='er'>300원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-썸웨어코드'>
+<div class='dct'><span class='dco'>썸웨어코드</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>1.2억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>3417만</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>3.2억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+6.4억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>7.8억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>7.7억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+3.2억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:66%'></div><div class='dbar-out' style='width:34%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 8.3억</span><span class='neg'>■ 지출 6.0억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-썸웨어코드")'>당주 지출 (6/8~6/14) <span class='ecnt'>17</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-썸웨어코드")'>전주 지출 (6/1~6/7) <span class='ecnt'>17</span></button>
+  </div>
+  <div id='curr-썸웨어코드' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)오투바이오</td><td class='ec ev'>260513 그래니살라 잔금(26-3차) (그래니샐러드 제품명 변경_차수 유지)</td><td class='er'>24,586</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>786,111</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>7,158,178</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>신규 홈페이지 제작</td><td class='er'>6,822,997</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>1,510,923</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5,359,606</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>9,458,104</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>3,933,075</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>토스페이먼츠</td><td class='ec ev'>토스페이먼츠 pg사 수수료(샐러그리스)</td><td class='er'>2,617,725</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>5,163,283</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>대경빌딩</td><td class='ec ev'>썸웨어코드 사무실 관리비_202606</td><td class='er'>1,614,076</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>7,729,227</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치(HH)</td><td class='ec ev'>6월1주차 영상제작 외주 비용</td><td class='er'>2,434,286</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>533,786</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>호 컴퍼니</td><td class='ec ev'>6월 12일자 2차 바이럴게시글 삭제 외주 비용 </td><td class='er'>9,079,521</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>시흥세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>7,490원</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>시흥시청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>730원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-썸웨어코드' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>1,441,384</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>7,645,237</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>카페24 구글</td><td class='er'>2,200,623</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>5,939,145</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>9,836,606</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 마케팅모먼트</td><td class='ec ev'>그래니 샐러드_GFA 구독료 (4월분)</td><td class='er'>161,404</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_그래니샐러드</td><td class='er'>7,993,072</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크인포특허법률사무소</td><td class='ec ev'>그래니살라 상표 등록</td><td class='er'>7,510,099</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>4,127,827</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>뱅크다 기간 연장 결제</td><td class='er'>8,957,583</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>퀀트 티라노</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>2,182,798</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>애드피디아</td><td class='ec ev'>네이버 키워드 관리</td><td class='er'>2,512,114</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,340,917</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>5월4주차 영상제작 외주 비용</td><td class='er'>4,321,007</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>호 컴퍼니</td><td class='ec ev'>5월 29일자 2차 바이럴게시글 삭제 외주 비용 </td><td class='er'>2,096,804</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박은별</td><td class='ec ev'>5월 4째주 AI 추출자 영상 추출 용역비</td><td class='er'>5,862,243</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_오넥시아</td><td class='er'>1,000원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-더스크랙'>
+<div class='dct'><span class='dco'>더스크랙</span><span class='bw ml4'>지출 초과</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>0.4억</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>7.5억</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>0.7억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>4.1억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-3.8억</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>3.8억</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>8.3억</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-2.8억</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:42%'></div><div class='dbar-out' style='width:58%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 8.7억</span><span class='neg'>■ 지출 3.4억</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-더스크랙")'>당주 지출 (6/8~6/14) <span class='ecnt'>100</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-더스크랙")'>전주 지출 (6/1~6/7) <span class='ecnt'>82</span></button>
+  </div>
+  <div id='curr-더스크랙' class='epanel'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타(본,바운스번,크립볼 통합) 7일치 광고비 충전 진행</td><td class='er'>3,546,911</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>5,656,555</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>6,974,150</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($48,415 @1,518.40)</td><td class='er'>6,613,928</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)피아미디어그룹</td><td class='ec ev'>김사랑님 유튜브 및 인스타그램 브랜디드 협업 비용 1차분</td><td class='er'>2,757,248</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)피아미디어그룹</td><td class='ec ev'>김사랑님 유튜브 및 인스타그램 브랜디드 협업 비용 잔여 비용</td><td class='er'>678,499</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>8,945,740</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>5,744,749</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>6,234,693</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타(본,바운스번,크립볼 통합) 7일치 광고비 충전 진행</td><td class='er'>176,583</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,379,776</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>더스크랙</td><td class='ec ev'>계좌간이체</td><td class='er'>7,497,359</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,326,530</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 핀드포스트</td><td class='ec ev'>바운스번 밈고리즘 협업 잔여 비용 + 2차 라이선스 비용</td><td class='er'>3,522,165</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>틱톡+카카오모먼트 7일치 광고비 충전 진행</td><td class='er'>2,472,556</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>NINGBO POWERFUL ELECTRICAL APPLIANC</td><td class='ec ev'>제품수입($15,536.40 @1,529.20)</td><td class='er'>7,432,919</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>틱톡+카카오모먼트 7일치 광고비 충전 진행</td><td class='er'>4,659,568</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 핀드포스트</td><td class='ec ev'>홍범석님_협업_잔여분</td><td class='er'>9,944,165</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 디앤비아이앤씨</td><td class='ec ev'>크립볼 황현구님 유튜브 협업 비용 1차분</td><td class='er'>3,163,406</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 엘바 (ELBA Corp.)</td><td class='ec ev'>크립볼 덱스 유튜브 협업 비용 잔여</td><td class='er'>5,230,124</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>3,019,211</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>9,733,857</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)피아미디어그룹</td><td class='ec ev'>마선호님 협업 영상 2차 활용 비용</td><td class='er'>9,916,328</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 엘바 (ELBA Corp.)</td><td class='ec ev'>크립볼 해외 운동선수 유튜브 협업</td><td class='er'>5,349,031</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>수호천사동양생명</td><td class='ec ev'>동양생명-004 생활비보장형(장해)보험(5년납)</td><td class='er'>5,396,188</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606214</td><td class='er'>4,546,775</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202606219</td><td class='er'>6,961,561</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 쇼핑파트너센터</td><td class='er'>5,957,979</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA_크립볼</td><td class='er'>8,291,415</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 쇼핑파트너센터</td><td class='er'>9,782,992</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이장군</td><td class='ec ev'>크립볼 SNS 마케팅 협업 비용 연장</td><td class='er'>3,790,902</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>잡플래닛 유한회사</td><td class='ec ev'>잡플래닛 기업플랜(올인원 서비스) 연간 이용비</td><td class='er'>2,961,281</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민연금</td><td class='er'>8,637,399</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605국민건강</td><td class='er'>2,564,493</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA_크립볼</td><td class='er'>8,135,149</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>웍스피어 유한책임회사</td><td class='ec ev'>잡코리아 채용광고 충전 비용</td><td class='er'>7,828,912</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>철거성지</td><td class='ec ev'>원창동 기존 창고 원상복구 공사 잔금 입금 요청</td><td class='er'>3,012,650</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>Yantai Yeqi Trading Co., Ltd</td><td class='ec ev'>제품수입($1,651 @1,527.30)</td><td class='er'>1,507,217</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>씨제이대한통운㈜</td><td class='ec ev'>대한통운 풀필먼트 서비스 운임 비용</td><td class='er'>2,892,949</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>PREMIA TNC LIMITED</td><td class='ec ev'>연간갱신비용(USD 1,392 @1,543.00)</td><td class='er'>5,612,245</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605고용보험</td><td class='er'>3,772,307</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(재)한국건설생활환경시험연구원</td><td class='ec ev'>바운스번 내구성 테스트 비용 입금 요청</td><td class='er'>611,266</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>2,375,792</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 아톡</td><td class='ec ev'>통신비</td><td class='er'>8,545,255</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤별</td><td class='ec ev'>핏레일러+코어큐브 카페바이럴 각 5건 진행</td><td class='er'>1,110,662</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>강서세무서</td><td class='ec ev'>근로소득세_202605</td><td class='er'>9,059,106</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>건강한 운동(8377카드)</td><td class='er'>7,380,617</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>4대보험</td><td class='ec ev'>2605산재보험</td><td class='er'>5,240,587</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>레이호(8377카드)</td><td class='er'>7,852,007</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>강서세무서</td><td class='ec ev'>사업소득세_202605</td><td class='er'>7,602,784</td></tr>
+<tr><td class='ec'>6-13</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>네이버페이(8377카드)</td><td class='er'>7,283,570</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)고고밴코리아</td><td class='ec ev'>26년 5월 고고벤코리아(배차업체) 비용 입금 요청</td><td class='er'>8,892,484</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>8,208,576</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>1주년 근속상 상품_백예림</td><td class='er'>8,464,342</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>카페24 메시지 충전</td><td class='er'>8,682,744</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정은미</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>5,507,149</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>OPENAI *CHATGP_종인님</td><td class='er'>394,213</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>웰로</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>5,497,894</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김규나</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>8,006,727</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이동은</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>6,368,767</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김민선</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>4,171,263</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>조은혜</td><td class='ec ev'>6월 바운스번 인플루언서 협업</td><td class='er'>7,729,819</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이경림(힘(HIM)특허사무소)</td><td class='ec ev'>GMS 크립볼 상표권 10년 등록비</td><td class='er'>7,186,127</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 더스크랙 외주 영상 제작비용</td><td class='er'>3,012,840</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>정희선</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>2,706,150</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>제이피알</td><td class='ec ev'>크립볼X팔씨름 연맹 협력 기사 발행 (3건)</td><td class='er'>4,136,646</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>BOXHERO_박스히어로</td><td class='er'>3,575,076</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>나슬아</td><td class='ec ev'>6월 바운스번 인플루언서 협업</td><td class='er'>8,965,084</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>나보람</td><td class='ec ev'>6월 바운스번 인플루언서 협업비</td><td class='er'>4,164,888</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김화경</td><td class='ec ev'>6월 코어큐브 인플루언서 협업비</td><td class='er'>4,781,038</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>마크힘 특허사무소</td><td class='ec ev'>베로자 상표권 5년 등록</td><td class='er'>6,860,099</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>2,964,583</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>강서구청</td><td class='ec ev'>지방소득세_202605</td><td class='er'>112,482</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>현수경</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>6,690,460</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박채은</td><td class='ec ev'>6월 바운스번 인플루언서 협업</td><td class='er'>6,612,399</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,637,489</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>네이버페이(8377카드)</td><td class='er'>8,790,045</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박진</td><td class='ec ev'>6월 쇼호스트 용역비</td><td class='er'>971,913</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>김성아</td><td class='ec ev'>6월 코어큐브 인플루언서 협업 비</td><td class='er'>5,242,778</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>6,491,114</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>7,912,608</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>1주년 근속상 상품_백예림</td><td class='er'>235,824</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>더블에이치</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>9,443,132</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>파이브가이즈_K(8377카드)</td><td class='er'>4,515,183</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>CU 상암2단지점(8377카드)</td><td class='er'>7,856,963</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>2,810,875</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>44,299</td></tr>
+<tr><td class='ec'>6-10</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>신한은행</td><td class='ec ev'>해외송금수수료</td><td class='er'>618,137</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>5,749,256</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>3,918,020</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>5,370,490</td></tr>
+<tr><td class='ec'>6-9</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 문리버(8377카드)</td><td class='er'>7,796,770</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>3,925,615</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택</td><td class='er'>7,245,383</td></tr>
+<tr><td class='ec'>6-12</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가</td><td class='er'>8,335,125</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>1,179,887</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>카카오T택시_가(8377카드)</td><td class='er'>4,963,384</td></tr>
+<tr><td class='ec'>6-8</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박창원</td><td class='ec ev'>착불 반품 회송건 착불비 지급 요청</td><td class='er'>4,500원</td></tr>
+<tr><td class='ec'>6-11</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이광복</td><td class='ec ev'>착불 반품 회송건 착불비 지급 요청</td><td class='er'>3,200원</td></tr>
+<tr><td class='ec'>6-14</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>카카오T일반택(8377카드)</td><td class='er'>3,000원</td></tr>
+</tbody></table>
+  </div>
+  <div id='prev-더스크랙' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+<tbody>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타(본,바운스번,크립볼 통합) 7일치 광고비 충전 진행</td><td class='er'>8,519,160</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>9,173,943</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>(주)피아미디어그룹</td><td class='ec ev'>김종국님  유튜브 브랜디드 협업 비용</td><td class='er'>8,985,254</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>2,766,623</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>씨제이대한통운㈜</td><td class='ec ev'>26.05월 CJ대한통운 배송운임 비용 지급 요청건</td><td class='er'>4,225,132</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>카페24 구글</td><td class='er'>7,995,002</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>더스크랙 급여_202605</td><td class='er'>7,427,488</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>3,243,906</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>3,239,635</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>6,496,473</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>휘령개발</td><td class='ec ev'>인천 물류센터 임대료(후불)_202605</td><td class='er'>7,850,952</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605270</td><td class='er'>1,068,116</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>주식회사 전대미문 스튜디오 </td><td class='ec ev'>파로덱스 앰플치약 연예인 촬영</td><td class='er'>3,157,429</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>틱톡+카카오모먼트 7일치 광고비 충전 진행</td><td class='er'>7,617,037</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>7,243,921</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>실비스(silvis)</td><td class='ec ev'>팔씨름 연맹 하반기 대회 후원비용</td><td class='er'>395,098</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 빛달</td><td class='ec ev'>26.05월 빛달(배차업체) 비용 입금 요청</td><td class='er'>8,384,012</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA_크립볼</td><td class='er'>6,817,965</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>6,119,298</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박스올라잇</td><td class='ec ev'>베로자 단상자 5천개 제작 </td><td class='er'>743,516</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605283</td><td class='er'>6,067,452</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605269</td><td class='er'>7,080,815</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>인천서구석남223</td><td class='ec ev'>26년 5월 경동택배 택배 운임비 지급 요청</td><td class='er'>8,100,856</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605205</td><td class='er'>3,155,876</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>호성엠테크</td><td class='ec ev'>자동랩핑기 매입건</td><td class='er'>2,623,748</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>주식회사 엘엑스판토스</td><td class='ec ev'>26.05월 LX판토스(설치위탁업체)비용 입금 요청</td><td class='er'>6,853,959</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>국내하나카드</td><td class='ec ev'>네이버 SA</td><td class='er'>692,369</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>수입통관비용</td><td class='ec ev'>인천관세법인</td><td class='ec ev'>수입통관비용_ICLWH202605296</td><td class='er'>6,748,040</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)코어덤</td><td class='ec ev'>파로덱스 앰플치약 미백 임상시험 진행 선금 50%</td><td class='er'>8,679,336</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박스올라잇</td><td class='ec ev'>베로자 폴리샷 추가 스펀지 제작 + 베로자 립잉커 단상자 개발비용</td><td class='er'>7,873,683</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>카페24주식회사</td><td class='ec ev'>자사몰 SMS 충전 (2915만건)</td><td class='er'>8,297,585</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>철거성지</td><td class='ec ev'>원창동 기존 창고 원상복구 공사 중도금 입금 요청</td><td class='er'>6,711,335</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>홍예진</td><td class='ec ev'>프리랜서 5월 급여 지급</td><td class='er'>8,165,224</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>홍예진</td><td class='ec ev'>프리랜서 5월 급여 지급</td><td class='er'>8,307,090</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>홍예진</td><td class='ec ev'>프리랜서 5월 급여 지급</td><td class='er'>2,447,517</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>홍예진</td><td class='ec ev'>프리랜서 5월 급여 지급</td><td class='er'>8,213,610</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박스올라잇</td><td class='ec ev'>파로덱스 앰플치약 단상자 샘플 4개 개발비용</td><td class='er'>3,779,228</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>양승화</td><td class='ec ev'>6월 바운스번 인플루언서 협업비용</td><td class='er'>1,126,620</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>하수구막힘</td><td class='ec ev'>기존 물류창고 정화조 청소 비용 입금요청</td><td class='er'>677,685</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>한국파렛트풀(주)</td><td class='ec ev'>26년 5월 지게차 렌탈비 입금요청</td><td class='er'>4,746,679</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>하나캐피탈(주)</td><td class='ec ev'>114너2654 차량 리스비 1/60회차</td><td class='er'>5,959,681</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)브릿지오버</td><td class='ec ev'>26.05월 지게차 임차료 지급 요청건</td><td class='er'>1,225,205</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>고재윤_1주년 근속상품(한도 9810만원)</td><td class='er'>7,674,748</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>유지현</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>1,238,711</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>윤디터미디어</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>2,339,343</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>하이프노드</td><td class='ec ev'>공동구매 벤더사 정산 건(송주해_바운스번)</td><td class='er'>3,422,129</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>크림 주식회사(8377카드)</td><td class='er'>4,469,068</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>오연진</td><td class='ec ev'>6월 바운스번 인플루언서 비용</td><td class='er'>5,282,866</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>8,800,388</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>광고선전비</td><td class='ec ev'>피디즈 스튜디오</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용</td><td class='er'>7,843,908</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>장서연</td><td class='ec ev'>6월 바운스번 인플루언서 협업비</td><td class='er'>7,360,349</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>최주리</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비</td><td class='er'>1,518,494</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>백서연</td><td class='ec ev'>6월 더스크랙 외주 영상편집자 비용</td><td class='er'>8,496,158</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>더스크랙 급여_202605(박영서 휴일근로수당 차액)</td><td class='er'>3,540,529</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이서연</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>3,192,892</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이현수</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>5,382,269</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이미현</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>8,796,341</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>더스크랙 급여_202605(태명호 휴일근로수당 차액)</td><td class='er'>8,537,941</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>Google Digital_구글워크스페이스(7계정)</td><td class='er'>6,417,678</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>유하연</td><td class='ec ev'>6월 바운스번 인플루언서 협업 비용</td><td class='er'>2,425,876</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>권혜리</td><td class='ec ev'>6월 바운스번 인플루언서 협업비</td><td class='er'>6,756,805</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>더스크랙 급여_202605(이승로 휴일근로수당 차액)</td><td class='er'>3,668,714</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>더스크랙 급여_202605(박정태 휴일근로수당 차액)</td><td class='er'>4,646,469</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>2,851,406</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>더스크랙 급여_202605(김도현 휴일근로수당 차액)</td><td class='er'>5,281,956</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>네이버페이(8377카드)</td><td class='er'>7,297,995</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>임직원</td><td class='ec ev'>더스크랙 급여_202605(강수혁 휴일근로수당 차액)</td><td class='er'>2,939,308</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>송승현</td><td class='ec ev'>6월 더스크랙 외주 영상제작 비용 지급</td><td class='er'>3,859,175</td></tr>
+<tr><td class='ec'>6-2</td><td class='ec'>홍길동</td><td class='ec'>가구매/환불</td><td class='ec ev'>무통장입금</td><td class='ec ev'>환불건</td><td class='er'>5,900,173</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>박진</td><td class='ec ev'>6월 쇼호스트 용역비</td><td class='er'>3,674,160</td></tr>
+<tr><td class='ec'>6-1</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>(주)정진환경</td><td class='ec ev'>기존 물류창고 정화조 분뇨작업 비용 입금 요청</td><td class='er'>5,412,184</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>석암생소금구이(8377카드)</td><td class='er'>5,289,066</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>네이버페이(8377카드)</td><td class='er'>2,121,443</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>상계처리</td><td class='ec ev'>환불건_전호윤</td><td class='er'>64,863</td></tr>
+<tr><td class='ec'>6-3</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>네이버파이낸셜(8377카드)</td><td class='er'>5,582,439</td></tr>
+<tr><td class='ec'>6-3</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>WWW.PERPLEXITY</td><td class='er'>8,191,945</td></tr>
+<tr><td class='ec'>6-3</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>홈플러스월드컵점(8377카드)</td><td class='er'>7,893,911</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>Netflix_INICIS</td><td class='er'>6,948,108</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'>홍길동</td><td class='ec'>홍길동</td><td class='ec ev'>이광</td><td class='ec ev'>착불 반품 회송건 착불비 지급 요청</td><td class='er'>9,200원</td></tr>
+<tr><td class='ec'>6-6</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>주식회사 더벳로드(8377카드)</td><td class='er'>8,000원</td></tr>
+<tr><td class='ec'>6-3</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>(주) 스페이스8888(8377카드)</td><td class='er'>5,400원</td></tr>
+<tr><td class='ec'>6-5</td><td class='ec'></td><td class='ec'>홍길동</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>신한카드 이용알림서비스</td><td class='er'>200원</td></tr>
+</tbody></table>
+  </div>
+</div>
+</div><div class='dcard' id='co-플라이코퍼레이션'>
+<div class='dct'><span class='dco'>플라이코퍼레이션</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='drow'>
+  <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
+    <tr><td class='dlbl'>원화 통장</td><td class='dval'>0</td></tr>
+    <tr><td class='dlbl'>외화 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
+    <tr><td class='dlbl'>재고자산</td><td class='dval'>5.0억</td></tr>
+    <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>9.3억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>0</b></td></tr>
+  </table></div>
+  <div class='dcol'><div class='dsec'>주간 현금흐름 (6/8~6/14)</div><table class='dtbl'>
+    <tr><td class='dlbl'>입금</td><td class='dval'>0</td></tr>
+    <tr><td class='dlbl'>지출</td><td class='dval'>0</td></tr>
+    <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>0</b></td></tr>
+  </table>
+  <div class='dbar-wrap'><div class='dbar-in' style='width:50%'></div><div class='dbar-out' style='width:50%'></div></div>
+  <div class='dbar-lbl'><span class='pos'>■ 입금 0</span><span class='neg'>■ 지출 0</span></div>
+  </div>
+</div>
+<div class='exp-wrap'>
+  <div class='etabs'>
+    <button class='etab on' onclick='switchTab(this,"curr-플라이코퍼레이션")'>당주 지출 (6/8~6/14) <span class='ecnt'>0</span></button>
+    <button class='etab' onclick='switchTab(this,"prev-플라이코퍼레이션")'>전주 지출 (6/1~6/7) <span class='ecnt'>0</span></button>
+  </div>
+  <div id='curr-플라이코퍼레이션' class='epanel'>
+    <p style="padding:16px;color:#8090b0;font-size:12px;">지출 내역 없음</p>
+  </div>
+  <div id='prev-플라이코퍼레이션' class='epanel' style='display:none'>
+    <p style="padding:16px;color:#8090b0;font-size:12px;">지출 내역 없음</p>
+  </div>
+</div>
+</div>
+</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-01 12:27</div>
+<script>
+var PS = 10;
+var pg = {};
+
+function renderPage(id) {
+  var panel = document.getElementById(id);
+  if (!panel) return;
+  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var total = rows.length;
+  var pages = Math.max(1, Math.ceil(total / PS));
+  var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
+  pg[id] = p;
+  rows.forEach(function(r, i) {
+    r.style.display = (i >= p * PS && i < (p + 1) * PS) ? '' : 'none';
+  });
+  var pi = panel.querySelector('.pi');
+  var pp = panel.querySelector('.pprev');
+  var pn = panel.querySelector('.pnext');
+  if (pi) pi.textContent = total === 0 ? '—' : (p + 1) + ' / ' + pages + '  (' + total + '건)';
+  if (pp) pp.disabled = p === 0;
+  if (pn) pn.disabled = p >= pages - 1;
+}
+
+function goPage(id, dir) {
+  pg[id] = (pg[id] || 0) + dir;
+  renderPage(id);
+}
+
+function switchTab(btn, panelId) {
+  var wrap = btn.closest('.exp-wrap');
+  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  btn.classList.add('on');
+  document.getElementById(panelId).style.display = 'block';
+  renderPage(panelId);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.epanel').forEach(function(panel) {
+    var id = panel.id;
+    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var pages = Math.max(1, Math.ceil(rows.length / PS));
+    var pgn = document.createElement('div');
+    pgn.className = 'pgn';
+    pgn.innerHTML =
+      '<button class="pprev" onclick="goPage(\'' + id + '\',-1)">&#9664; 이전</button>' +
+      '<span class="pi"></span>' +
+      '<button class="pnext" onclick="goPage(\'' + id + '\',1)">다음 &#9654;</button>';
+    panel.appendChild(pgn);
+    pg[id] = 0;
+    renderPage(id);
+  });
+});
+</script>
+</body>
+</html>
