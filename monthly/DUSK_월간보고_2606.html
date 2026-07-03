@@ -38,6 +38,11 @@ tr:hover td{background:#edf1fc!important;cursor:pointer}
 .gcol-h{background:#2563a8!important;color:#e0ecff!important}
 /* 주차별 테이블 */
 .week-th th{background:#1e3a5f;color:#c8d8f0;border-bottom:1px solid #2a4a70}
+/* 주차별 추이 차트 */
+.wchart-wrap{padding:18px 20px 4px}
+.wlegend{display:flex;gap:18px;font-size:11px;color:#5a6b8c;margin-bottom:6px}
+.wleg-sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.wchart-wrap svg{width:100%;height:auto;display:block}
 /* 총 자산 */
 .asset-label{font-size:11px;color:#8090b0;margin-top:2px}
 .note{font-size:11px;color:#8090b0;padding:8px 20px 10px;background:#f9fafd;border-top:1px solid #f0f3fa}
@@ -103,35 +108,35 @@ tr:hover td{background:#edf1fc!important;cursor:pointer}
           <td>6,118,280,227</td>
           <td>5,016,828,765</td>
           <td class="pos-val">+1,101,451,462</td>
-          <td>계좌간이체 988,784,872 제외</td>
+          <td></td>
         </tr>
         <tr>
           <td>데이즈</td>
           <td>3,358,300,653</td>
           <td>2,717,608,504</td>
           <td class="pos-val">+640,692,149</td>
-          <td>계좌간이체 903,064,475 제외</td>
+          <td></td>
         </tr>
         <tr>
           <td>크롬스</td>
           <td>3,746,368,061</td>
           <td>2,914,243,262</td>
           <td class="pos-val">+832,124,799</td>
-          <td>계좌간이체 없음</td>
+          <td></td>
         </tr>
         <tr>
           <td>더스크랙</td>
           <td>2,559,534,132</td>
           <td>2,875,243,625</td>
           <td class="neg-val">−315,709,493</td>
-          <td>계좌간이체 821,849,277 제외</td>
+          <td></td>
         </tr>
         <tr>
           <td>발전존중</td>
           <td>1,093,247,161</td>
           <td>945,450,195</td>
           <td class="pos-val">+147,796,966</td>
-          <td>계좌간이체 350,000,000 제외</td>
+          <td></td>
         </tr>
         <tr>
           <td>제노바</td>
@@ -152,7 +157,7 @@ tr:hover td{background:#edf1fc!important;cursor:pointer}
           <td>284,966,723</td>
           <td>412,409,166</td>
           <td class="neg-val">−127,442,443</td>
-          <td>계좌간이체 800,000,000 제외</td>
+          <td></td>
         </tr>
         <tr>
           <td>플라이코퍼레이션</td>
@@ -314,153 +319,94 @@ tr:hover td{background:#edf1fc!important;cursor:pointer}
   <!-- 주차별 현금흐름 추이 -->
   <div class="card">
     <div class="ct">주차별 현금흐름 추이 (그룹 합산)</div>
-    <table>
-      <thead class="week-th">
-        <tr>
-          <th>주차</th>
-          <th>기간</th>
-          <th>드래프터</th>
-          <th>데이즈</th>
-          <th>크롬스</th>
-          <th>더스크랙</th>
-          <th>발전존중</th>
-          <th>제노바</th>
-          <th>썸웨어코드</th>
-          <th>가론지</th>
-          <th>플라이</th>
-          <th class="gcol-h">그룹합계</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1주차 입금</td>
-          <td>6/1 ~ 6/7</td>
-          <td>2,009,840,568</td>
-          <td>1,276,813,945</td>
-          <td>1,203,046,650</td>
-          <td>859,332,982</td>
-          <td>271,197,495</td>
-          <td>350,960,191</td>
-          <td>159,178,713</td>
-          <td>259,502,280</td>
-          <td>0</td>
-          <td class="gcol">6,389,872,824</td>
-        </tr>
-        <tr>
-          <td>1주차 출금</td>
-          <td>6/1 ~ 6/7</td>
-          <td>1,637,921,342</td>
-          <td>1,089,553,578</td>
-          <td>901,776,049</td>
-          <td>995,286,961</td>
-          <td>85,087,487</td>
-          <td>135,528,371</td>
-          <td>175,801,234</td>
-          <td>84,133,796</td>
-          <td>0</td>
-          <td class="gcol">5,105,088,818</td>
-        </tr>
-        <tr>
-          <td>2주차 입금</td>
-          <td>6/8 ~ 6/14</td>
-          <td>1,674,125,782</td>
-          <td>1,167,503,340</td>
-          <td>871,743,804</td>
-          <td>725,898,913</td>
-          <td>180,041,300</td>
-          <td>405,438,794</td>
-          <td>113,145,186</td>
-          <td>5,678,999</td>
-          <td>0</td>
-          <td class="gcol">5,143,576,118</td>
-        </tr>
-        <tr>
-          <td>2주차 출금</td>
-          <td>6/8 ~ 6/14</td>
-          <td>1,466,916,399</td>
-          <td>958,263,819</td>
-          <td>762,375,234</td>
-          <td>981,988,527</td>
-          <td>304,879,076</td>
-          <td>281,759,701</td>
-          <td>56,248,484</td>
-          <td>19,851,380</td>
-          <td>0</td>
-          <td class="gcol">4,832,282,620</td>
-        </tr>
-        <tr>
-          <td>3주차 입금</td>
-          <td>6/15 ~ 6/21</td>
-          <td>1,968,351,580</td>
-          <td>958,482,949</td>
-          <td>732,370,505</td>
-          <td>747,924,194</td>
-          <td>511,065,008</td>
-          <td>318,942,164</td>
-          <td>101,147,036</td>
-          <td>8,041,772</td>
-          <td>10,000,054</td>
-          <td class="gcol">5,356,325,261</td>
-        </tr>
-        <tr>
-          <td>3주차 출금</td>
-          <td>6/15 ~ 6/21</td>
-          <td>1,488,940,436</td>
-          <td>872,461,342</td>
-          <td>595,199,290</td>
-          <td>820,784,231</td>
-          <td>500,047,430</td>
-          <td>283,523,031</td>
-          <td>48,216,606</td>
-          <td>11,330,410</td>
-          <td>110,000</td>
-          <td class="gcol">4,620,612,776</td>
-        </tr>
-        <tr>
-          <td>4주차 입금</td>
-          <td>6/22 ~ 6/30</td>
-          <td>1,456,430,269</td>
-          <td>858,586,419</td>
-          <td>939,657,533</td>
-          <td>1,048,227,320</td>
-          <td>501,886,881</td>
-          <td>345,421,910</td>
-          <td>88,668,779</td>
-          <td>811,743,672</td>
-          <td>0</td>
-          <td class="gcol">6,050,622,783</td>
-        </tr>
-        <tr>
-          <td>4주차 출금</td>
-          <td>6/22 ~ 6/30</td>
-          <td>1,867,632,122</td>
-          <td>876,298,107</td>
-          <td>790,561,959</td>
-          <td>1,196,064,853</td>
-          <td>462,671,228</td>
-          <td>307,809,510</td>
-          <td>116,198,010</td>
-          <td>1,690,607,434</td>
-          <td>6,938,800</td>
-          <td class="gcol">7,314,782,023</td>
-        </tr>
-        <tr class="total-row">
-          <td>월합계 입금</td>
-          <td>6/1 ~ 6/30</td>
-          <td>7,108,748,199</td>
-          <td>4,261,386,653</td>
-          <td>3,746,818,492</td>
-          <td>3,381,383,409</td>
-          <td>1,464,190,684</td>
-          <td>1,420,763,059</td>
-          <td>462,139,714</td>
-          <td>1,084,966,723</td>
-          <td>10,000,054</td>
-          <td class="gcol">22,940,397,187</td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="note">※ 출금data·입금data 날짜별 집계 기준. 계좌간이체 미제외 총액. 플라이코퍼레이션 3주차 신설법인 첫 거래.</div>
+    <div class="wchart-wrap">
+      <div class="wlegend">
+        <span><span class="wleg-sw" style="background:#3a78d2"></span>입금</span>
+        <span><span class="wleg-sw" style="background:#be1c1c"></span>출금</span>
+      </div>
+      <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg">
+        <!-- 그리드 -->
+        <line x1="40" y1="42" x2="700" y2="42" stroke="#eef1f8" stroke-width="1"/>
+        <line x1="40" y1="84" x2="700" y2="84" stroke="#eef1f8" stroke-width="1"/>
+        <line x1="40" y1="126" x2="700" y2="126" stroke="#eef1f8" stroke-width="1"/>
+        <line x1="40" y1="168" x2="700" y2="168" stroke="#eef1f8" stroke-width="1"/>
+        <text x="36" y="45" text-anchor="end" font-size="10" fill="#a8b4c8">80억</text>
+        <text x="36" y="87" text-anchor="end" font-size="10" fill="#a8b4c8">60억</text>
+        <text x="36" y="129" text-anchor="end" font-size="10" fill="#a8b4c8">40억</text>
+        <text x="36" y="171" text-anchor="end" font-size="10" fill="#a8b4c8">20억</text>
+        <line x1="40" y1="210" x2="700" y2="210" stroke="#d8e0ee" stroke-width="1.5"/>
+
+        <!-- 1주차 -->
+        <rect x="67" y="75.8" width="30" height="134.2" rx="2" fill="#3a78d2"/>
+        <rect x="103" y="102.7" width="30" height="107.3" rx="2" fill="#be1c1c"/>
+        <text x="82" y="69" text-anchor="middle" font-size="10" font-weight="600" fill="#2563a8">63.9억</text>
+        <text x="118" y="96" text-anchor="middle" font-size="10" font-weight="600" fill="#be1c1c">51.1억</text>
+        <text x="100" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">1주차</text>
+        <text x="100" y="241" text-anchor="middle" font-size="10" fill="#8090b0">6/1~6/7</text>
+
+        <!-- 2주차 -->
+        <rect x="247" y="102.1" width="30" height="107.9" rx="2" fill="#3a78d2"/>
+        <rect x="283" y="108.6" width="30" height="101.4" rx="2" fill="#be1c1c"/>
+        <text x="262" y="95" text-anchor="middle" font-size="10" font-weight="600" fill="#2563a8">51.4억</text>
+        <text x="298" y="102" text-anchor="middle" font-size="10" font-weight="600" fill="#be1c1c">48.3억</text>
+        <text x="280" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">2주차</text>
+        <text x="280" y="241" text-anchor="middle" font-size="10" fill="#8090b0">6/8~6/14</text>
+
+        <!-- 3주차 -->
+        <rect x="427" y="97.4" width="30" height="112.6" rx="2" fill="#3a78d2"/>
+        <rect x="463" y="113.0" width="30" height="97.0" rx="2" fill="#be1c1c"/>
+        <text x="442" y="90" text-anchor="middle" font-size="10" font-weight="600" fill="#2563a8">53.6억</text>
+        <text x="478" y="106" text-anchor="middle" font-size="10" font-weight="600" fill="#be1c1c">46.2억</text>
+        <text x="460" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">3주차</text>
+        <text x="460" y="241" text-anchor="middle" font-size="10" fill="#8090b0">6/15~6/21</text>
+
+        <!-- 4주차 -->
+        <rect x="607" y="82.9" width="30" height="127.1" rx="2" fill="#3a78d2"/>
+        <rect x="643" y="56.5" width="30" height="153.5" rx="2" fill="#be1c1c"/>
+        <text x="622" y="76" text-anchor="middle" font-size="10" font-weight="600" fill="#2563a8">60.5억</text>
+        <text x="658" y="50" text-anchor="middle" font-size="10" font-weight="600" fill="#be1c1c">73.1억</text>
+        <text x="640" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">4주차</text>
+        <text x="640" y="241" text-anchor="middle" font-size="10" fill="#8090b0">6/22~6/30</text>
+      </svg>
+    </div>
+    <div class="wchart-wrap">
+      <div class="wlegend">
+        <span><span class="wleg-sw" style="background:#12874a"></span>순현금(주간, +)</span>
+        <span><span class="wleg-sw" style="background:#be1c1c"></span>순현금(주간, −)</span>
+      </div>
+      <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="48.5" x2="700" y2="48.5" stroke="#eef1f8" stroke-width="1"/>
+        <line x1="40" y1="136.5" x2="700" y2="136.5" stroke="#eef1f8" stroke-width="1"/>
+        <text x="36" y="52" text-anchor="end" font-size="10" fill="#a8b4c8">+10억</text>
+        <text x="36" y="96" text-anchor="end" font-size="10" fill="#a8b4c8">0</text>
+        <text x="36" y="140" text-anchor="end" font-size="10" fill="#a8b4c8">−10억</text>
+        <line x1="40" y1="92.5" x2="700" y2="92.5" stroke="#d8e0ee" stroke-width="1.5"/>
+
+        <polyline points="100,36.2 280,78.9 460,59.9 640,147.9" fill="none" stroke="#2563a8" stroke-width="2.5"/>
+
+        <circle cx="100" cy="36.2" r="5" fill="#12874a" stroke="#fff" stroke-width="1.5"/>
+        <text x="100" y="22" text-anchor="middle" font-size="12" font-weight="700" fill="#12874a">+12.8억</text>
+
+        <circle cx="280" cy="78.9" r="5" fill="#12874a" stroke="#fff" stroke-width="1.5"/>
+        <text x="280" y="65" text-anchor="middle" font-size="12" font-weight="700" fill="#12874a">+3.1억</text>
+
+        <circle cx="460" cy="59.9" r="5" fill="#12874a" stroke="#fff" stroke-width="1.5"/>
+        <text x="460" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="#12874a">+7.4억</text>
+
+        <circle cx="640" cy="147.9" r="5" fill="#be1c1c" stroke="#fff" stroke-width="1.5"/>
+        <text x="640" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="#be1c1c">−12.6억</text>
+
+        <text x="100" y="185" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">1주차</text>
+        <text x="100" y="198" text-anchor="middle" font-size="10" fill="#8090b0">6/1~6/7</text>
+        <text x="280" y="185" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">2주차</text>
+        <text x="280" y="198" text-anchor="middle" font-size="10" fill="#8090b0">6/8~6/14</text>
+        <text x="460" y="185" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">3주차</text>
+        <text x="460" y="198" text-anchor="middle" font-size="10" fill="#8090b0">6/15~6/21</text>
+        <text x="640" y="185" text-anchor="middle" font-size="11" font-weight="600" fill="#1e2841">4주차</text>
+        <text x="640" y="198" text-anchor="middle" font-size="10" fill="#8090b0">6/22~6/30</text>
+      </svg>
+    </div>
+    <div class="note">※ 출금data·입금data 날짜별 집계 기준(계좌간이체 미제외 총액). 순현금 = 주간 입금 − 출금. 플라이코퍼레이션 3주차 신설법인 첫 거래.</div>
   </div>
 
   <!-- 총 자산 현황 -->
