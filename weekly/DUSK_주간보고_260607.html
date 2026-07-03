@@ -21,7 +21,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -143,7 +143,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -469,7 +469,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -942,7 +942,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -965,17 +965,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -1014,7 +1014,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -1340,7 +1340,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -1813,7 +1813,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -1836,17 +1836,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -1884,7 +1884,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -2210,7 +2210,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -2683,7 +2683,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -2706,17 +2706,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -2858,7 +2858,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -3184,7 +3184,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -3657,7 +3657,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -3680,17 +3680,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -3729,7 +3729,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -4055,7 +4055,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -4528,7 +4528,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -4551,17 +4551,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -4599,7 +4599,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -4925,7 +4925,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -5398,7 +5398,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -5421,17 +5421,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -5522,7 +5522,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -5848,7 +5848,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -6321,7 +6321,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -6344,17 +6344,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -6393,7 +6393,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -6719,7 +6719,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -7192,7 +7192,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -7215,17 +7215,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -7263,7 +7263,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -7589,7 +7589,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -8062,7 +8062,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -8085,17 +8085,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -8180,7 +8180,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -8506,7 +8506,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -8979,7 +8979,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -9002,17 +9002,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -9051,7 +9051,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -9377,7 +9377,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -9850,7 +9850,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -9873,17 +9873,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -9921,7 +9921,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -10247,7 +10247,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -10720,7 +10720,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -10743,17 +10743,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -10799,7 +10799,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -10918,7 +10918,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -11244,7 +11244,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -11717,7 +11717,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -11740,17 +11740,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -11789,7 +11789,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -12115,7 +12115,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -12588,7 +12588,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -12611,17 +12611,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -12659,7 +12659,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -12985,7 +12985,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -13458,7 +13458,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -13481,17 +13481,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -13648,7 +13648,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -13974,7 +13974,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -14447,7 +14447,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -14470,17 +14470,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -14519,7 +14519,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -14845,7 +14845,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -15318,7 +15318,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -15341,17 +15341,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -15389,7 +15389,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -15715,7 +15715,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -16188,7 +16188,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -16211,17 +16211,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -16377,7 +16377,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -16703,7 +16703,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -17176,7 +17176,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -17199,17 +17199,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -17248,7 +17248,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -17574,7 +17574,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -18047,7 +18047,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -18070,17 +18070,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -18118,7 +18118,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -18444,7 +18444,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -18917,7 +18917,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -18940,17 +18940,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -19068,7 +19068,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -19394,7 +19394,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -19867,7 +19867,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -19890,17 +19890,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -19939,7 +19939,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -20265,7 +20265,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -20738,7 +20738,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -20761,17 +20761,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -20809,7 +20809,7 @@ a{color:inherit;text-decoration:none}
 .ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
 table{width:100%;border-collapse:collapse}
 th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap}
-th:first-child{text-align:center}th:nth-child(n+2):nth-child(-n+6){text-align:right}th:last-child{text-align:center}
+th{text-align:center}
 td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle}
 tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:hover td{background:#edf1fc!important;cursor:pointer}
 .tn{font-weight:500;font-size:13px;text-align:center}.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}.tc{text-align:center}
@@ -21135,7 +21135,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>임유진</td><td class='ec ev'>딥퍼플팀 프리렌서</td><td class='er'>2,040,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김민영</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>네이버 GFA</td><td class='er'>2,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>임성환</td><td class='ec'>광고선전비</td><td class='ec ev'>민티소</td><td class='ec ev'>닥터아멜리아 웹페이지 제작 잔금 50%</td><td class='er'>1,650,000</td></tr>
-<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 Call 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
+<tr><td class='ec'>6-4</td><td class='ec'>유지은</td><td class='ec'>운영비</td><td class='ec ev'>더화이트커뮤니케이션(주)</td><td class='ec ev'>5월 C 상담 프로그램 클라우드게이트 사용 비용</td><td class='er'>1,410,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>장종훈</td><td class='ec'>용역비</td><td class='ec ev'>이용호</td><td class='ec ev'>26.06.02_더시드 프리렌서 용역비 입금요청</td><td class='er'>970,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김단영</td><td class='ec'>광고선전비</td><td class='ec ev'>온더고</td><td class='ec ev'>니프젠,지니어스업 영상제작 12건</td><td class='er'>790,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>김보경</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>채널톡_니프젠</td><td class='er'>710,000</td></tr>
@@ -21608,7 +21608,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -21631,17 +21631,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
@@ -21724,7 +21724,7 @@ var pg = {};
 function renderPage(id) {
   var panel = document.getElementById(id);
   if (!panel) return;
-  var rows = Array.from(panel.querySelectorAll('.etbl tbody tr'));
+  var rows = Array.from(panel.querySelector('.etbl tbody tr'));
   var total = rows.length;
   var pages = Math.max(1, Math.ceil(total / PS));
   var p = Math.min(Math.max(pg[id] || 0, 0), pages - 1);
@@ -21747,17 +21747,17 @@ function goPage(id, dir) {
 
 function switchTab(btn, panelId) {
   var wrap = btn.closest('.exp-wrap');
-  wrap.querySelectorAll('.etab').forEach(function(t){ t.classList.remove('on'); });
-  wrap.querySelectorAll('.epanel').forEach(function(p){ p.style.display = 'none'; });
+  wrap.querySelector('.etab').forEach(function(t){ t.classList.remove('on'); });
+  wrap.querySelector('.epanel').forEach(function(p){ p.style.display = 'none'; });
   btn.classList.add('on');
   document.getElementById(panelId).style.display = 'block';
   renderPage(panelId);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelectorAll('.epanel').forEach(function(panel) {
+  document.querySelector('.epanel').forEach(function(panel) {
     var id = panel.id;
-    var rows = panel.querySelectorAll('.etbl tbody tr');
+    var rows = panel.querySelector('.etbl tbody tr');
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
