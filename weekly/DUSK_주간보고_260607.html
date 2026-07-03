@@ -53,15 +53,15 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 .ecnt{display:inline-block;background:#e4eaf5;color:#5060a0;font-size:10px;padding:1px 7px;border-radius:10px;margin-left:6px;font-weight:600}
 .etab.on .ecnt{background:#3a78d220;color:#3a78d2}
 .epanel{overflow-x:auto}
-.etbl{width:100%;min-width:1600px;border-collapse:collapse;font-size:12px;table-layout:fixed}
-.etbl col.c1{width:200px}.etbl col.c2{width:200px}.etbl col.c3{width:200px}.etbl col.c4{width:400px}.etbl col.c5{width:300px}.etbl col.c6{width:300px}
-.etbl thead th{font-size:11px;color:#8090b0;font-weight:500;padding:7px 12px;border-bottom:1px solid #e4eaf5;background:#fafbfe;text-align:center;white-space:nowrap;overflow:hidden}
-.etbl thead th:last-child{text-align:right}
+.etbl{width:100%;border-collapse:collapse;font-size:12px}
+
+.etbl thead th{font-size:11px;color:#8090b0;font-weight:500;padding:7px 12px;border-bottom:1px solid #e4eaf5;background:#fafbfe;text-align:center;white-space:nowrap}
+
 .etbl tbody tr:hover td{background:#edf1fc}
 .etbl tbody tr:nth-child(even) td{background:#fafbfe}
-.ec{padding:7px 12px;border-bottom:1px solid #f0f3fa;color:#2a3450;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
-.ev{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.er{padding:7px 12px;border-bottom:1px solid #f0f3fa;text-align:right;font-variant-numeric:tabular-nums;color:#be1c1c;font-weight:500;white-space:nowrap}
+.ec{padding:7px 12px;border-bottom:1px solid #f0f3fa;color:#2a3450;text-align:center;white-space:nowrap}
+.ev{}
+.er{padding:7px 12px;border-bottom:1px solid #f0f3fa;text-align:center;font-variant-numeric:tabular-nums;color:#be1c1c;font-weight:500;white-space:nowrap}
 .pgn{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;border-top:1px solid #f0f3fa;background:#fafbfe}
 .pgn button{border:1px solid #d8e0ee;background:#fff;color:#4060a0;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit}
 .pgn button:hover:not(:disabled){background:#eef1f8;border-color:#b0bcd8}
@@ -119,7 +119,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-데이즈")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-데이즈' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-5</td><td class='ec'>박영서</td><td class='ec'>운반비</td><td class='ec ev'>씨제이대한통운(주)</td><td class='ec ev'>26.05월 CJ대한통운 배송운임 비용 지급 요청건(데이즈)</td><td class='er'>320,000,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>홍한빛</td><td class='ec'>계좌간이체</td><td class='ec ev'>데이즈 하나은행</td><td class='ec ev'>하나은행(하나해외카드사용목적)</td><td class='er'>100,000,000</td></tr>
@@ -221,7 +221,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-가론지")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-가론지' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-5</td><td class='ec'>김준형</td><td class='ec'>운영비</td><td class='ec ev'>오피알</td><td class='ec ev'>광고대행</td><td class='er'>68,000,000</td></tr>
 <tr><td class='ec'>6-5</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>임직원</td><td class='ec ev'>직원급여_202605(배승진 4월 공제액 반영)</td><td class='er'>12,410,000</td></tr>
@@ -272,7 +272,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-제노바")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-제노바' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-2</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>50,000,000</td></tr>
 <tr><td class='ec'>6-5</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 충전금</td><td class='er'>50,000,000</td></tr>
@@ -317,7 +317,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-크롬스")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-크롬스' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-5</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>300,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김남</td><td class='ec'>광고선전비</td><td class='ec ev'>신한광고비카드</td><td class='ec ev'>카페24 구글</td><td class='er'>55,000,000</td></tr>
@@ -442,7 +442,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-드래프터")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-드래프터' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>계좌간이체</td><td class='ec ev'>드래프터</td><td class='ec ev'>외화 매입($150,000 @1,505.73)</td><td class='er'>229,999,999</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'>홍한빛</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>신한카드 틱톡, 메타 광고비 충전</td><td class='er'>200,000,000</td></tr>
@@ -559,7 +559,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-더스크랙")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-더스크랙' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-2</td><td class='ec'>박종인</td><td class='ec'>계좌간이체</td><td class='ec ev'>하나은행 더스크랙</td><td class='ec ev'>메타(본,바운스번,크립볼 통합) 7일치 광고비 충전 진행</td><td class='er'>210,000,000</td></tr>
 <tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>120,000,000</td></tr>
@@ -675,7 +675,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-발전존중")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-발전존중' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-1</td><td class='ec'></td><td class='ec'>광고선전비</td><td class='ec ev'>해외 하나카드</td><td class='ec ev'>메타 광고비</td><td class='er'>37,340,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>홍한빛</td><td class='ec'>운영비</td><td class='ec ev'>리더스애비뉴 2층(안흥진)</td><td class='ec ev'>사무실 임차료(리더스애비뉴)</td><td class='er'>14,850,000</td></tr>
@@ -753,7 +753,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <button class='etab' onclick='switchTab(this,"prev-썸웨어코드")'>전주 지출 (전주) <span class='ecnt'>0</span></button>
   </div>
   <div id='curr-썸웨어코드' class='epanel'>
-    <table class='etbl'><colgroup><col class='c1'><col class='c2'><col class='c3'><col class='c4'><col class='c5'><col class='c6'></colgroup><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
+    <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
 <tbody>
 <tr><td class='ec'>6-1</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>100,000,000</td></tr>
 <tr><td class='ec'>6-2</td><td class='ec'>김다슬</td><td class='ec'>광고선전비</td><td class='ec ev'>신한 광고비 카드</td><td class='ec ev'>틱톡/메타 광고비</td><td class='er'>50,000,000</td></tr>
