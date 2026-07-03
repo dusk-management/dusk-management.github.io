@@ -53,13 +53,18 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 .ecnt{display:inline-block;background:#e4eaf5;color:#5060a0;font-size:10px;padding:1px 7px;border-radius:10px;margin-left:6px;font-weight:600}
 .etab.on .ecnt{background:#3a78d220;color:#3a78d2}
 .epanel{overflow-x:auto}
-.etbl{width:100%;border-collapse:collapse;font-size:12px}
-.etbl thead th{font-size:11px;color:#8090b0;font-weight:500;padding:7px 12px;border-bottom:1px solid #e4eaf5;background:#fafbfe;white-space:nowrap;text-align:left}
-.etbl thead th:last-child{text-align:right}
+.etbl{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.etbl thead th{font-size:11px;color:#8090b0;font-weight:500;padding:7px 12px;border-bottom:1px solid #e4eaf5;background:#fafbfe;white-space:nowrap;text-align:left;overflow:hidden}
+.etbl thead th:nth-child(1){width:60px}
+.etbl thead th:nth-child(2){width:80px}
+.etbl thead th:nth-child(3){width:100px}
+.etbl thead th:nth-child(4){width:160px}
+.etbl thead th:nth-child(5){width:auto}
+.etbl thead th:last-child{text-align:right;width:80px}
 .etbl tbody tr:hover td{background:#edf1fc}
 .etbl tbody tr:nth-child(even) td{background:#fafbfe}
-.ec{padding:7px 12px;border-bottom:1px solid #f0f3fa;color:#2a3450;white-space:nowrap}
-.ev{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ec{padding:7px 12px;border-bottom:1px solid #f0f3fa;color:#2a3450;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .er{padding:7px 12px;border-bottom:1px solid #f0f3fa;text-align:right;font-variant-numeric:tabular-nums;color:#be1c1c;font-weight:500;white-space:nowrap}
 .pgn{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;border-top:1px solid #f0f3fa;background:#fafbfe}
 .pgn button{border:1px solid #d8e0ee;background:#fff;color:#4060a0;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit}
