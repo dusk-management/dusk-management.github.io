@@ -36,7 +36,9 @@ tr:hover td{background:#edf1fc!important}
 .note{font-size:11px;color:#8090b0;padding:8px 20px 10px;background:#f9fafd;border-top:1px solid #f0f3fa}
 .foot{text-align:center;font-size:11px;color:#a8b4c8;padding:18px 36px;border-top:1px solid #d8e0ee;background:#fff;margin-top:8px}
 .two-col{display:flex;gap:14px;align-items:flex-start}.two-col .card{flex:1;min-width:0;margin-bottom:0}
+.chart-tabs{display:flex;gap:6px}.chart-tab{font-size:11px;padding:3px 12px;border-radius:20px;border:1px solid #d8e0ee;background:#fff;color:#8090b0;cursor:pointer;font-family:inherit}.chart-tab.on{background:#1e2841;color:#fff;border-color:#1e2841}.chart-legend{display:flex;flex-wrap:wrap;gap:8px 16px;padding:12px 20px 0}.chart-legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#6070a0;cursor:pointer;user-select:none}.chart-legend-item.off{opacity:.3}.chart-legend-dot{width:12px;height:3px;border-radius:2px;flex-shrink:0}.chart-wrap{padding:12px 20px 16px}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
 <div class="hdr">
@@ -118,6 +120,96 @@ tr:hover td{background:#edf1fc!important}
     <div class="note">※ 계좌간이체(법인 내부 이체) 제외 후 실질 입출금 기준.</div>
   </div>
 </div>
+  <div class="card">
+    <div class="ct">법인별 주간 추이 (6월)
+      <div class="chart-tabs">
+        <button class="chart-tab on" onclick="switchChart(this,'net')">순현금</button>
+        <button class="chart-tab" onclick="switchChart(this,'balance')">통장잔액</button>
+      </div>
+    </div>
+    <div class="chart-legend" id="chartLegend"></div>
+    <div class="chart-wrap"><canvas id="trendChart" height="90"></canvas></div>
+    <div class="note">※ 각 주차 주간보고 기준. 4주차는 6/22~6/30.</div>
+  </div>
+  <script>
+  (function(){
+    const weeks = ['1주 (6/1~6/7)', '2주 (6/8~6/14)', '3주 (6/15~6/21)', '4주 (6/22~6/30)'];
+    const data = {
+      net: {
+        '가론지':     [1.8, -0.1, -0.03, -4.3],
+        '더스크랙':   [-1.4, -2.6, -0.7,  2.6],
+        '데이즈':     [1.9,  2.1,  0.9,   1.3],
+        '드래프터':   [3.7,  2.1,  4.8,  -0.18],
+        '발전존중':   [1.9, -1.2,  0.1,   0.34],
+        '썸웨어코드': [-0.2, 0.6,  0.5,   0.61],
+        '제노바':     [2.2,  1.2,  0.4,   1.1],
+        '크롬스':     [3.0,  1.1,  1.4,   1.8]
+      },
+      balance: {
+        '가론지':     [26,   26,   26,   18.4],
+        '더스크랙':   [4.0,  1.5,  0.7,   6.7],
+        '데이즈':     [43,   45,   46,   47.9],
+        '드래프터':   [9.0,  11,   16,   19.7],
+        '발전존중':   [3.7,  2.5,  2.6,   3.8],
+        '썸웨어코드': [1.7,  2.2,  2.8,   3.3],
+        '제노바':     [22,   23,   23,   24.7],
+        '크롬스':     [17,   18,   19,   22.7]
+      }
+    };
+    const colors = {
+      '가론지':'#be1c1c','더스크랙':'#3a78d2','데이즈':'#e09020','드래프터':'#12874a',
+      '발전존중':'#7c3aed','썸웨어코드':'#0891b2','제노바':'#d97706','크롬스':'#4f7942'
+    };
+    const hidden = {};
+    let mode = 'net';
+
+    function makeDatasets(m){
+      return Object.keys(data[m]).map(co=>({
+        label:co, data:data[m][co], borderColor:colors[co],
+        backgroundColor:colors[co]+'15', borderWidth:2,
+        pointRadius:4, pointHoverRadius:6, tension:.3, fill:false,
+        hidden:!!hidden[co]
+      }));
+    }
+
+    const chart = new Chart(document.getElementById('trendChart'),{
+      type:'line',
+      data:{labels:weeks, datasets:makeDatasets('net')},
+      options:{
+        responsive:true, interaction:{mode:'index',intersect:false},
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y>0?'+':''}${c.parsed.y}억`}}},
+        scales:{
+          x:{grid:{color:'#e4eaf5'},ticks:{font:{size:11},color:'#8090b0'}},
+          y:{grid:{color:'#e4eaf5'},ticks:{font:{size:11},color:'#8090b0',callback:v=>v+'억'}}
+        }
+      }
+    });
+
+    function buildLegend(){
+      const leg=document.getElementById('chartLegend'); leg.innerHTML='';
+      Object.keys(colors).forEach(co=>{
+        const el=document.createElement('div');
+        el.className='chart-legend-item'+(hidden[co]?' off':'');
+        el.innerHTML=`<div class="chart-legend-dot" style="background:${colors[co]}"></div>${co}`;
+        el.onclick=()=>{
+          hidden[co]=!hidden[co]; el.classList.toggle('off');
+          const ds=chart.data.datasets.find(d=>d.label===co);
+          if(ds){ds.hidden=!!hidden[co];chart.update();}
+        };
+        leg.appendChild(el);
+      });
+    }
+
+    window.switchChart=function(btn,m){
+      document.querySelectorAll('.chart-tab').forEach(t=>t.classList.remove('on'));
+      btn.classList.add('on'); mode=m;
+      chart.data.datasets=makeDatasets(m); chart.update(); buildLegend();
+    };
+
+    buildLegend();
+  })();
+  </script>
+
   <div class="card">
     <div class="ct">지출항목 법인별 상세</div>
     <table>
