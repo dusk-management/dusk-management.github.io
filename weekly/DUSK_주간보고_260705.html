@@ -67,6 +67,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 .pgn button:disabled{color:#c0c8d8;cursor:default;border-color:#e8ecf4}
 .pgn .pi{font-size:12px;color:#6070a0;min-width:100px;text-align:center}
 @media print{body{background:#fff}.pbtn,.back{display:none}.hdr,.kc,.card,.dcard{-webkit-print-color-adjust:exact;print-color-adjust:exact}.kpi,.main{padding-left:16px;padding-right:16px}.card,.dcard{box-shadow:none;break-inside:avoid}.etabs{display:none}.epanel{display:block!important}.pgn{display:none}.details-grid{display:block}}
+.cf-card table td{text-align:center}
 </style>
 </head>
 <body id="top">
@@ -84,7 +85,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class="kc r"><div class="kl">이슈 법인</div><div class="kvi">가론지, 데이즈</div></div>
 </div>
 <div class="main">
-  <div class="card"><div class="ct">법인별 현금흐름 요약</div>
+  <div class="card cf-card"><div class="ct">법인별 현금흐름 요약</div>
     <table><thead><tr><th>법인</th><th>통장잔액</th><th>전주대비 <span style='font-size:10px;color:#e09020'>(첫 실행: 다음 주부터 표시)</span></th><th>순현금</th><th>입금</th><th>지출</th><th>비고</th></tr></thead>
     <tbody><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:31%;background:#3a78d230'></div><span class='rv'>18.3억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:46%;background:#be1c1c30'></div><span class='rv'>-4.5억</span></td><td class='tr2 neg'>-4.5억</td><td class='tr2'>2,482만</td><td class='tr2'>4.7억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
 <tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:11%;background:#3a78d230'></div><span class='rv'>6.5억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:37%;background:#12874430'></div><span class='rv'>+3.6억</span></td><td class='tr2 pos'>+3.6억</td><td class='tr2'>11.0억</td><td class='tr2'>7.5억</td><td class='tc'></td></tr>
