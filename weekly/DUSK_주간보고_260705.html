@@ -11,13 +11,14 @@ a{color:inherit;text-decoration:none}
 .hdr{background:#16213e;color:#fff;padding:20px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .hdr-l h1{font-size:16px;font-weight:500}.hdr-l p{font-size:11px;color:#7a90b8;margin-top:3px}
 .pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit}
-.kpi{display:grid;grid-template-columns:repeat(4,1fr) auto 1.6fr;gap:12px;padding:20px 36px 0;align-items:center}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr) auto 1fr;gap:12px;padding:20px 36px 0;align-items:center}
 .kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
-.kc.total{border-color:#3a78d2;background:#f0f5ff;border-width:2px;padding:20px 24px}
+.kc.total{border-color:#3a78d2;background:#f0f5ff;border-width:2px}
 .kc-eq{font-size:28px;color:#8090b0;text-align:center;font-weight:300;line-height:1}
-.kl{font-size:11px;color:#8090b0;margin-bottom:8px}
-.kv{font-size:20px;font-weight:600;line-height:1.1;color:#1e2841;font-variant-numeric:tabular-nums}
-.kc.total .kv{font-size:26px;color:#1a3a6e}
+.kl{font-size:11px;color:#8090b0;margin-bottom:6px}
+.kv{font-size:20px;font-weight:600;line-height:1.2;color:#1e2841;font-variant-numeric:tabular-nums}
+.kc.total .kv{font-size:22px;color:#1a3a6e}
+.kv-sub{font-size:11px;color:#8090b0;margin-top:3px;font-variant-numeric:tabular-nums}
 .pos{color:#12874a}.neg{color:#be1c1c}
 .main{padding:16px 36px 36px}
 .card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
@@ -82,8 +83,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 </div>
 <div class="kpi">
   <div class="kc"><div class="kl">총 원화 통장잔액</div><div class="kv">15,667,624,842</div></div>
-  <div class="kc"><div class="kl">총 외화 통장잔액 (KRW환산)</div><div class="kv">$5,038,388,736</div></div>
-  <div class="kc"><div class="kl">총 중국장부 잔액 (KRW환산)</div><div class="kv">¥456,482,533</div></div>
+  <div class="kc"><div class="kl">총 외화 통장잔액</div><div class="kv">$ 3,249,590</div><div class="kv-sub">KRW 5,038,388,736</div></div>
+  <div class="kc"><div class="kl">총 중국장부 잔액</div><div class="kv">¥ 1,995,639</div><div class="kv-sub">KRW 456,482,533</div></div>
   <div class="kc"><div class="kl">총 재고자산 잔액</div><div class="kv">4,419,437,976</div></div>
   <div class="kc-eq">=</div>
   <div class="kc total"><div class="kl">총 자산 합계</div><div class="kv">25,581,934,088</div></div>
@@ -94,14 +95,14 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 </div>
   <div class="card"><div class="ct">법인별 현금흐름 요약</div>
     <table><thead><tr><th>법인</th><th>통장잔액</th><th>전주대비</th><th>순현금</th><th>입금</th><th>지출</th><th>비고</th></tr></thead>
-    <tbody><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:31%;background:#3a78d230'></div><span class='rv'>1,832,007,821</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc neg'>-446,327,215</td><td class='tc'>24,822,366</td><td class='tc'>471,149,581</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
-<tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:11%;background:#3a78d230'></div><span class='rv'>653,246,210</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+356,264,136</td><td class='tc'>1,101,892,455</td><td class='tc'>745,628,319</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-데이즈'"><td class='tn'><a href='#co-데이즈' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:82%;background:#3a78d230'></div><span class='rv'>4,846,230,142</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc neg'>-135,861,502</td><td class='tc'>709,355,314</td><td class='tc'>845,216,816</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
-<tr onclick="location.href='#co-드래프터'"><td class='tn'><a href='#co-드래프터' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:37%;background:#3a78d230'></div><span class='rv'>2,193,976,712</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+415,144,532</td><td class='tc'>1,551,421,654</td><td class='tc'>1,136,277,122</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-발전존중'"><td class='tn'><a href='#co-발전존중' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:7%;background:#3a78d230'></div><span class='rv'>406,259,823</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>—</span></td><td class='tc pos'>+53,081,989</td><td class='tc'>327,024,798</td><td class='tc'>273,942,809</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-썸웨어코드'"><td class='tn'><a href='#co-썸웨어코드' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:5%;background:#3a78d230'></div><span class='rv'>306,863,872</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+56,594,208</td><td class='tc'>119,552,126</td><td class='tc'>62,957,918</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-제노바'"><td class='tn'><a href='#co-제노바' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:42%;background:#3a78d230'></div><span class='rv'>2,470,367,365</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+74,896,284</td><td class='tc'>297,509,961</td><td class='tc'>222,613,677</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-크롬스'"><td class='tn'><a href='#co-크롬스' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:50%;background:#3a78d230'></div><span class='rv'>2,958,672,897</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+773,428,111</td><td class='tc'>1,188,056,557</td><td class='tc'>414,628,446</td><td class='tc'></td></tr>
+    <tbody><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:31%;background:#3a78d230'></div><span class='rv'>1,832,007,821</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-5,980,892</span></td><td class='tc neg'>-446,327,215</td><td class='tc'>24,822,366</td><td class='tc'>471,149,581</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
+<tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:11%;background:#3a78d230'></div><span class='rv'>653,246,210</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-14,532,659</span></td><td class='tc pos'>+356,264,136</td><td class='tc'>1,101,892,455</td><td class='tc'>745,628,319</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-데이즈'"><td class='tn'><a href='#co-데이즈' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:82%;background:#3a78d230'></div><span class='rv'>4,846,230,142</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:6%;background:#12874430'></div><span class='rv'>+53,025,032</span></td><td class='tc neg'>-135,861,502</td><td class='tc'>709,355,314</td><td class='tc'>845,216,816</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
+<tr onclick="location.href='#co-드래프터'"><td class='tn'><a href='#co-드래프터' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:37%;background:#3a78d230'></div><span class='rv'>2,193,976,712</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:27%;background:#12874430'></div><span class='rv'>+228,331,461</span></td><td class='tc pos'>+415,144,532</td><td class='tc'>1,551,421,654</td><td class='tc'>1,136,277,122</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-발전존중'"><td class='tn'><a href='#co-발전존중' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:7%;background:#3a78d230'></div><span class='rv'>406,259,823</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>+29,649,907</span></td><td class='tc pos'>+53,081,989</td><td class='tc'>327,024,798</td><td class='tc'>273,942,809</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-썸웨어코드'"><td class='tn'><a href='#co-썸웨어코드' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:5%;background:#3a78d230'></div><span class='rv'>306,863,872</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-20,210,631</span></td><td class='tc pos'>+56,594,208</td><td class='tc'>119,552,126</td><td class='tc'>62,957,918</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-제노바'"><td class='tn'><a href='#co-제노바' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:42%;background:#3a78d230'></div><span class='rv'>2,470,367,365</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-4,025,933</span></td><td class='tc pos'>+74,896,284</td><td class='tc'>297,509,961</td><td class='tc'>222,613,677</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-크롬스'"><td class='tn'><a href='#co-크롬스' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:50%;background:#3a78d230'></div><span class='rv'>2,958,672,897</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:80%;background:#12874430'></div><span class='rv'>+685,413,294</span></td><td class='tc pos'>+773,428,111</td><td class='tc'>1,188,056,557</td><td class='tc'>414,628,446</td><td class='tc'></td></tr>
 </tbody></table>
   </div>
   <div class="sec-title">법인별 상세</div>
@@ -115,7 +116,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>35,112,000</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>1,867,119,821</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-5,980,892</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-5,980,892</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -194,7 +195,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>170,429,894</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>1,434,369,293</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>2,258,045,397</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-14,532,659</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-14,532,659</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -387,7 +388,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>168,321,140</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>402,721,060</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>7,048,473,776</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+53,025,032</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+53,025,032</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -540,7 +541,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>117,731,499</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>968,247,426</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>5,101,907,167</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+228,331,461</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+228,331,461</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -757,7 +758,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>1,157,950,014</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>1,968,290,710</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+29,649,907</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+29,649,907</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -879,7 +880,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>279,490</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>307,143,362</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-20,210,631</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-20,210,631</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -940,7 +941,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>6,138,000</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>2,476,505,365</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-4,025,933</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-4,025,933</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -998,7 +999,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>414,620,693</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>4,554,448,489</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+685,413,294</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+685,413,294</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -1157,7 +1158,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 
   </div>
 </div>
-<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 11:11</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 11:31</div>
 <script>
 var PS = 10;
 var pg = {};
