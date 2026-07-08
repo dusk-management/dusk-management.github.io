@@ -36,9 +36,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 .ni{padding:11px 20px;border-bottom:1px solid #ede8bc;font-size:12.5px;color:#5c4818;display:flex;align-items:center;gap:12px}
 .ni:last-child{border-bottom:none}.nl{display:inline-block;min-width:4px;height:15px;background:#f2b62d;border-radius:2px;flex-shrink:0}
 .ni-ok{color:#8090b0}.nl-ok{display:inline-block;min-width:4px;height:15px;background:#c0c8d8;border-radius:2px;flex-shrink:0}
-.sec-title{font-size:12px;font-weight:600;color:#8090b0;letter-spacing:.5px;text-transform:uppercase;margin:24px 0 10px;padding-bottom:6px;border-bottom:2px solid #d8e0ee}
-.details-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.dcard{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:0;scroll-margin-top:16px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+#details-area{margin-top:14px}
+.dcard{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:12px;scroll-margin-top:80px;box-shadow:0 2px 8px rgba(30,40,65,.1)}
 .dct{display:flex;align-items:center;gap:8px;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee}.dco{font-weight:600;font-size:14px}
 .back{margin-left:auto;font-size:11px;color:#8090b0;padding:3px 10px;border:1px solid #d8e0ee;border-radius:20px;background:#fff}.back:hover{background:#eef1f8}
 .drow{display:grid;grid-template-columns:1fr 1fr}.dcol{padding:16px 20px}.dcol:first-child{border-right:1px solid #f0f3fa}
@@ -82,10 +81,10 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 <div class="kpi">
-  <div class="kc"><div class="kl">총 원화 통장잔액</div><div class="kv">15,667,624,842</div></div>
-  <div class="kc"><div class="kl">총 외화 통장잔액</div><div class="kv">$ 3,249,590</div><div class="kv-sub">KRW 5,038,388,736</div></div>
-  <div class="kc"><div class="kl">총 중국장부 잔액</div><div class="kv">¥ 1,995,639</div><div class="kv-sub">KRW 456,482,533</div></div>
-  <div class="kc"><div class="kl">총 재고자산 잔액</div><div class="kv">4,419,437,976</div></div>
+  <div class="kc"><div class="kl">총 원화 통장잔액</div><div class="kv">15,667,624,842</div><div class="kv-sub">&nbsp;</div></div>
+  <div class="kc"><div class="kl">총 외화 통장잔액</div><div class="kv">KRW 5,038,388,736</div><div class="kv-sub">$ 3,249,590</div></div>
+  <div class="kc"><div class="kl">총 중국장부 잔액</div><div class="kv">KRW 456,482,533</div><div class="kv-sub">¥ 1,995,639</div></div>
+  <div class="kc"><div class="kl">총 재고자산 잔액</div><div class="kv">4,419,437,976</div><div class="kv-sub">&nbsp;</div></div>
   <div class="kc-eq">=</div>
   <div class="kc total"><div class="kl">총 자산 합계</div><div class="kv">25,581,934,088</div></div>
 </div>
@@ -95,20 +94,19 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 </div>
   <div class="card"><div class="ct">법인별 현금흐름 요약</div>
     <table><thead><tr><th>법인</th><th>통장잔액</th><th>전주대비</th><th>순현금</th><th>입금</th><th>지출</th><th>비고</th></tr></thead>
-    <tbody><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:31%;background:#3a78d230'></div><span class='rv'>1,832,007,821</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-5,980,892</span></td><td class='tc neg'>-446,327,215</td><td class='tc'>24,822,366</td><td class='tc'>471,149,581</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
-<tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:11%;background:#3a78d230'></div><span class='rv'>653,246,210</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-14,532,659</span></td><td class='tc pos'>+356,264,136</td><td class='tc'>1,101,892,455</td><td class='tc'>745,628,319</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-데이즈'"><td class='tn'><a href='#co-데이즈' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:82%;background:#3a78d230'></div><span class='rv'>4,846,230,142</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:6%;background:#12874430'></div><span class='rv'>+53,025,032</span></td><td class='tc neg'>-135,861,502</td><td class='tc'>709,355,314</td><td class='tc'>845,216,816</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
-<tr onclick="location.href='#co-드래프터'"><td class='tn'><a href='#co-드래프터' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:37%;background:#3a78d230'></div><span class='rv'>2,193,976,712</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:27%;background:#12874430'></div><span class='rv'>+228,331,461</span></td><td class='tc pos'>+415,144,532</td><td class='tc'>1,551,421,654</td><td class='tc'>1,136,277,122</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-발전존중'"><td class='tn'><a href='#co-발전존중' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:7%;background:#3a78d230'></div><span class='rv'>406,259,823</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>+29,649,907</span></td><td class='tc pos'>+53,081,989</td><td class='tc'>327,024,798</td><td class='tc'>273,942,809</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-썸웨어코드'"><td class='tn'><a href='#co-썸웨어코드' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:5%;background:#3a78d230'></div><span class='rv'>306,863,872</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-20,210,631</span></td><td class='tc pos'>+56,594,208</td><td class='tc'>119,552,126</td><td class='tc'>62,957,918</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-제노바'"><td class='tn'><a href='#co-제노바' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:42%;background:#3a78d230'></div><span class='rv'>2,470,367,365</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-4,025,933</span></td><td class='tc pos'>+74,896,284</td><td class='tc'>297,509,961</td><td class='tc'>222,613,677</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-크롬스'"><td class='tn'><a href='#co-크롬스' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:50%;background:#3a78d230'></div><span class='rv'>2,958,672,897</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:80%;background:#12874430'></div><span class='rv'>+685,413,294</span></td><td class='tc pos'>+773,428,111</td><td class='tc'>1,188,056,557</td><td class='tc'>414,628,446</td><td class='tc'></td></tr>
+    <tbody><tr onclick="showDetail('co-가론지')"><td class='tn'><a href='#' onclick='showDetail("co-가론지");return false' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:31%;background:#3a78d230'></div><span class='rv'>1,832,007,821</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-5,980,892</span></td><td class='tc neg'>-446,327,215</td><td class='tc'>24,822,366</td><td class='tc'>471,149,581</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
+<tr onclick="showDetail('co-더스크랙')"><td class='tn'><a href='#' onclick='showDetail("co-더스크랙");return false' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:11%;background:#3a78d230'></div><span class='rv'>653,246,210</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-14,532,659</span></td><td class='tc pos'>+356,264,136</td><td class='tc'>1,101,892,455</td><td class='tc'>745,628,319</td><td class='tc'></td></tr>
+<tr onclick="showDetail('co-데이즈')"><td class='tn'><a href='#' onclick='showDetail("co-데이즈");return false' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:82%;background:#3a78d230'></div><span class='rv'>4,846,230,142</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:6%;background:#12874430'></div><span class='rv'>+53,025,032</span></td><td class='tc neg'>-135,861,502</td><td class='tc'>709,355,314</td><td class='tc'>845,216,816</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
+<tr onclick="showDetail('co-드래프터')"><td class='tn'><a href='#' onclick='showDetail("co-드래프터");return false' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:37%;background:#3a78d230'></div><span class='rv'>2,193,976,712</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:27%;background:#12874430'></div><span class='rv'>+228,331,461</span></td><td class='tc pos'>+415,144,532</td><td class='tc'>1,551,421,654</td><td class='tc'>1,136,277,122</td><td class='tc'></td></tr>
+<tr onclick="showDetail('co-발전존중')"><td class='tn'><a href='#' onclick='showDetail("co-발전존중");return false' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:7%;background:#3a78d230'></div><span class='rv'>406,259,823</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>+29,649,907</span></td><td class='tc pos'>+53,081,989</td><td class='tc'>327,024,798</td><td class='tc'>273,942,809</td><td class='tc'></td></tr>
+<tr onclick="showDetail('co-썸웨어코드')"><td class='tn'><a href='#' onclick='showDetail("co-썸웨어코드");return false' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:5%;background:#3a78d230'></div><span class='rv'>306,863,872</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-20,210,631</span></td><td class='tc pos'>+56,594,208</td><td class='tc'>119,552,126</td><td class='tc'>62,957,918</td><td class='tc'></td></tr>
+<tr onclick="showDetail('co-제노바')"><td class='tn'><a href='#' onclick='showDetail("co-제노바");return false' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:42%;background:#3a78d230'></div><span class='rv'>2,470,367,365</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-4,025,933</span></td><td class='tc pos'>+74,896,284</td><td class='tc'>297,509,961</td><td class='tc'>222,613,677</td><td class='tc'></td></tr>
+<tr onclick="showDetail('co-크롬스')"><td class='tn'><a href='#' onclick='showDetail("co-크롬스");return false' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:50%;background:#3a78d230'></div><span class='rv'>2,958,672,897</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:80%;background:#12874430'></div><span class='rv'>+685,413,294</span></td><td class='tc pos'>+773,428,111</td><td class='tc'>1,188,056,557</td><td class='tc'>414,628,446</td><td class='tc'></td></tr>
 </tbody></table>
   </div>
-  <div class="sec-title">법인별 상세</div>
-  <div class="details-grid">
-  <div class='dcard' id='co-가론지'>
-<div class='dct'><span class='dco'>가론지</span><span class='bw ml4'>지출 초과</span><a href='#top' class='back'>↑ 목록으로</a></div>
+  <div id="details-area">
+  <div class='dcard' id='co-가론지' style='display:none'>
+<div class='dct'><span class='dco'>가론지</span><span class='bw ml4'>지출 초과</span><a href='#' class='back' onclick='closeDetail("co-가론지");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>1,832,007,821</td></tr>
@@ -186,8 +184,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 </div>
-<div class='dcard' id='co-더스크랙'>
-<div class='dct'><span class='dco'>더스크랙</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='dcard' id='co-더스크랙' style='display:none'>
+<div class='dct'><span class='dco'>더스크랙</span><a href='#' class='back' onclick='closeDetail("co-더스크랙");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>653,246,210</td></tr>
@@ -379,8 +377,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 </div>
-<div class='dcard' id='co-데이즈'>
-<div class='dct'><span class='dco'>데이즈</span><span class='bw ml4'>지출 초과</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='dcard' id='co-데이즈' style='display:none'>
+<div class='dct'><span class='dco'>데이즈</span><span class='bw ml4'>지출 초과</span><a href='#' class='back' onclick='closeDetail("co-데이즈");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>4,846,230,142</td></tr>
@@ -532,8 +530,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 </div>
-<div class='dcard' id='co-드래프터'>
-<div class='dct'><span class='dco'>드래프터</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='dcard' id='co-드래프터' style='display:none'>
+<div class='dct'><span class='dco'>드래프터</span><a href='#' class='back' onclick='closeDetail("co-드래프터");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>2,193,976,712</td></tr>
@@ -749,8 +747,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 </div>
-<div class='dcard' id='co-발전존중'>
-<div class='dct'><span class='dco'>발전존중</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='dcard' id='co-발전존중' style='display:none'>
+<div class='dct'><span class='dco'>발전존중</span><a href='#' class='back' onclick='closeDetail("co-발전존중");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>406,259,823</td></tr>
@@ -871,8 +869,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 </div>
-<div class='dcard' id='co-썸웨어코드'>
-<div class='dct'><span class='dco'>썸웨어코드</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='dcard' id='co-썸웨어코드' style='display:none'>
+<div class='dct'><span class='dco'>썸웨어코드</span><a href='#' class='back' onclick='closeDetail("co-썸웨어코드");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>306,863,872</td></tr>
@@ -932,8 +930,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 </div>
-<div class='dcard' id='co-제노바'>
-<div class='dct'><span class='dco'>제노바</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='dcard' id='co-제노바' style='display:none'>
+<div class='dct'><span class='dco'>제노바</span><a href='#' class='back' onclick='closeDetail("co-제노바");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>2,470,367,365</td></tr>
@@ -990,8 +988,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   </div>
 </div>
 </div>
-<div class='dcard' id='co-크롬스'>
-<div class='dct'><span class='dco'>크롬스</span><a href='#top' class='back'>↑ 목록으로</a></div>
+<div class='dcard' id='co-크롬스' style='display:none'>
+<div class='dct'><span class='dco'>크롬스</span><a href='#' class='back' onclick='closeDetail("co-크롬스");return false'>✕ 닫기</a></div>
 <div class='drow'>
   <div class='dcol'><div class='dsec'>잔액 현황</div><table class='dtbl'>
     <tr><td class='dlbl'>원화 통장</td><td class='dval'>2,958,672,897</td></tr>
@@ -1158,10 +1156,27 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 
   </div>
 </div>
-<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 11:31</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 11:45</div>
 <script>
 var PS = 10;
 var pg = {};
+
+function showDetail(id) {
+  var all = document.querySelectorAll('.dcard');
+  var target = document.getElementById(id);
+  var isOpen = target.style.display !== 'none';
+  all.forEach(function(d){ d.style.display = 'none'; });
+  if (!isOpen) {
+    target.style.display = 'block';
+    target.scrollIntoView({behavior:'smooth', block:'start'});
+    var firstPanel = target.querySelector('.epanel');
+    if (firstPanel) { pg[firstPanel.id] = 0; renderPage(firstPanel.id); }
+  }
+}
+
+function closeDetail(id) {
+  document.getElementById(id).style.display = 'none';
+}
 
 function renderPage(id) {
   var panel = document.getElementById(id);
