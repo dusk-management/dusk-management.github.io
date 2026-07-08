@@ -40,10 +40,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 .dcard{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:12px;scroll-margin-top:80px;box-shadow:0 2px 8px rgba(30,40,65,.1)}
 .dct{display:flex;align-items:center;gap:8px;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee}.dco{font-weight:600;font-size:14px}
 .back{margin-left:auto;font-size:11px;color:#8090b0;padding:3px 10px;border:1px solid #d8e0ee;border-radius:20px;background:#fff}.back:hover{background:#eef1f8}
-.drow{display:grid;grid-template-columns:1fr 1.6fr}.dcol{padding:16px 20px}.dcol:first-child{border-right:1px solid #f0f3fa}
-.dcol-r{display:flex;flex-direction:column;padding:0}
-.dcol-inner{padding:16px 20px;border-bottom:1px solid #f0f3fa}
-.trend-wrap{padding:14px 20px}
+.drow{display:grid;grid-template-columns:1fr 1fr 1.6fr}.dcol{padding:16px 20px;border-right:1px solid #f0f3fa}.dcol:last-child{border-right:none}
+.trend-wrap{padding:14px 20px;border-right:none}
 .trend-legend{display:flex;gap:14px;font-size:11px;color:#8090b0;margin-top:4px}
 .trend-legend span{display:flex;align-items:center;gap:4px}
 .tleg-sq{display:inline-block;width:9px;height:9px;border-radius:2px}
@@ -124,23 +122,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-5,980,892</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-5,980,892</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>24,822,366</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>471,149,581</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-446,327,215</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:5%'></div><div class='dbar-out' style='width:95%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 24,822,366</span><span class='neg'>■ 지출 471,149,581</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-가론지' data-in='[259502280,5678999,8041772,11743672,24822366]' data-out='[84133796,19851380,11330410,297093580,471149581]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>24,822,366</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>471,149,581</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-446,327,215</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:5%'></div><div class='dbar-out' style='width:95%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 24,822,366</span><span class='neg'>■ 지출 471,149,581</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-가론지' data-in='[259502280,5678999,8041772,11743672,24822366]' data-out='[84133796,19851380,11330410,297093580,471149581]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -214,23 +210,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-14,532,659</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-14,532,659</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>1,101,892,455</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>745,628,319</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+356,264,136</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:60%'></div><div class='dbar-out' style='width:40%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 1,101,892,455</span><span class='neg'>■ 지출 745,628,319</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-더스크랙' data-in='[649283182,569693413,500249606,839931031,1101892455]' data-out='[784712961,825187127,572468530,690474307,745628319]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>1,101,892,455</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>745,628,319</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+356,264,136</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:60%'></div><div class='dbar-out' style='width:40%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 1,101,892,455</span><span class='neg'>■ 지출 745,628,319</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-더스크랙' data-in='[649283182,569693413,500249606,839931031,1101892455]' data-out='[784712961,825187127,572468530,690474307,745628319]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -418,23 +412,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+53,025,032</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+53,025,032</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>709,355,314</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>845,216,816</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-135,861,502</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:46%'></div><div class='dbar-out' style='width:54%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 709,355,314</span><span class='neg'>■ 지출 845,216,816</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-데이즈' data-in='[1076813945,915674340,657247474,708530419,709355314]' data-out='[889244978,704969119,570690442,549812065,845216816]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>709,355,314</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>845,216,816</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval neg'><b>-135,861,502</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:46%'></div><div class='dbar-out' style='width:54%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 709,355,314</span><span class='neg'>■ 지출 845,216,816</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-데이즈' data-in='[1076813945,915674340,657247474,708530419,709355314]' data-out='[889244978,704969119,570690442,549812065,845216816]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -582,23 +574,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+228,331,461</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+228,331,461</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>1,551,421,654</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>1,136,277,122</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+415,144,532</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:58%'></div><div class='dbar-out' style='width:42%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 1,551,421,654</span><span class='neg'>■ 지출 1,136,277,122</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-드래프터' data-in='[1782431068,1370427782,1665869580,1299316459,1551421654]' data-out='[1410122942,1161500051,1183500536,1252512188,1136277122]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>1,551,421,654</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>1,136,277,122</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+415,144,532</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:58%'></div><div class='dbar-out' style='width:42%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 1,551,421,654</span><span class='neg'>■ 지출 1,136,277,122</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-드래프터' data-in='[1782431068,1370427782,1665869580,1299316459,1551421654]' data-out='[1410122942,1161500051,1183500536,1252512188,1136277122]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -810,23 +800,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+29,649,907</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+29,649,907</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>327,024,798</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>273,942,809</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+53,081,989</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:54%'></div><div class='dbar-out' style='width:46%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 327,024,798</span><span class='neg'>■ 지출 273,942,809</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-발전존중' data-in='[270235895,179821300,291497308,351886881,327024798]' data-out='[83839827,303930116,278948605,254934427,273942809]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>327,024,798</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>273,942,809</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+53,081,989</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:54%'></div><div class='dbar-out' style='width:46%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 327,024,798</span><span class='neg'>■ 지출 273,942,809</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-발전존중' data-in='[270235895,179821300,291497308,351886881,327024798]' data-out='[83839827,303930116,278948605,254934427,273942809]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -943,23 +931,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-20,210,631</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-20,210,631</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>119,552,126</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>62,957,918</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+56,594,208</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:66%'></div><div class='dbar-out' style='width:34%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 119,552,126</span><span class='neg'>■ 지출 62,957,918</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-썸웨어코드' data-in='[159178713,113145186,101147036,88636359,119552126]' data-out='[175661434,55556884,48118606,115740610,62957918]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>119,552,126</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>62,957,918</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+56,594,208</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:66%'></div><div class='dbar-out' style='width:34%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 119,552,126</span><span class='neg'>■ 지출 62,957,918</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-썸웨어코드' data-in='[159178713,113145186,101147036,88636359,119552126]' data-out='[175661434,55556884,48118606,115740610,62957918]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -1015,23 +1001,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-4,025,933</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-4,025,933</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>297,509,961</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>222,613,677</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+74,896,284</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:57%'></div><div class='dbar-out' style='width:43%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 297,509,961</span><span class='neg'>■ 지출 222,613,677</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-제노바' data-in='[350960191,405337094,318942164,345421910,297509961]' data-out='[135389671,281649001,283523031,274286620,222613677]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>297,509,961</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>222,613,677</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+74,896,284</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:57%'></div><div class='dbar-out' style='width:43%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 297,509,961</span><span class='neg'>■ 지출 222,613,677</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-제노바' data-in='[350960191,405337094,318942164,345421910,297509961]' data-out='[135389671,281649001,283523031,274286620,222613677]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -1084,23 +1068,21 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+685,413,294</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+685,413,294</td></tr>
   </table></div>
-  <div class='dcol dcol-r'>
-    <div class='dcol-inner'>
-      <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
-      <table class='dtbl'>
-        <tr><td class='dlbl'>입금</td><td class='dval'>1,188,056,557</td></tr>
-        <tr><td class='dlbl'>지출</td><td class='dval'>414,628,446</td></tr>
-        <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+773,428,111</b></td></tr>
-      </table>
-      <div class='dbar-wrap'><div class='dbar-in' style='width:74%'></div><div class='dbar-out' style='width:26%'></div></div>
-      <div class='dbar-lbl'><span class='pos'>■ 입금 1,188,056,557</span><span class='neg'>■ 지출 414,628,446</span></div>
-    </div>
-    <div class='trend-wrap'>
-      <div class='dsec'>주간 추이 (5주)</div>
-      <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
-      <div style='position:relative;height:150px;margin-top:6px'>
-        <canvas id='trend-크롬스' data-in='[1202903120,871720404,732370505,939624413,1188056557]' data-out='[901437950,759521984,593333647,652561349,414628446]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
-      </div>
+  <div class='dcol'>
+    <div class='dsec'>주간 현금흐름 (6/29~7/5)</div>
+    <table class='dtbl'>
+      <tr><td class='dlbl'>입금</td><td class='dval'>1,188,056,557</td></tr>
+      <tr><td class='dlbl'>지출</td><td class='dval'>414,628,446</td></tr>
+      <tr class='tsum'><td class='dlbl'>순현금</td><td class='dval pos'><b>+773,428,111</b></td></tr>
+    </table>
+    <div class='dbar-wrap'><div class='dbar-in' style='width:74%'></div><div class='dbar-out' style='width:26%'></div></div>
+    <div class='dbar-lbl'><span class='pos'>■ 입금 1,188,056,557</span><span class='neg'>■ 지출 414,628,446</span></div>
+  </div>
+  <div class='dcol trend-wrap'>
+    <div class='dsec'>주간 추이 (5주)</div>
+    <div class='trend-legend'><span><span class='tleg-sq' style='background:#3a78d2'></span>입금</span><span><span class='tleg-sq' style='background:#e34948'></span>지출</span><span><span class='tleg-dot'></span>순현금</span></div>
+    <div style='position:relative;height:150px;margin-top:6px'>
+      <canvas id='trend-크롬스' data-in='[1202903120,871720404,732370505,939624413,1188056557]' data-out='[901437950,759521984,593333647,652561349,414628446]' data-lbl='["6-1~6-7","6-8~6-14","6-15~6-21","6-22~6-28","6-29~7-5"]'></canvas>
     </div>
   </div>
 </div>
@@ -1251,7 +1233,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 
   </div>
 </div>
-<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 12:09</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 14:53</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 var PS = 10;
