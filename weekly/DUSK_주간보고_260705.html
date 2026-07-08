@@ -72,6 +72,15 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 .ec{padding:7px 12px;border-bottom:1px solid #f0f3fa;color:#2a3450;text-align:center;white-space:nowrap}
 .ev{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .er{padding:7px 12px;border-bottom:1px solid #f0f3fa;text-align:center;font-variant-numeric:tabular-nums;color:#be1c1c;font-weight:500;white-space:nowrap}
+.cat-breakdown{padding:14px 20px}
+.cbar-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #f0f3fa}
+.cbar-row:last-child{border-bottom:none}
+.cbar-lbl{font-size:12px;color:#2a3450;min-width:100px;flex-shrink:0}
+.cbar-track{flex:1;height:8px;background:#eef1f8;border-radius:4px;overflow:hidden}
+.cbar-fill{height:100%;background:#3a78d2;border-radius:4px}
+.cbar-info{display:flex;gap:10px;align-items:center;min-width:140px;justify-content:flex-end}
+.cbar-amt{font-size:12px;font-variant-numeric:tabular-nums;color:#1e2841;font-weight:500}
+.cbar-pct{font-size:11px;color:#8090b0;min-width:30px;text-align:right}
 .pgn{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 16px;border-top:1px solid #f0f3fa;background:#fafbfe}
 .pgn button{border:1px solid #d8e0ee;background:#fff;color:#4060a0;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-family:inherit}
 .pgn button:hover:not(:disabled){background:#eef1f8;border-color:#b0bcd8}
@@ -147,6 +156,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-가론지")'>당주 지출 (6/29~7/5) <span class='ecnt'>29</span></button>
     <button class='etab' onclick='switchTab(this,"prev-가론지")'>전주 지출 (6/22~6/28) <span class='ecnt'>14</span></button>
+    <button class='etab' onclick='switchTab(this,"in-가론지")'>입금 채널 <span class='ecnt'>365</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-가론지")'>지출 분류</button>
   </div>
   <div id='curr-가론지' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -199,6 +210,32 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-27</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>북한산국립공원</td><td class='er'>1,700</td></tr>
 </tbody></table>
   </div>
+  <div id='in-가론지' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td class='ec'>매출</td><td class='ec ev'>무통장입금</td><td class='er'>307,459,154</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>Npay정산</td><td class='er'>254,589,273</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>(주)씨제이이엔</td><td class='er'>145,326,436</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>스마트스토어정</td><td class='er'>101,448,945</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>블리스오가 주식회사</td><td class='er'>78,577,075</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>톡체크아웃</td><td class='er'>76,160,772</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡(주)</td><td class='er'>46,731,900</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>KG이니시스</td><td class='er'>44,784,622</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>카카오페이정산</td><td class='er'>40,086,541</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>토스페이먼츠</td><td class='er'>4,269,681</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>현금영수증</td><td class='er'>1,278,400</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>(주)비엠컴</td><td class='er'>786,000</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>오늘의집정산</td><td class='er'>207,868</td></tr>
+<tr><td class='ec'>기타</td><td class='ec ev'>CJ대한통운㈜</td><td class='er'>120,882</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>주식회사지마켓</td><td class='er'>43,038</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>11ST</td><td class='er'>21,868</td></tr>
+</tbody></table>
+  </div>
+  <div id='cat-가론지' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>원재료</div><div class='cbar-track'><div class='cbar-fill' style='width:63%'></div></div><div class='cbar-info'><span class='cbar-amt'>294,921,354</span><span class='cbar-pct'>63%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:37%'></div></div><div class='cbar-info'><span class='cbar-amt'>172,808,227</span><span class='cbar-pct'>37%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>기타</div><div class='cbar-track'><div class='cbar-fill' style='width:1%'></div></div><div class='cbar-info'><span class='cbar-amt'>3,420,000</span><span class='cbar-pct'>1%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 <div class='dcard' id='co-더스크랙' style='display:none'>
@@ -235,6 +272,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-더스크랙")'>당주 지출 (6/29~7/5) <span class='ecnt'>75</span></button>
     <button class='etab' onclick='switchTab(this,"prev-더스크랙")'>전주 지출 (6/22~6/28) <span class='ecnt'>82</span></button>
+    <button class='etab' onclick='switchTab(this,"in-더스크랙")'>입금 채널 <span class='ecnt'>95</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-더스크랙")'>지출 분류</button>
   </div>
   <div id='curr-더스크랙' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -401,6 +440,30 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-23</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>씨유(CU) 상암(8377카드)</td><td class='er'>1,600</td></tr>
 </tbody></table>
   </div>
+  <div id='in-더스크랙' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td class='ec'>매출</td><td class='ec ev'>톡체크아웃</td><td class='er'>213,411,807</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>스마트스토어정</td><td class='er'>158,573,335</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>Npay정산</td><td class='er'>144,558,976</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>KG이니시스</td><td class='er'>79,266,100</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>무통장입금</td><td class='er'>54,660,323</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡페이주식회</td><td class='er'>41,019,512</td></tr>
+<tr><td class='ec'>기타</td><td class='ec ev'>피엔케이피부임</td><td class='er'>17,600,000</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡풀필먼트서</td><td class='er'>98,206</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>11번가</td><td class='er'>80,015</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>현금영수증</td><td class='er'>48,900</td></tr>
+<tr><td class='ec'>기타</td><td class='ec ev'>임직원</td><td class='er'>38,140</td></tr>
+</tbody></table>
+  </div>
+  <div id='cat-더스크랙' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>광고선전비</div><div class='cbar-track'><div class='cbar-fill' style='width:52%'></div></div><div class='cbar-info'><span class='cbar-amt'>385,008,339</span><span class='cbar-pct'>52%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>원재료</div><div class='cbar-track'><div class='cbar-fill' style='width:32%'></div></div><div class='cbar-info'><span class='cbar-amt'>238,474,713</span><span class='cbar-pct'>32%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:14%'></div></div><div class='cbar-info'><span class='cbar-amt'>100,979,607</span><span class='cbar-pct'>14%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>수입통관비용</div><div class='cbar-track'><div class='cbar-fill' style='width:2%'></div></div><div class='cbar-info'><span class='cbar-amt'>11,555,125</span><span class='cbar-pct'>2%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>용역비</div><div class='cbar-track'><div class='cbar-fill' style='width:1%'></div></div><div class='cbar-info'><span class='cbar-amt'>8,631,535</span><span class='cbar-pct'>1%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운반비</div><div class='cbar-track'><div class='cbar-fill' style='width:0%'></div></div><div class='cbar-info'><span class='cbar-amt'>979,000</span><span class='cbar-pct'>0%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 <div class='dcard' id='co-데이즈' style='display:none'>
@@ -437,6 +500,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-데이즈")'>당주 지출 (6/29~7/5) <span class='ecnt'>68</span></button>
     <button class='etab' onclick='switchTab(this,"prev-데이즈")'>전주 지출 (6/22~6/28) <span class='ecnt'>49</span></button>
+    <button class='etab' onclick='switchTab(this,"in-데이즈")'>입금 채널 <span class='ecnt'>89</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-데이즈")'>지출 분류</button>
   </div>
   <div id='curr-데이즈' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -563,6 +628,30 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-22</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체수수료</td><td class='er'>300</td></tr>
 </tbody></table>
   </div>
+  <div id='in-데이즈' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td class='ec'>매출</td><td class='ec ev'>Npay정산</td><td class='er'>673,101,269</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡페이주식회</td><td class='er'>559,341,687</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>무통장입금</td><td class='er'>236,598,020</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>톡체크아웃</td><td class='er'>42,385,485</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡풀필먼트서</td><td class='er'>27,078,055</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>우리홈쇼핑</td><td class='er'>11,292,719</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>카카오페이정산</td><td class='er'>1,015,342</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>현금영수증</td><td class='er'>177,200</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡주식회사</td><td class='er'>169,740</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>자사제품구매</td><td class='er'>133,100</td></tr>
+<tr><td class='ec'>기타</td><td class='ec ev'>CJ대한통운㈜</td><td class='er'>129,037</td></tr>
+</tbody></table>
+  </div>
+  <div id='cat-데이즈' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>광고선전비</div><div class='cbar-track'><div class='cbar-fill' style='width:65%'></div></div><div class='cbar-info'><span class='cbar-amt'>551,667,655</span><span class='cbar-pct'>65%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>원재료</div><div class='cbar-track'><div class='cbar-fill' style='width:18%'></div></div><div class='cbar-info'><span class='cbar-amt'>155,602,186</span><span class='cbar-pct'>18%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:8%'></div></div><div class='cbar-info'><span class='cbar-amt'>69,932,535</span><span class='cbar-pct'>8%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>세금</div><div class='cbar-track'><div class='cbar-fill' style='width:5%'></div></div><div class='cbar-info'><span class='cbar-amt'>39,229,910</span><span class='cbar-pct'>5%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>수입통관비용</div><div class='cbar-track'><div class='cbar-fill' style='width:3%'></div></div><div class='cbar-info'><span class='cbar-amt'>26,898,150</span><span class='cbar-pct'>3%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>용역비</div><div class='cbar-track'><div class='cbar-fill' style='width:0%'></div></div><div class='cbar-info'><span class='cbar-amt'>1,886,380</span><span class='cbar-pct'>0%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 <div class='dcard' id='co-드래프터' style='display:none'>
@@ -599,6 +688,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-드래프터")'>당주 지출 (6/29~7/5) <span class='ecnt'>97</span></button>
     <button class='etab' onclick='switchTab(this,"prev-드래프터")'>전주 지출 (6/22~6/28) <span class='ecnt'>84</span></button>
+    <button class='etab' onclick='switchTab(this,"in-드래프터")'>입금 채널 <span class='ecnt'>50</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-드래프터")'>지출 분류</button>
   </div>
   <div id='curr-드래프터' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -789,6 +880,25 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-26</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>법인등기부등본 1부</td><td class='er'>1,000</td></tr>
 </tbody></table>
   </div>
+  <div id='in-드래프터' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td class='ec'>매출</td><td class='ec ev'>Npay정산</td><td class='er'>127,361,820</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>KG이니시스</td><td class='er'>117,596,863</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>톡체크아웃</td><td class='er'>33,956,696</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>스마트스토어정</td><td class='er'>27,670,728</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>무통장입금</td><td class='er'>11,496,380</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>토스페이먼츠</td><td class='er'>5,719,324</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡페이주식회</td><td class='er'>3,222,987</td></tr>
+</tbody></table>
+  </div>
+  <div id='cat-드래프터' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>광고선전비</div><div class='cbar-track'><div class='cbar-fill' style='width:64%'></div></div><div class='cbar-info'><span class='cbar-amt'>731,305,950</span><span class='cbar-pct'>64%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>원재료</div><div class='cbar-track'><div class='cbar-fill' style='width:25%'></div></div><div class='cbar-info'><span class='cbar-amt'>283,454,401</span><span class='cbar-pct'>25%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>수입통관비용</div><div class='cbar-track'><div class='cbar-fill' style='width:6%'></div></div><div class='cbar-info'><span class='cbar-amt'>70,287,032</span><span class='cbar-pct'>6%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:4%'></div></div><div class='cbar-info'><span class='cbar-amt'>48,794,464</span><span class='cbar-pct'>4%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>용역비</div><div class='cbar-track'><div class='cbar-fill' style='width:0%'></div></div><div class='cbar-info'><span class='cbar-amt'>2,435,275</span><span class='cbar-pct'>0%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 <div class='dcard' id='co-발전존중' style='display:none'>
@@ -825,6 +935,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-발전존중")'>당주 지출 (6/29~7/5) <span class='ecnt'>46</span></button>
     <button class='etab' onclick='switchTab(this,"prev-발전존중")'>전주 지출 (6/22~6/28) <span class='ecnt'>40</span></button>
+    <button class='etab' onclick='switchTab(this,"in-발전존중")'>입금 채널 <span class='ecnt'>29</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-발전존중")'>지출 분류</button>
   </div>
   <div id='curr-발전존중' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -920,6 +1032,23 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-22</td><td class='ec'>한주희</td><td class='ec'>운영비</td><td class='ec ev'>신한은행</td><td class='ec ev'>자동이체수수료</td><td class='er'>300</td></tr>
 </tbody></table>
   </div>
+  <div id='in-발전존중' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td class='ec'>매출</td><td class='ec ev'>KG이니시스</td><td class='er'>51,221,390</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>스마트스토어정</td><td class='er'>30,860,717</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>Npay정산</td><td class='er'>19,075,133</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>톡체크아웃</td><td class='er'>12,320,715</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>무통장입금</td><td class='er'>5,580,180</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡풀필먼트서</td><td class='er'>461,571</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>자사제품구매</td><td class='er'>32,420</td></tr>
+</tbody></table>
+  </div>
+  <div id='cat-발전존중' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>광고선전비</div><div class='cbar-track'><div class='cbar-fill' style='width:74%'></div></div><div class='cbar-info'><span class='cbar-amt'>202,644,227</span><span class='cbar-pct'>74%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:18%'></div></div><div class='cbar-info'><span class='cbar-amt'>48,699,757</span><span class='cbar-pct'>18%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>용역비</div><div class='cbar-track'><div class='cbar-fill' style='width:8%'></div></div><div class='cbar-info'><span class='cbar-amt'>22,598,825</span><span class='cbar-pct'>8%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 <div class='dcard' id='co-썸웨어코드' style='display:none'>
@@ -956,6 +1085,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-썸웨어코드")'>당주 지출 (6/29~7/5) <span class='ecnt'>14</span></button>
     <button class='etab' onclick='switchTab(this,"prev-썸웨어코드")'>전주 지출 (6/22~6/28) <span class='ecnt'>11</span></button>
+    <button class='etab' onclick='switchTab(this,"in-썸웨어코드")'>입금 채널 <span class='ecnt'>26</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-썸웨어코드")'>지출 분류</button>
   </div>
   <div id='curr-썸웨어코드' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -990,6 +1121,22 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-25</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>주식회사 케이티</td><td class='ec ev'>KT통신요금06</td><td class='er'>86,210</td></tr>
 </tbody></table>
   </div>
+  <div id='in-썸웨어코드' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td class='ec'>매출</td><td class='ec ev'>Npay정산</td><td class='er'>152,976,212</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>톡체크아웃</td><td class='er'>53,478,835</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>무통장입금</td><td class='er'>39,642,884</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡페이주식회</td><td class='er'>31,385,763</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>스마트스토어정</td><td class='er'>20,023,267</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>현금영수증</td><td class='er'>3,000</td></tr>
+</tbody></table>
+  </div>
+  <div id='cat-썸웨어코드' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>광고선전비</div><div class='cbar-track'><div class='cbar-fill' style='width:98%'></div></div><div class='cbar-info'><span class='cbar-amt'>61,646,500</span><span class='cbar-pct'>98%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:2%'></div></div><div class='cbar-info'><span class='cbar-amt'>1,214,718</span><span class='cbar-pct'>2%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>용역비</div><div class='cbar-track'><div class='cbar-fill' style='width:0%'></div></div><div class='cbar-info'><span class='cbar-amt'>96,700</span><span class='cbar-pct'>0%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 <div class='dcard' id='co-제노바' style='display:none'>
@@ -1026,6 +1173,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-제노바")'>당주 지출 (6/29~7/5) <span class='ecnt'>11</span></button>
     <button class='etab' onclick='switchTab(this,"prev-제노바")'>전주 지출 (6/22~6/28) <span class='ecnt'>11</span></button>
+    <button class='etab' onclick='switchTab(this,"in-제노바")'>입금 채널 <span class='ecnt'>77</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-제노바")'>지출 분류</button>
   </div>
   <div id='curr-제노바' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -1057,6 +1206,27 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-26</td><td class='ec'></td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>법인등기부등본 발급</td><td class='er'>1,000</td></tr>
 </tbody></table>
   </div>
+  <div id='in-제노바' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td class='ec'>매출</td><td class='ec ev'>쿠팡페이주식회</td><td class='er'>661,419,340</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>Npay정산</td><td class='er'>180,711,690</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>톡체크아웃</td><td class='er'>121,503,444</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>갤럭시아머니트</td><td class='er'>107,235,556</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>스마트스토어정</td><td class='er'>70,987,447</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>무통장입금</td><td class='er'>45,656,659</td></tr>
+<tr><td class='ec'>기타</td><td class='ec ev'>마크인포특허법률사무소</td><td class='er'>281,600</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>토스페이먼츠</td><td class='er'>151,809</td></tr>
+<tr><td class='ec'>기타</td><td class='ec ev'>CJ대한통운(주)</td><td class='er'>53,227</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>자사제품구매</td><td class='er'>33,120</td></tr>
+<tr><td class='ec'>매출</td><td class='ec ev'>쿠팡풀필먼트서</td><td class='er'>22,665</td></tr>
+</tbody></table>
+  </div>
+  <div id='cat-제노바' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>광고선전비</div><div class='cbar-track'><div class='cbar-fill' style='width:75%'></div></div><div class='cbar-info'><span class='cbar-amt'>167,106,640</span><span class='cbar-pct'>75%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>원재료</div><div class='cbar-track'><div class='cbar-fill' style='width:25%'></div></div><div class='cbar-info'><span class='cbar-amt'>55,000,000</span><span class='cbar-pct'>25%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:0%'></div></div><div class='cbar-info'><span class='cbar-amt'>507,037</span><span class='cbar-pct'>0%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 <div class='dcard' id='co-크롬스' style='display:none'>
@@ -1093,6 +1263,8 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class='etabs'>
     <button class='etab on' onclick='switchTab(this,"curr-크롬스")'>당주 지출 (6/29~7/5) <span class='ecnt'>66</span></button>
     <button class='etab' onclick='switchTab(this,"prev-크롬스")'>전주 지출 (6/22~6/28) <span class='ecnt'>63</span></button>
+    <button class='etab' onclick='switchTab(this,"in-크롬스")'>입금 채널 <span class='ecnt'>0</span></button>
+    <button class='etab' onclick='switchTab(this,"cat-크롬스")'>지출 분류</button>
   </div>
   <div id='curr-크롬스' class='epanel'>
     <table class='etbl'><thead><tr><th>일자</th><th>요청자</th><th>구분1</th><th>거래처</th><th>거래내용</th><th>금액</th></tr></thead>
@@ -1231,12 +1403,22 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 <tr><td class='ec'>6-22</td><td class='ec'>채수민</td><td class='ec'>운영비</td><td class='ec ev'>신한카드(체크)</td><td class='ec ev'>쿠팡_자석 프레임 액자 구매</td><td class='er'>10,200</td></tr>
 </tbody></table>
   </div>
+  <div id='in-크롬스' class='epanel' style='display:none'>
+    <table class='etbl'><thead><tr><th>구분</th><th>거래처 / 채널</th><th>금액</th></tr></thead>
+    <tbody><tr><td colspan='3' style='text-align:center;color:#a0b0c8;padding:16px'>내역 없음</td></tr></tbody></table>
+  </div>
+  <div id='cat-크롬스' class='epanel no-pgn' style='display:none'><div class='cat-breakdown'>
+<div class='cbar-row'><div class='cbar-lbl'>광고선전비</div><div class='cbar-track'><div class='cbar-fill' style='width:87%'></div></div><div class='cbar-info'><span class='cbar-amt'>359,067,000</span><span class='cbar-pct'>87%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>운영비</div><div class='cbar-track'><div class='cbar-fill' style='width:7%'></div></div><div class='cbar-info'><span class='cbar-amt'>29,860,909</span><span class='cbar-pct'>7%</span></div></div>
+<div class='cbar-row'><div class='cbar-lbl'>용역비</div><div class='cbar-track'><div class='cbar-fill' style='width:6%'></div></div><div class='cbar-info'><span class='cbar-amt'>25,700,537</span><span class='cbar-pct'>6%</span></div></div>
+</div>
+</div>
 </div>
 </div>
 
   </div>
 </div>
-<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 15:28</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 15:50</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 var PS = 10;
@@ -1330,8 +1512,10 @@ function switchTab(btn, panelId) {
 
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.epanel').forEach(function(panel) {
+    if (panel.classList.contains('no-pgn')) return;
     var id = panel.id;
     var rows = panel.querySelectorAll('.etbl tbody tr');
+    if (rows.length === 0) return;
     var pages = Math.max(1, Math.ceil(rows.length / PS));
     var pgn = document.createElement('div');
     pgn.className = 'pgn';
