@@ -11,10 +11,20 @@ a{color:inherit;text-decoration:none}
 .hdr{background:#16213e;color:#fff;padding:20px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .hdr-l h1{font-size:16px;font-weight:500}.hdr-l p{font-size:11px;color:#7a90b8;margin-top:3px}
 .pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit}
-.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 36px 0}
+.kpi{display:grid;grid-template-columns:repeat(5,1fr) auto;gap:12px;padding:20px 36px 0;align-items:center}
 .kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
-.kc.g{border-color:#a8dcbc;background:#f5fcf8}.kc.r{border-color:#e0b4b4;background:#fff7f7}
-.kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}.kvi{font-size:13px;font-weight:600;color:#be1c1c;line-height:1.4}
+.kc.total{border-color:#3a78d2;background:#f0f5ff;border-width:2px}
+.kc-eq{font-size:24px;color:#8090b0;text-align:center;font-weight:300;line-height:1}
+.kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:22px;font-weight:600;line-height:1.1;color:#1e2841}
+.kpi2{padding:12px 36px 0}
+.issue-box{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:14px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
+.issue-hd{font-size:11px;font-weight:600;color:#8090b0;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
+.issue-row{display:flex;align-items:baseline;gap:10px;padding:5px 0;border-bottom:1px solid #f0f3fa;font-size:13px}
+.issue-row:last-child{border-bottom:none}
+.issue-co{font-weight:600;color:#1e2841;min-width:80px;flex-shrink:0}
+.issue-net{min-width:70px;flex-shrink:0;font-variant-numeric:tabular-nums}
+.issue-reason{color:#5c6880;font-size:12px}
+.issue-ok{color:#8090b0;font-size:12px}
 .pos{color:#12874a}.neg{color:#be1c1c}
 .main{padding:16px 36px 36px}
 .card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
@@ -79,21 +89,31 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 </div>
 <div class="kpi">
   <div class="kc"><div class="kl">총 원화 통장잔액</div><div class="kv">156.7억</div></div>
-  <div class="kc"><div class="kl">총 자산 합계</div><div class="kv">255.8억</div></div>
-  <div class="kc g"><div class="kl">이번 주 순현금 (6-29~7-5)</div><div class="kv pos">+11.5억</div></div>
-  <div class="kc r"><div class="kl">이슈 법인</div><div class="kvi">가론지, 데이즈</div></div>
+  <div class="kc"><div class="kl">총 외화 통장잔액</div><div class="kv">50.4억</div></div>
+  <div class="kc"><div class="kl">총 중국장부 잔액</div><div class="kv">4.6억</div></div>
+  <div class="kc"><div class="kl">총 재고자산 잔액</div><div class="kv">44.2억</div></div>
+  <div class="kc-eq">=</div>
+  <div class="kc total"><div class="kl">총 자산 합계</div><div class="kv">255.8억</div></div>
+</div>
+<div class="kpi2">
+  <div class="issue-box">
+    <div class="issue-hd">이슈 법인</div>
+    <div class='issue-row'><span class='issue-co'>가론지</span><span class='issue-net'><span class='neg'>-4.5억</span></span><span class='issue-reason'>원재료(2.9억),  집행운영비(1.7억),  집행기타(342만)</span></div>
+<div class='issue-row'><span class='issue-co'>데이즈</span><span class='issue-net'><span class='neg'>-1.4억</span></span><span class='issue-reason'>광고선전비(5.5억),  집행원재료(1.6억),  집행운영비(6,993만)</span></div>
+
+  </div>
 </div>
 <div class="main">
   <div class="card"><div class="ct">법인별 현금흐름 요약</div>
     <table><thead><tr><th>법인</th><th>통장잔액</th><th>전주대비</th><th>순현금</th><th>입금</th><th>지출</th><th>비고</th></tr></thead>
-    <tbody><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:31%;background:#3a78d230'></div><span class='rv'>18.3억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-598만</span></td><td class='tc neg'>-4.5억</td><td class='tc'>2,482만</td><td class='tc'>4.7억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
-<tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:11%;background:#3a78d230'></div><span class='rv'>6.5억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-1,453만</span></td><td class='tc pos'>+3.6억</td><td class='tc'>11.0억</td><td class='tc'>7.5억</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-데이즈'"><td class='tn'><a href='#co-데이즈' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:82%;background:#3a78d230'></div><span class='rv'>48.5억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:6%;background:#12874430'></div><span class='rv'>+5,303만</span></td><td class='tc neg'>-1.4억</td><td class='tc'>7.1억</td><td class='tc'>8.5억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
-<tr onclick="location.href='#co-드래프터'"><td class='tn'><a href='#co-드래프터' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:37%;background:#3a78d230'></div><span class='rv'>21.9억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:27%;background:#12874430'></div><span class='rv'>+2.3억</span></td><td class='tc pos'>+4.2억</td><td class='tc'>15.5억</td><td class='tc'>11.4억</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-발전존중'"><td class='tn'><a href='#co-발전존중' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:7%;background:#3a78d230'></div><span class='rv'>4.1억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>+2,965만</span></td><td class='tc pos'>+5,308만</td><td class='tc'>3.3억</td><td class='tc'>2.7억</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-썸웨어코드'"><td class='tn'><a href='#co-썸웨어코드' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:5%;background:#3a78d230'></div><span class='rv'>3.1억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-2,021만</span></td><td class='tc pos'>+5,659만</td><td class='tc'>1.2억</td><td class='tc'>6,296만</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-제노바'"><td class='tn'><a href='#co-제노바' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:42%;background:#3a78d230'></div><span class='rv'>24.7억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>-403만</span></td><td class='tc pos'>+7,490만</td><td class='tc'>3.0억</td><td class='tc'>2.2억</td><td class='tc'></td></tr>
-<tr onclick="location.href='#co-크롬스'"><td class='tn'><a href='#co-크롬스' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:50%;background:#3a78d230'></div><span class='rv'>29.6억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:80%;background:#12874430'></div><span class='rv'>+6.9억</span></td><td class='tc pos'>+7.7억</td><td class='tc'>11.9억</td><td class='tc'>4.1억</td><td class='tc'></td></tr>
+    <tbody><tr onclick="location.href='#co-가론지'"><td class='tn'><a href='#co-가론지' class='colink'>가론지</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:31%;background:#3a78d230'></div><span class='rv'>18.3억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc neg'>-4.5억</td><td class='tc'>2,482만</td><td class='tc'>4.7억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
+<tr onclick="location.href='#co-더스크랙'"><td class='tn'><a href='#co-더스크랙' class='colink'>더스크랙</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:11%;background:#3a78d230'></div><span class='rv'>6.5억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+3.6억</td><td class='tc'>11.0억</td><td class='tc'>7.5억</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-데이즈'"><td class='tn'><a href='#co-데이즈' class='colink'>데이즈</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:82%;background:#3a78d230'></div><span class='rv'>48.5억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc neg'>-1.4억</td><td class='tc'>7.1억</td><td class='tc'>8.5억</td><td class='tc'><span class='bw'>지출 초과</span></td></tr>
+<tr onclick="location.href='#co-드래프터'"><td class='tn'><a href='#co-드래프터' class='colink'>드래프터</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:37%;background:#3a78d230'></div><span class='rv'>21.9억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+4.2억</td><td class='tc'>15.5억</td><td class='tc'>11.4억</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-발전존중'"><td class='tn'><a href='#co-발전존중' class='colink'>발전존중</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:7%;background:#3a78d230'></div><span class='rv'>4.1억</span></td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>—</span></td><td class='tc pos'>+5,308만</td><td class='tc'>3.3억</td><td class='tc'>2.7억</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-썸웨어코드'"><td class='tn'><a href='#co-썸웨어코드' class='colink'>썸웨어코드</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:5%;background:#3a78d230'></div><span class='rv'>3.1억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+5,659만</td><td class='tc'>1.2억</td><td class='tc'>6,296만</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-제노바'"><td class='tn'><a href='#co-제노바' class='colink'>제노바</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:42%;background:#3a78d230'></div><span class='rv'>24.7억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+7,490만</td><td class='tc'>3.0억</td><td class='tc'>2.2억</td><td class='tc'></td></tr>
+<tr onclick="location.href='#co-크롬스'"><td class='tn'><a href='#co-크롬스' class='colink'>크롬스</a></td><td class='tr2' style='position:relative'><div class='bar' style='width:50%;background:#3a78d230'></div><span class='rv'>29.6억</span></td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>—</span></td><td class='tc pos'>+7.7억</td><td class='tc'>11.9억</td><td class='tc'>4.1억</td><td class='tc'></td></tr>
 </tbody></table>
   </div>
   <div class="card nc"><div class="ct">이번 주 특이사항</div><div class='ni'><span class='nl'></span>가론지 — 입금 <b>2,482만</b> / 지출 <b>4.7억</b>. 순현금 <span class='neg'>-4.5억</span> &nbsp;<span style='font-size:11px;color:#8090b0'>주요지출: 원재료 <b>2.9억</b> · 운영비 <b>1.7억</b></span></div>
@@ -110,7 +130,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>3,511만</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>18.7억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-598만</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-598만</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -189,7 +209,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>1.7억</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>14.3억</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>22.6억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-1,453만</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-1,453만</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -382,7 +402,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>1.7억</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>4.0억</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>70.5억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+5,303만</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+5,303만</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -535,7 +555,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>1.2억</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>9.7억</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>51.0억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+2.3억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+2.3억</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -752,7 +772,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>11.6억</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>19.7억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+2,965만</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+2,965만</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -874,7 +894,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>28만</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>3.1억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-2,021만</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-2,021만</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -935,7 +955,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>614만</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>24.8억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval neg'><b>-403만</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval neg'>-403만</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -993,7 +1013,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
     <tr><td class='dlbl'>중국장부 (KRW)</td><td class='dval'>—</td></tr>
     <tr><td class='dlbl'>재고자산</td><td class='dval'>4.1억</td></tr>
     <tr class='tsum'><td class='dlbl'>자산 합계</td><td class='dval'><b>45.5억</b></td></tr>
-    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>+6.9억</b></td></tr>
+    <tr class='tdiff'><td class='dlbl'>전주대비 (통장)</td><td class='dval pos'><b>—</b></td></tr>
     <tr class='tdiff'><td class='dlbl'>전월대비 (통장)</td><td class='dval pos'>+6.9억</td></tr>
   </table></div>
   <div class='dcol'><div class='dsec'>주간 현금흐름 (6/29~7/5)</div><table class='dtbl'>
@@ -1152,7 +1172,7 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 
   </div>
 </div>
-<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 10:13</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-08 11:00</div>
 <script>
 var PS = 10;
 var pg = {};
