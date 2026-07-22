@@ -36,13 +36,6 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 .ni{padding:11px 20px;border-bottom:1px solid #ede8bc;font-size:12.5px;color:#5c4818;display:flex;align-items:center;gap:12px}
 .ni:last-child{border-bottom:none}.nl{display:inline-block;min-width:4px;height:15px;background:#f2b62d;border-radius:2px;flex-shrink:0}
 .ni-ok{color:#8090b0}.nl-ok{display:inline-block;min-width:4px;height:15px;background:#c0c8d8;border-radius:2px;flex-shrink:0}
-.ni-txt{white-space:nowrap}
-.ni-note{flex:1;min-width:180px;font-size:11.5px;font-family:inherit;color:#5c4818;background:#fffdf6;border:1px solid #e8dca0;border-radius:6px;padding:5px 9px}
-.ni-note:focus{outline:none;border-color:#e0a020;background:#fff}
-.ni-savewrap{display:flex;justify-content:flex-end;align-items:center;gap:10px;padding:9px 20px;background:#fdf9ec}
-.ni-savebtn{background:#f2b62d;border:none;color:#5c4818;font-weight:600;font-size:12px;padding:6px 16px;border-radius:6px;cursor:pointer;font-family:inherit}
-.ni-savebtn:hover{background:#e0a020}
-.ni-status{font-size:11px;color:#8a9020}
 #details-area{margin-top:14px}
 .dcard{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:12px;scroll-margin-top:80px;box-shadow:0 2px 8px rgba(30,40,65,.1)}
 .dct{display:flex;align-items:center;gap:8px;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee}.dco{font-weight:600;font-size:14px}
@@ -126,10 +119,10 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
   <div class="kc total"><div class="kl">총 자산 합계</div><div class="kv">24,086,997,861</div></div>
 </div>
 <div class="main">
-  <div class="card nc"><div class="ct">이번 주 특이사항</div><div class='ni' data-co='드래프터'><span class='nl'></span><span class='ni-txt'>드래프터 — 입금 <b>507,624,432</b> / 지출 <b>1,030,492,586</b>. 순현금 <span class='neg'>-522,868,154</span></span><input class='ni-note' type='text' data-co='드래프터' value="주요지출: 광고선전비 622,858,800 · 원재료 347,349,703" placeholder='메모 입력'></div>
-<div class='ni' data-co='발전존중'><span class='nl'></span><span class='ni-txt'>발전존중 — 입금 <b>276,859,392</b> / 지출 <b>535,095,338</b>. 순현금 <span class='neg'>-258,235,946</span></span><input class='ni-note' type='text' data-co='발전존중' value="주요지출: 원재료 267,690,720 · 광고선전비 177,775,825" placeholder='메모 입력'></div>
-<div class='ni' data-co='크롬스'><span class='nl'></span><span class='ni-txt'>크롬스 — 입금 <b>390,061,757</b> / 지출 <b>465,392,444</b>. 순현금 <span class='neg'>-75,330,687</span></span><input class='ni-note' type='text' data-co='크롬스' value="주요지출: 광고선전비 425,169,051 · 운영비 29,896,358" placeholder='메모 입력'></div>
-<div class='ni-savewrap'><span class='ni-status' id='ni-status'></span><button class='ni-savebtn' onclick='saveIssueNotes()'>저장</button></div></div>
+  <div class="card nc"><div class="ct">이번 주 특이사항</div><div class='ni'><span class='nl'></span>드래프터 — 입금 <b>507,624,432</b> / 지출 <b>1,030,492,586</b>. 순현금 <span class='neg'>-522,868,154</span> &nbsp;<span style='font-size:11px;color:#8090b0'>주요지출: 광고선전비 <b>622,858,800</b> · 원재료 <b>347,349,703</b></span></div>
+<div class='ni'><span class='nl'></span>발전존중 — 입금 <b>276,859,392</b> / 지출 <b>535,095,338</b>. 순현금 <span class='neg'>-258,235,946</span> &nbsp;<span style='font-size:11px;color:#8090b0'>주요지출: 원재료 <b>267,690,720</b> · 광고선전비 <b>177,775,825</b></span></div>
+<div class='ni'><span class='nl'></span>크롬스 — 입금 <b>390,061,757</b> / 지출 <b>465,392,444</b>. 순현금 <span class='neg'>-75,330,687</span> &nbsp;<span style='font-size:11px;color:#8090b0'>주요지출: 광고선전비 <b>425,169,051</b> · 운영비 <b>29,896,358</b></span></div>
+</div>
   <div class="card"><div class="ct">법인별 현금흐름 요약</div>
     <table><thead><tr><th>법인</th><th>통장잔액</th><th>전주대비</th><th>순현금</th><th>입금</th><th>지출</th><th>비고</th></tr></thead>
     <tbody><tr onclick="showDetail('co-가론지')"><td class='tn'><a href='#' onclick='showDetail("co-가론지");return false' class='colink'>가론지</a></td><td class='tr2'>1,272,654,173</td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:3%;background:#12874430'></div><span class='rv'>+3,537,414</span></td><td class='tc pos'>+3,537,414</td><td class='tc'>5,685,079</td><td class='tc'>2,147,665</td><td class='tc'></td></tr>
@@ -2454,33 +2447,11 @@ tr:last-child td{border-bottom:none}tr:nth-child(even) td{background:#fafbfe}tr:
 
   </div>
 </div>
-<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-22 10:10</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 주간현금흐름보고 &nbsp;·&nbsp; 생성: 2026-07-22 10:41</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 var PS = 10;
 var pg = {};
-
-var NOTE_KEY = "issueNotes_260719";
-
-function loadIssueNotes() {
-  var stored = {};
-  try { stored = JSON.parse(localStorage.getItem(NOTE_KEY) || "{}"); } catch(e) {}
-  document.querySelectorAll(".ni-note").forEach(function(inp) {
-    var co = inp.dataset.co;
-    if (Object.prototype.hasOwnProperty.call(stored, co)) { inp.value = stored[co]; }
-  });
-}
-
-function saveIssueNotes() {
-  var out = {};
-  document.querySelectorAll(".ni-note").forEach(function(inp) { out[inp.dataset.co] = inp.value; });
-  localStorage.setItem(NOTE_KEY, JSON.stringify(out));
-  var status = document.getElementById("ni-status");
-  if (status) {
-    status.textContent = "저장됨 (이 브라우저에만 적용)";
-    setTimeout(function(){ status.textContent = ""; }, 2200);
-  }
-}
 
 function initTrendChart(canvas) {
   var inData  = JSON.parse(canvas.dataset.in);
@@ -2619,7 +2590,6 @@ function switchTab(btn, panelId) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  loadIssueNotes();
   document.querySelectorAll('.epanel').forEach(function(panel) {
     if (panel.classList.contains('no-pgn')) return;
     var id = panel.id;
