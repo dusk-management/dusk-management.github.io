@@ -1,0 +1,539 @@
+<title>FX 관리 대시보드</title>
+<style>
+.viz-root{
+  color-scheme: light;
+  --surface-1:#fcfcfb; --surface-2:#f9f9f7; --border:rgba(11,11,11,0.10);
+  --text-primary:#0b0b0b; --text-secondary:#52514e; --text-muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7;
+  --s-blue:#2a78d6; --s-orange:#eb6834; --s-aqua:#1baf7a; --s-yellow:#eda100;
+  --s-magenta:#e87ba4; --s-green:#008300; --s-violet:#4a3aa7; --s-red:#e34948;
+  --good:#006300;
+  font-family: system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])) .viz-root{
+    color-scheme: dark;
+    --surface-1:#1a1a19; --surface-2:#0d0d0d; --border:rgba(255,255,255,0.10);
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#898781;
+    --grid:#2c2c2a; --axis:#383835;
+    --s-blue:#3987e5; --s-orange:#d95926; --s-aqua:#199e70; --s-yellow:#c98500;
+    --s-magenta:#d55181; --s-green:#008300; --s-violet:#9085e9; --s-red:#e66767;
+    --good:#0ca30c;
+  }
+}
+:root[data-theme="dark"] .viz-root{
+  color-scheme: dark;
+  --surface-1:#1a1a19; --surface-2:#0d0d0d; --border:rgba(255,255,255,0.10);
+  --text-primary:#ffffff; --text-secondary:#c3c2b7; --text-muted:#898781;
+  --grid:#2c2c2a; --axis:#383835;
+  --s-blue:#3987e5; --s-orange:#d95926; --s-aqua:#199e70; --s-yellow:#c98500;
+  --s-magenta:#d55181; --s-green:#008300; --s-violet:#9085e9; --s-red:#e66767;
+  --good:#0ca30c;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--surface-2);}
+.viz-root{background:var(--surface-2); min-height:100vh; padding:24px 16px 60px;}
+.wrap{max-width:1180px;margin:0 auto;}
+.header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:20px;}
+.header h1{font-size:22px;font-weight:700;color:var(--text-primary);margin:0;}
+.header .sub{font-size:13px;color:var(--text-secondary);}
+.asof{font-size:12.5px;color:var(--text-muted);}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:20px;}
+.tile{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.tile .label{font-size:12px;color:var(--text-secondary);margin-bottom:6px;}
+.tile .value{font-size:20px;font-weight:700;color:var(--text-primary);font-variant-numeric:tabular-nums;}
+.tile .value.pos{color:var(--good);}
+.tile .value.neg{color:var(--s-red);}
+.tile .sub{font-size:11.5px;color:var(--text-muted);margin-top:4px;}
+
+.card{background:var(--surface-1);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:18px;}
+.card h2{font-size:15px;font-weight:700;color:var(--text-primary);margin:0 0 2px;}
+.card .desc{font-size:12px;color:var(--text-muted);margin-bottom:14px;}
+.grid2{display:grid;grid-template-columns:1.15fr 0.85fr;gap:18px;}
+@media (max-width:860px){.grid2{grid-template-columns:1fr;}}
+
+.legend{display:flex;gap:16px;font-size:12px;color:var(--text-secondary);margin-bottom:10px;flex-wrap:wrap;}
+.legend span{display:inline-flex;align-items:center;gap:6px;}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+
+svg{overflow:visible;display:block;}
+.gridline{stroke:var(--grid);stroke-width:1;}
+.axisline{stroke:var(--axis);stroke-width:1;}
+.axislabel{fill:var(--text-muted);font-size:10.5px;}
+.barlabel{fill:var(--text-secondary);font-size:11px;font-variant-numeric:tabular-nums;}
+.catlabel{fill:var(--text-primary);font-size:12px;font-weight:600;}
+
+.tooltip{position:absolute;pointer-events:none;background:var(--text-primary);color:var(--surface-1);
+  font-size:11.5px;padding:6px 9px;border-radius:6px;white-space:nowrap;opacity:0;transform:translate(-50%,-100%);
+  transition:opacity .1s;z-index:20;font-variant-numeric:tabular-nums;}
+.tooltip.show{opacity:0.96;}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px;}
+th{text-align:right;font-weight:600;color:var(--text-secondary);padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap;}
+th:first-child,td:first-child{text-align:left;}
+td{text-align:right;padding:7px 10px;border-bottom:1px solid var(--grid);color:var(--text-primary);font-variant-numeric:tabular-nums;white-space:nowrap;}
+tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--surface-2);}
+.corp-name{font-weight:600;}
+.gain-pos{color:var(--good);}
+.gain-neg{color:var(--s-red);}
+.tbl-scroll{overflow-x:auto;}
+.total-row td{font-weight:700;border-top:1px solid var(--axis);}
+
+.tabs{display:flex;gap:4px;margin-bottom:12px;}
+.tab-btn{border:1px solid var(--border);background:var(--surface-2);color:var(--text-secondary);
+  font-size:12.5px;padding:6px 14px;border-radius:7px;cursor:pointer;font-family:inherit;}
+.tab-btn.active{background:var(--s-blue);color:#fff;border-color:var(--s-blue);}
+.tabpane{display:none;}
+.tabpane.active{display:block;}
+.small-note{font-size:11.5px;color:var(--text-muted);margin-top:8px;line-height:1.5;}
+
+.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;flex-wrap:wrap;}
+.pager .pager-info{font-size:12px;color:var(--text-muted);}
+.pager .pager-btns{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+.pager button{border:1px solid var(--border);background:var(--surface-2);color:var(--text-secondary);
+  font-size:12px;min-width:28px;height:28px;padding:0 8px;border-radius:6px;cursor:pointer;font-family:inherit;font-variant-numeric:tabular-nums;}
+.pager button:hover:not(:disabled){background:var(--grid);}
+.pager button.active{background:var(--s-blue);color:#fff;border-color:var(--s-blue);}
+.pager button:disabled{opacity:0.4;cursor:default;}
+.pager .pager-ellipsis{color:var(--text-muted);font-size:12px;padding:0 2px;}
+
+th{vertical-align:bottom;}
+th .th-inner{display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+th:first-child .th-inner{align-items:flex-start;}
+th .th-inner.has-filter{flex-direction:row;align-items:center;justify-content:flex-end;gap:7px;}
+th .th-label{cursor:pointer;user-select:none;display:flex;align-items:center;gap:4px;justify-content:flex-end;white-space:nowrap;}
+th:first-child .th-label{justify-content:flex-start;}
+th .sort-arrow{font-size:9px;color:var(--text-muted);width:9px;display:inline-block;}
+th .sort-arrow.active{color:var(--s-blue);}
+th select.th-filter{font-size:11px;padding:2px 6px;border-radius:5px;
+  border:1px solid var(--border);background:var(--surface-2);color:var(--text-primary);
+  width:auto;max-width:100px;font-family:inherit;}
+th select.th-filter.active{border-color:var(--s-blue);color:var(--s-blue);}
+</style>
+
+<div class="viz-root">
+<div class="wrap">
+  <div class="header">
+    <div>
+      <h1>환율 관리 대시보드</h1>
+      <div class="sub">외화매입 · 해외송금 · 환차익(FIFO) 현황</div>
+    </div>
+    <div class="asof" id="asof-note"></div>
+  </div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <div class="card">
+    <h2>사업자별 요약</h2>
+    <div class="desc">매입원가는 선입선출(FIFO) 기준으로 자동 매칭된 값입니다.</div>
+    <div class="tbl-scroll"><table id="corp-table"></table></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>월별 매입 · 송금 (USD)</h2>
+      <div class="desc">외화 매입 금액과 해외송금 실행 금액의 월별 추이</div>
+      <div class="legend">
+        <span><i style="background:var(--s-blue)"></i>매입 (USD)</span>
+        <span><i style="background:var(--s-orange)"></i>송금 (USD)</span>
+      </div>
+      <div id="chart-monthly" style="position:relative;"></div>
+    </div>
+    <div class="card">
+      <h2>사업자별 환차익</h2>
+      <div class="desc">송금시장가치 − 매입원가(FIFO), 단위: 원</div>
+      <div id="chart-gain" style="position:relative;"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>거래 내역</h2>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="remit">해외송금 (52건)</button>
+      <button class="tab-btn" data-tab="purchase">외화매입 (34건)</button>
+    </div>
+    <div class="tabpane active" id="pane-remit">
+      <div class="tbl-scroll"><table id="remit-table"></table></div>
+      <div class="pager" id="remit-pager"></div>
+    </div>
+    <div class="tabpane" id="pane-purchase">
+      <div class="tbl-scroll"><table id="purchase-table"></table></div>
+      <div class="pager" id="purchase-pager"></div>
+    </div>
+    <div class="small-note">환차익(원) = 송금시장가치(원) − 매입원가(원, FIFO). 매입환율이 송금일 시장환율보다 낮으면 환차익(이득), 높으면 환차손(손실)입니다.</div>
+  </div>
+
+  <div class="small-note" style="text-align:center;margin-top:4px;">
+    원본: FX 관리.xlsx (외화매입기록 · 해외송금기록) · 사업자별 환차익은 거래 단위 합산으로 재계산한 값입니다.
+  </div>
+</div>
+<div class="tooltip" id="tooltip"></div>
+</div>
+
+<script>
+const DATA = {"purchases":[{"no":0,"date":"2026-02-13","usd":380000,"rate":1446.12,"krw":549525600,"memo":"드래프터_외화매입","remain":0},{"no":1,"date":"2026-02-13","usd":250000,"rate":1446.17,"krw":361542500,"memo":"데이즈_외화매입","remain":0},{"no":2,"date":"2026-03-31","usd":750000,"rate":1537.99,"krw":1153492500,"memo":"드래프터_외화매입","remain":0},{"no":3,"date":"2026-03-31","usd":750000,"rate":1537.99,"krw":1153492500,"memo":"데이즈_외화매입","remain":699625},{"no":4,"date":"2026-05-18","usd":50056,"rate":1509.23,"krw":75546016.88,"memo":"더스크랙_외화매입","remain":0},{"no":5,"date":"2026-05-18","usd":50089,"rate":1508.31,"krw":75549739.59,"memo":"드래프터_외화매입","remain":0},{"no":6,"date":"2026-05-18","usd":50078,"rate":1508.21,"krw":75528140.38,"memo":"데이즈_외화매입","remain":50078},{"no":7,"date":"2026-05-19","usd":50085,"rate":1507.01,"krw":75478595.85,"memo":"더스크랙_외화매입","remain":0},{"no":8,"date":"2026-05-19","usd":50077,"rate":1507.01,"krw":75466539.77,"memo":"드래프터_외화매입","remain":0},{"no":9,"date":"2026-05-20","usd":100108,"rate":1509.41,"krw":151104016.28,"memo":"더스크랙_외화매입","remain":0},{"no":10,"date":"2026-05-20","usd":100119,"rate":1509.91,"krw":151170679.29000002,"memo":"드래프터_외화매입","remain":78859},{"no":11,"date":"2026-05-21","usd":50069,"rate":1505.78,"krw":75392898.82,"memo":"더스크랙_외화매입","remain":0},{"no":12,"date":"2026-05-21","usd":50066,"rate":1505.78,"krw":75388381.48,"memo":"드래프터_외화매입","remain":50066},{"no":13,"date":"2026-05-22","usd":15375,"rate":1519.62,"krw":23364157.5,"memo":"더스크랙_외화매입","remain":0},{"no":14,"date":"2026-05-26","usd":150000,"rate":1509.71,"krw":226456500,"memo":"더스크랙_외화매입","remain":0},{"no":15,"date":"2026-05-26","usd":50000,"rate":1510.71,"krw":75535500,"memo":"더스크랙_외화매입","remain":0},{"no":16,"date":"2026-05-26","usd":50000,"rate":1510.71,"krw":75535500,"memo":"더스크랙_외화매입","remain":0},{"no":17,"date":"2026-05-26","usd":250000,"rate":1512.31,"krw":378077500,"memo":"드래프터_외화매입","remain":250000},{"no":18,"date":"2026-05-26","usd":100000,"rate":1512.21,"krw":151221000,"memo":"데이즈_외화매입","remain":100000},{"no":19,"date":"2026-05-27","usd":100000,"rate":1503.67,"krw":150367000,"memo":"드래프터_외화매입","remain":100000},{"no":20,"date":"2026-05-27","usd":100000,"rate":1503.37,"krw":150337000,"memo":"데이즈_외화매입","remain":100000},{"no":21,"date":"2026-06-01","usd":150000,"rate":1505.73,"krw":225859500,"memo":"드래프터_외화매입","remain":150000},{"no":22,"date":"2026-06-09","usd":200000,"rate":1518.49,"krw":303698000,"memo":"드래프터_외화매입","remain":200000},{"no":23,"date":"2026-06-09","usd":100000,"rate":1518.29,"krw":151829000,"memo":"데이즈_외화매입","remain":100000},{"no":24,"date":"2026-06-15","usd":200000,"rate":1512.41,"krw":302482000,"memo":"드래프터_외화매입","remain":200000},{"no":25,"date":"2026-06-15","usd":100000,"rate":1512.01,"krw":151201000,"memo":"데이즈_외화매입","remain":100000},{"no":26,"date":"2026-06-17","usd":50069,"rate":1516.33,"krw":75921126.77,"memo":"더스크랙_외화매입","remain":0},{"no":27,"date":"2026-06-18","usd":27349.02,"rate":1522.88,"krw":41649275.5776,"memo":"더스크랙_외화매입","remain":0},{"no":28,"date":"2026-06-20","usd":0.32,"rate":1523.4,"krw":487.48800000000006,"memo":"더스크랙_이자수익","remain":5.1222748265189466e-11},{"no":29,"date":"2026-06-20","usd":26.56,"rate":1523.4,"krw":40461.504,"memo":"드래프터_이자수익","remain":26.56},{"no":30,"date":"2026-06-20","usd":22.63,"rate":1523.4,"krw":34474.542,"memo":"데이즈_이자수익","remain":22.63},{"no":31,"date":"2026-06-22","usd":10088,"rate":1536.25,"krw":15497690,"memo":"더스크랙_외화매입","remain":0},{"no":32,"date":"2026-06-24","usd":18053.6,"rate":1538.79,"krw":27780699.143999998,"memo":"더스크랙_외화매입","remain":0.31999999997060513},{"no":33,"date":"2026-06-26","usd":101048.44,"rate":1550.79,"krw":156704910.2676,"memo":"드래프터_외화매입","remain":101048.44}],"remits":[{"no":1,"date":"2026-05-18","party":"Yantai Yeqi Trading Co., Ltd","usd":50036,"mkt_rate":1499.8,"mkt_value":75043992.8,"cost_rate":1509.23,"cost_krw":75515832.28,"gain":-471839.4800000042,"gain_pct":-0.006248219290631702,"corp":"더스크랙"},{"no":2,"date":"2026-05-18","party":"신한은행","usd":20,"mkt_rate":1499.8,"mkt_value":29996,"cost_rate":1509.23,"cost_krw":30184.6,"gain":-188.59999999999854,"gain_pct":-0.006248219290631599,"corp":"더스크랙"},{"no":3,"date":"2026-05-18","party":"Yantai Yeqi Trading Co., Ltd","usd":50069,"mkt_rate":1499.8,"mkt_value":75093486.2,"cost_rate":1446.1200000000001,"cost_krw":72405782.28,"gain":2687703.920000002,"gain_pct":0.037120017702541995,"corp":"드래프터"},{"no":4,"date":"2026-05-18","party":"신한은행","usd":20,"mkt_rate":1499.8,"mkt_value":29996,"cost_rate":1446.12,"cost_krw":28922.399999999998,"gain":1073.6000000000022,"gain_pct":0.03712001770254205,"corp":"드래프터"},{"no":5,"date":"2026-05-18","party":"Yantai Yeqi Trading Co., Ltd","usd":50058,"mkt_rate":1499.8,"mkt_value":75076988.39999999,"cost_rate":1446.17,"cost_krw":72392377.86,"gain":2684610.5399999917,"gain_pct":0.03708416023012497,"corp":"데이즈"},{"no":6,"date":"2026-05-18","party":"신한은행","usd":20,"mkt_rate":1499.8,"mkt_value":29996,"cost_rate":1446.17,"cost_krw":28923.4,"gain":1072.5999999999985,"gain_pct":0.037084160230125035,"corp":"데이즈"},{"no":7,"date":"2026-05-19","party":"Yantai Yeqi Trading Co., Ltd","usd":50065,"mkt_rate":1503.8,"mkt_value":75287747,"cost_rate":1507.0100000000002,"cost_krw":75448455.65,"gain":-160708.65000000596,"gain_pct":-0.0021300455869570334,"corp":"더스크랙"},{"no":8,"date":"2026-05-19","party":"신한은행","usd":20,"mkt_rate":1503.4,"mkt_value":30068,"cost_rate":1507.01,"cost_krw":30140.2,"gain":-72.20000000000073,"gain_pct":-0.002395471828322331,"corp":"더스크랙"},{"no":9,"date":"2026-05-19","party":"Yantai Yeqi Trading Co., Ltd","usd":50057,"mkt_rate":1503.4,"mkt_value":75255693.80000001,"cost_rate":1446.1199999999997,"cost_krw":72388428.83999999,"gain":2867264.9600000232,"gain_pct":0.03960943766769042,"corp":"드래프터"},{"no":10,"date":"2026-05-19","party":"신한은행","usd":20,"mkt_rate":1503.4,"mkt_value":30068,"cost_rate":1446.12,"cost_krw":28922.399999999998,"gain":1145.6000000000022,"gain_pct":0.03960943766769017,"corp":"드래프터"},{"no":11,"date":"2026-05-20","party":"Yantai Yeqi Trading Co., Ltd","usd":50059,"mkt_rate":1503.8,"mkt_value":75278724.2,"cost_rate":1509.4099999999999,"cost_krw":75559555.19,"gain":-280830.98999999464,"gain_pct":-0.0037166840023584668,"corp":"더스크랙"},{"no":12,"date":"2026-05-20","party":"Yantai Yeqi Trading Co., Ltd","usd":50061,"mkt_rate":1503.8,"mkt_value":75281731.8,"cost_rate":1446.12,"cost_krw":72394213.32,"gain":2887518.480000004,"gain_pct":0.03988603988603995,"corp":"드래프터"},{"no":13,"date":"2026-05-21","party":"Yantai Yeqi Trading Co., Ltd","usd":50049,"mkt_rate":1509.7,"mkt_value":75558975.3,"cost_rate":1509.41,"cost_krw":75544461.09,"gain":14514.209999993443,"gain_pct":0.00019212805003270748,"corp":"더스크랙"},{"no":14,"date":"2026-05-21","party":"Yantai Yeqi Trading Co., Ltd","usd":50058,"mkt_rate":1509.7,"mkt_value":75572562.60000001,"cost_rate":1446.12,"cost_krw":72389874.96,"gain":3182687.6400000155,"gain_pct":0.04396592260669952,"corp":"드래프터"},{"no":15,"date":"2026-05-22","party":"Yantai Yeqi Trading Co., Ltd","usd":50069,"mkt_rate":1503.5,"mkt_value":75278741.5,"cost_rate":1505.7799999999997,"cost_krw":75392898.82,"gain":-114157.31999999285,"gain_pct":-0.0015141654159305192,"corp":"더스크랙"},{"no":16,"date":"2026-05-22","party":"Yantai Yeqi Trading Co., Ltd","usd":15375,"mkt_rate":1503.5,"mkt_value":23116312.5,"cost_rate":1519.62,"cost_krw":23364157.5,"gain":-247845,"gain_pct":-0.010607915136678907,"corp":"더스크랙"},{"no":17,"date":"2026-05-22","party":"Yantai Yeqi Trading Co., Ltd","usd":50066,"mkt_rate":1503.5,"mkt_value":75274231,"cost_rate":1446.1200000000001,"cost_krw":72401443.92,"gain":2872787.079999998,"gain_pct":0.03967858822227752,"corp":"드래프터"},{"no":18,"date":"2026-05-26","party":"Yantai Yeqi Trading Co., Ltd","usd":50058,"mkt_rate":1513.3,"mkt_value":75752771.39999999,"cost_rate":1509.71,"cost_krw":75573063.18,"gain":179708.2199999839,"gain_pct":0.002377940134197745,"corp":"더스크랙"},{"no":19,"date":"2026-05-26","party":"Yantai Yeqi Trading Co., Ltd","usd":50065,"mkt_rate":1513.3,"mkt_value":75763364.5,"cost_rate":1446.12,"cost_krw":72399997.8,"gain":3363366.700000003,"gain_pct":0.04645534257184747,"corp":"드래프터"},{"no":20,"date":"2026-05-27","party":"Yantai Yeqi Trading Co., Ltd","usd":50069,"mkt_rate":1507.9,"mkt_value":75499045.10000001,"cost_rate":1509.7099999999998,"cost_krw":75589669.99,"gain":-90624.8899999857,"gain_pct":-0.0011989057501107592,"corp":"더스크랙"},{"no":21,"date":"2026-05-27","party":"Yantai Yeqi Trading Co., Ltd","usd":50036,"mkt_rate":1507.9,"mkt_value":75449284.4,"cost_rate":1446.12,"cost_krw":72358060.32,"gain":3091224.080000013,"gain_pct":0.04272121262412543,"corp":"드래프터"},{"no":22,"date":"2026-05-27","party":"Yantai Yeqi Trading Co., Ltd","usd":50047,"mkt_rate":1507.9,"mkt_value":75465871.30000001,"cost_rate":1446.1700000000003,"cost_krw":72376469.99000001,"gain":3089401.3100000024,"gain_pct":0.042685161495536514,"corp":"데이즈"},{"no":23,"date":"2026-05-28","party":"Yantai Yeqi Trading Co., Ltd","usd":50019,"mkt_rate":1501.6,"mkt_value":75108530.39999999,"cost_rate":1509.7129188908214,"cost_krw":75514330.49,"gain":-405800.0900000036,"gain_pct":-0.005373815636937174,"corp":"더스크랙"},{"no":24,"date":"2026-05-28","party":"Yantai Yeqi Trading Co., Ltd","usd":50069,"mkt_rate":1501.6,"mkt_value":75183610.39999999,"cost_rate":1483.7733238131377,"cost_krw":74291046.55,"gain":892563.849999994,"gain_pct":0.012014420195295984,"corp":"드래프터"},{"no":25,"date":"2026-05-29","party":"Yantai Yeqi Trading Co., Ltd","usd":50047,"mkt_rate":1505.8,"mkt_value":75360772.6,"cost_rate":1510.71,"cost_krw":75606503.37,"gain":-245730.77000001073,"gain_pct":-0.0032501274235294756,"corp":"더스크랙"},{"no":26,"date":"2026-05-29","party":"Yantai Yeqi Trading Co., Ltd","usd":50058,"mkt_rate":1505.8,"mkt_value":75377336.39999999,"cost_rate":1537.99,"cost_krw":76988703.42,"gain":-1611367.0200000107,"gain_pct":-0.020929915018953447,"corp":"드래프터"},{"no":27,"date":"2026-06-01","party":"Yantai Yeqi Trading Co., Ltd","usd":50066,"mkt_rate":1503.2,"mkt_value":75259211.2,"cost_rate":1537.99,"cost_krw":77001007.34,"gain":-1741796.1400000006,"gain_pct":-0.022620433162764395,"corp":"드래프터"},{"no":28,"date":"2026-06-02","party":"Yantai Yeqi Trading Co., Ltd","usd":50059,"mkt_rate":1511.3,"mkt_value":75654166.7,"cost_rate":1537.99,"cost_krw":76990241.41,"gain":-1336074.7099999934,"gain_pct":-0.017353818945506715,"corp":"드래프터"},{"no":29,"date":"2026-06-04","party":"Yantai Yeqi Trading Co., Ltd","usd":50067,"mkt_rate":1515.6,"mkt_value":75881545.19999999,"cost_rate":1537.99,"cost_krw":77002545.33,"gain":-1121000.1300000101,"gain_pct":-0.014557962015357839,"corp":"드래프터"},{"no":30,"date":"2026-06-04","party":"Yantai Yeqi Trading Co., Ltd","usd":50057,"mkt_rate":1515.6,"mkt_value":75866389.19999999,"cost_rate":1446.1699999999998,"cost_krw":72390931.69,"gain":3475457.5099999905,"gain_pct":0.048009570105865707,"corp":"데이즈"},{"no":31,"date":"2026-06-05","party":"Yantai Yeqi Trading Co., Ltd","usd":50038,"mkt_rate":1528.6,"mkt_value":76488086.8,"cost_rate":1537.99,"cost_krw":76957943.62,"gain":-469856.82000000775,"gain_pct":-0.006105371296302417,"corp":"드래프터"},{"no":32,"date":"2026-06-08","party":"PREMIA TNC LIMITED","usd":1392,"mkt_rate":1543,"mkt_value":2147856,"cost_rate":1510.7099999999998,"cost_krw":2102908.32,"gain":44947.68000000017,"gain_pct":0.02137405590748729,"corp":"더스크랙"},{"no":33,"date":"2026-06-08","party":"Yantai Yeqi Trading Co., Ltd","usd":50065,"mkt_rate":1543,"mkt_value":77250295,"cost_rate":1537.9899999999998,"cost_krw":76999469.35,"gain":250825.65000000596,"gain_pct":0.003257498423266809,"corp":"드래프터"},{"no":34,"date":"2026-06-09","party":"Yantai Yeqi Trading Co., Ltd","usd":50060,"mkt_rate":1546.5,"mkt_value":77417790,"cost_rate":1537.99,"cost_krw":76991779.4,"gain":426010.59999999404,"gain_pct":0.005533195924550797,"corp":"드래프터"},{"no":35,"date":"2026-06-10","party":"Yantai Yeqi Trading Co., Ltd","usd":48415,"mkt_rate":1518.4,"mkt_value":73513336,"cost_rate":1510.71,"cost_krw":73141024.65,"gain":372311.34999999404,"gain_pct":0.005090321769234252,"corp":"더스크랙"},{"no":36,"date":"2026-06-10","party":"Yantai Yeqi Trading Co., Ltd","usd":50058,"mkt_rate":1518.4,"mkt_value":76008067.2,"cost_rate":1446.17,"cost_krw":72392377.86,"gain":3615689.3400000036,"gain_pct":0.0499457186914402,"corp":"데이즈"},{"no":37,"date":"2026-06-11","party":"Yantai Yeqi Trading Co., Ltd","usd":50050,"mkt_rate":1522.4,"mkt_value":76196120,"cost_rate":1537.99,"cost_krw":76976399.5,"gain":-780279.5,"gain_pct":-0.010136606870005657,"corp":"드래프터"},{"no":38,"date":"2026-06-12","party":"Yantai Yeqi Trading Co., Ltd","usd":50049,"mkt_rate":1527,"mkt_value":76424823,"cost_rate":1537.99,"cost_krw":76974861.51,"gain":-550038.5100000054,"gain_pct":-0.00714569015403228,"corp":"드래프터"},{"no":39,"date":"2026-06-15","party":"Yantai Yeqi Trading Co., Ltd","usd":50058,"mkt_rate":1520.4,"mkt_value":76108183.2,"cost_rate":1537.99,"cost_krw":76988703.42,"gain":-880520.2199999988,"gain_pct":-0.011437005442168009,"corp":"드래프터"},{"no":40,"date":"2026-06-16","party":"Yantai Yeqi Trading Co., Ltd","usd":50049,"mkt_rate":1510,"mkt_value":75573990,"cost_rate":1537.99,"cost_krw":76974861.51,"gain":-1400871.5100000054,"gain_pct":-0.018199078017412405,"corp":"드래프터"},{"no":41,"date":"2026-06-16","party":"Yantai Yeqi Trading Co., Ltd","usd":50066,"mkt_rate":1510,"mkt_value":75599660,"cost_rate":1446.7311976191427,"cost_krw":72432044.14,"gain":3167615.8599999994,"gain_pct":0.04373224444525527,"corp":"데이즈"},{"no":42,"date":"2026-06-17","party":"Yantai Yeqi Trading Co., Ltd","usd":50069,"mkt_rate":1513.5,"mkt_value":75779431.5,"cost_rate":1516.33,"cost_krw":75921126.77,"gain":-141695.26999999583,"gain_pct":-0.0018663483542500094,"corp":"더스크랙"},{"no":43,"date":"2026-06-17","party":"Yantai Yeqi Trading Co., Ltd","usd":50039,"mkt_rate":1513.5,"mkt_value":75734026.5,"cost_rate":1537.99,"cost_krw":76959481.61,"gain":-1225455.1099999994,"gain_pct":-0.015923380516128186,"corp":"드래프터"},{"no":44,"date":"2026-06-18","party":"WUYI RUTONG LEISURE GOODS CO.,LTD.","usd":27349.02,"mkt_rate":1512.8,"mkt_value":41373597.456,"cost_rate":1522.8800000000012,"cost_krw":41649275.57760003,"gain":-275678.12160003185,"gain_pct":-0.0066190376129446555,"corp":"더스크랙"},{"no":45,"date":"2026-06-18","party":"Yantai Yeqi Trading Co., Ltd","usd":50069,"mkt_rate":1512.8,"mkt_value":75744383.2,"cost_rate":1537.99,"cost_krw":77005621.31,"gain":-1261238.1099999994,"gain_pct":-0.016378520016385015,"corp":"드래프터"},{"no":46,"date":"2026-06-22","party":"WUYI RUTONG LEISURE GOODS CO.,LTD.","usd":10088,"mkt_rate":1535,"mkt_value":15485080,"cost_rate":1536.2495923869947,"cost_krw":15497685.888000002,"gain":-12605.88800000213,"gain_pct":-0.0008134045360774142,"corp":"더스크랙"},{"no":47,"date":"2026-06-24","party":"WUYI RUTONG LEISURE GOODS CO.,LTD.","usd":18053.6,"mkt_rate":1537.2,"mkt_value":27751993.919999998,"cost_rate":1538.7899549785263,"cost_krw":27780698.33120032,"gain":-28704.41120032221,"gain_pct":-0.001033250167368344,"corp":"더스크랙"},{"no":48,"date":"2026-06-24","party":"Yantai Yeqi Trading Co., Ltd","usd":50049,"mkt_rate":1537.2,"mkt_value":76935322.8,"cost_rate":1537.99,"cost_krw":76974861.51,"gain":-39538.710000008345,"gain_pct":-0.0005136574360042436,"corp":"드래프터"},{"no":49,"date":"2026-06-24","party":"Yantai Yeqi Trading Co., Ltd","usd":50065,"mkt_rate":1537.2,"mkt_value":76959918,"cost_rate":1525.3259800259661,"cost_krw":76365445.19,"gain":594472.8100000024,"gain_pct":0.007784578594689424,"corp":"드래프터"},{"no":50,"date":"2026-06-25","party":"Yantai Yeqi Trading Co., Ltd","usd":50008,"mkt_rate":1538.2,"mkt_value":76922305.60000001,"cost_rate":1507.7567825147976,"cost_krw":75399901.17999999,"gain":1522404.4200000167,"gain_pct":0.020191066515665913,"corp":"드래프터"},{"no":51,"date":"2026-06-26","party":"Yantai Yeqi Trading Co., Ltd","usd":50056,"mkt_rate":1545.3,"mkt_value":77351536.8,"cost_rate":1508.2417004954452,"cost_krw":75496546.56,"gain":1854990.2399999946,"gain_pct":0.024570531031187802,"corp":"드래프터"},{"no":52,"date":"2026-06-26","party":"Yantai Yeqi Trading Co., Ltd","usd":50069,"mkt_rate":1545.3,"mkt_value":77371625.7,"cost_rate":1537.99,"cost_krw":77005621.31,"gain":366004.3900000006,"gain_pct":0.004752956781253462,"corp":"데이즈"}]};
+
+const fmt = n => Math.round(n).toLocaleString('ko-KR');
+const fmtUsd = n => n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtPct = n => (n>=0?'+':'') + n.toFixed(2) + '%';
+const fmtRate = n => n.toLocaleString('ko-KR',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+// ---- aggregate ----
+function corpFromMemo(memo){ return memo.split('_')[0]; }
+const corps = ['더스크랙','드래프터','데이즈'];
+const CORP_COLOR = {'더스크랙':'var(--s-blue)','드래프터':'var(--s-aqua)','데이즈':'var(--s-yellow)'};
+
+let pAgg = {}, rAgg = {};
+corps.forEach(c=>{ pAgg[c]={usd:0,krw:0}; rAgg[c]={usd:0,mkt:0,cost:0,gain:0,n:0}; });
+DATA.purchases.forEach(p=>{
+  const c = corpFromMemo(p.memo);
+  if(!pAgg[c]) pAgg[c]={usd:0,krw:0};
+  pAgg[c].usd += p.usd; pAgg[c].krw += p.krw;
+});
+DATA.remits.forEach(r=>{
+  const c = r.corp;
+  if(!rAgg[c]) rAgg[c]={usd:0,mkt:0,cost:0,gain:0,n:0};
+  rAgg[c].usd += r.usd; rAgg[c].mkt += r.mkt_value; rAgg[c].cost += r.cost_krw; rAgg[c].gain += r.gain; rAgg[c].n += 1;
+});
+
+let totP = {usd:0,krw:0}, totR = {usd:0,mkt:0,cost:0,gain:0};
+corps.forEach(c=>{ totP.usd+=pAgg[c].usd; totP.krw+=pAgg[c].krw; totR.usd+=rAgg[c].usd; totR.mkt+=rAgg[c].mkt; totR.cost+=rAgg[c].cost; totR.gain+=rAgg[c].gain; });
+const totRemain = totP.usd - totR.usd;
+const totAvgRate = totP.krw/totP.usd;
+const totGainPct = totR.gain/totR.cost*100;
+const lastDate = DATA.purchases.concat(DATA.remits).map(x=>x.date).sort().slice(-1)[0];
+
+// ---- tiles ----
+const tiles = [
+  {label:'총 매입금액 (USD)', value:'$'+fmtUsd(totP.usd), sub:fmt(totP.krw)+' 원'},
+  {label:'평균 매입환율', value:fmtRate(totAvgRate)+' 원/USD', sub:'가중평균'},
+  {label:'잔여 재고 (USD)', value:'$'+fmtUsd(totRemain), sub:'매입 − 송금'},
+  {label:'총 송금금액 (USD)', value:'$'+fmtUsd(totR.usd), sub:fmt(totR.mkt)+' 원 (시장가치)'},
+  {label:'총 환차익 (원)', value:(totR.gain>=0?'+':'')+fmt(totR.gain)+'원', sub:'매입원가 대비', cls: totR.gain>=0?'pos':'neg'},
+  {label:'환차익률', value:fmtPct(totGainPct), sub:'환차익 ÷ 매입원가', cls: totGainPct>=0?'pos':'neg'},
+];
+document.getElementById('tiles').innerHTML = tiles.map(t=>`
+  <div class="tile">
+    <div class="label">${t.label}</div>
+    <div class="value ${t.cls||''}">${t.value}</div>
+    <div class="sub">${t.sub}</div>
+  </div>`).join('');
+document.getElementById('asof-note').textContent = '최근 거래일: ' + lastDate;
+
+// ---- corp table ----
+{
+  const rows = corps.map(c=>{
+    const p = pAgg[c], r = rAgg[c];
+    const remain = p.usd - r.usd;
+    const avgRate = p.krw/p.usd;
+    const gainPct = r.cost ? r.gain/r.cost*100 : 0;
+    return {c,p,r,remain,avgRate,gainPct};
+  });
+  let html = `<thead><tr>
+    <th>법인</th><th>매입금액(USD)</th><th>매입금액(원)</th><th>평균매입환율</th>
+    <th>잔여재고(USD)</th><th>송금금액(USD)</th><th>매입원가(원,FIFO)</th><th>환차익(원)</th><th>환차익률</th>
+  </tr></thead><tbody>`;
+  rows.forEach(x=>{
+    html += `<tr>
+      <td class="corp-name">${x.c}</td>
+      <td>${fmtUsd(x.p.usd)}</td>
+      <td>${fmt(x.p.krw)}</td>
+      <td>${fmtRate(x.avgRate)}</td>
+      <td>${fmtUsd(x.remain)}</td>
+      <td>${fmtUsd(x.r.usd)}</td>
+      <td>${fmt(x.r.cost)}</td>
+      <td class="${x.r.gain>=0?'gain-pos':'gain-neg'}">${x.r.gain>=0?'+':''}${fmt(x.r.gain)}</td>
+      <td class="${x.gainPct>=0?'gain-pos':'gain-neg'}">${fmtPct(x.gainPct)}</td>
+    </tr>`;
+  });
+  html += `<tr class="total-row">
+    <td>합계</td><td>${fmtUsd(totP.usd)}</td><td>${fmt(totP.krw)}</td><td>${fmtRate(totAvgRate)}</td>
+    <td>${fmtUsd(totRemain)}</td><td>${fmtUsd(totR.usd)}</td><td>${fmt(totR.cost)}</td>
+    <td class="${totR.gain>=0?'gain-pos':'gain-neg'}">${totR.gain>=0?'+':''}${fmt(totR.gain)}</td>
+    <td class="${totGainPct>=0?'gain-pos':'gain-neg'}">${fmtPct(totGainPct)}</td>
+  </tr>`;
+  html += '</tbody>';
+  document.getElementById('corp-table').innerHTML = html;
+}
+
+// ---- tooltip helper ----
+const tooltip = document.getElementById('tooltip');
+function showTip(evt, html){
+  tooltip.innerHTML = html;
+  tooltip.classList.add('show');
+  const root = document.querySelector('.viz-root').getBoundingClientRect();
+  tooltip.style.left = (evt.clientX - root.left) + 'px';
+  tooltip.style.top = (evt.clientY - root.top - 10) + 'px';
+}
+function hideTip(){ tooltip.classList.remove('show'); }
+
+// ---- monthly grouped bar chart ----
+{
+  const monthsSet = new Set();
+  const pMonth = {}, rMonth = {};
+  DATA.purchases.forEach(p=>{ const m=p.date.slice(0,7); monthsSet.add(m); pMonth[m]=(pMonth[m]||0)+p.usd; });
+  DATA.remits.forEach(r=>{ const m=r.date.slice(0,7); monthsSet.add(m); rMonth[m]=(rMonth[m]||0)+r.usd; });
+  const months = Array.from(monthsSet).sort();
+
+  const W=520,H=260,padL=54,padR=10,padT=14,padB=30;
+  const plotW = W-padL-padR, plotH = H-padT-padB;
+  const maxV = Math.max(...months.map(m=>Math.max(pMonth[m]||0, rMonth[m]||0)))*1.15;
+  const groupW = plotW/months.length;
+  const barW = Math.min(28, groupW*0.32);
+
+  const yTicks = 4;
+  let gridSvg='', axisLabels='';
+  for(let i=0;i<=yTicks;i++){
+    const val = maxV/yTicks*i;
+    const y = padT+plotH-(plotH*i/yTicks);
+    gridSvg += `<line class="gridline" x1="${padL}" x2="${W-padR}" y1="${y}" y2="${y}"/>`;
+    axisLabels += `<text class="axislabel" x="${padL-8}" y="${y+3}" text-anchor="end">${val>=1000?(val/1000).toFixed(0)+'k':val.toFixed(0)}</text>`;
+  }
+
+  let bars='', catLabels='';
+  months.forEach((m,i)=>{
+    const gx = padL + groupW*i;
+    const cx = gx + groupW/2;
+    const pv = pMonth[m]||0, rv = rMonth[m]||0;
+    const ph = plotH*pv/maxV, rh = plotH*rv/maxV;
+    const px = cx - barW - 3, rx = cx + 3;
+    const py = padT+plotH-ph, ry = padT+plotH-rh;
+    bars += `<rect class="bar-hit" data-i="${i}" data-kind="p" x="${px}" y="${py}" width="${barW}" height="${Math.max(ph,1)}" rx="4" fill="var(--s-blue)"/>`;
+    bars += `<rect class="bar-hit" data-i="${i}" data-kind="r" x="${rx}" y="${ry}" width="${barW}" height="${Math.max(rh,1)}" rx="4" fill="var(--s-orange)"/>`;
+    catLabels += `<text class="axislabel" x="${cx}" y="${H-8}" text-anchor="middle">${m.slice(5)}월</text>`;
+  });
+
+  const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}">
+    ${gridSvg}
+    <line class="axisline" x1="${padL}" x2="${W-padR}" y1="${padT+plotH}" y2="${padT+plotH}"/>
+    ${bars}
+    ${axisLabels}
+    ${catLabels}
+  </svg>`;
+  const container = document.getElementById('chart-monthly');
+  container.innerHTML = svg;
+  container.querySelectorAll('.bar-hit').forEach(el=>{
+    el.addEventListener('mousemove', evt=>{
+      const i = +el.dataset.i, kind = el.dataset.kind, m = months[i];
+      const label = kind==='p' ? '매입' : '송금';
+      const val = kind==='p' ? (pMonth[m]||0) : (rMonth[m]||0);
+      showTip(evt, `<b>${m}</b> · ${label}: $${fmtUsd(val)}`);
+    });
+    el.addEventListener('mouseleave', hideTip);
+  });
+}
+
+// ---- diverging gain bar chart (per corp) ----
+{
+  const items = corps.map(c=>({c, gain: rAgg[c].gain, pct: rAgg[c].cost ? rAgg[c].gain/rAgg[c].cost*100 : 0}));
+  const W=380,H=260,padL=90,padR=70,padT=10,padB=10;
+  const plotW = W-padL-padR;
+  const maxAbs = Math.max(...items.map(x=>Math.abs(x.gain)))*1.2;
+  const midX = padL + plotW/2;
+  const barH = 30, gap = (H-padT-padB)/items.length;
+
+  let bars='', labels='';
+  items.forEach((x,i)=>{
+    const cy = padT + gap*i + gap/2;
+    const w = (plotW/2) * Math.abs(x.gain)/maxAbs;
+    const isPos = x.gain>=0;
+    const bx = isPos ? midX : midX - w;
+    const color = isPos ? 'var(--s-blue)' : 'var(--s-red)';
+    bars += `<rect class="gain-bar" data-i="${i}" x="${bx}" y="${cy-barH/2}" width="${Math.max(w,1)}" height="${barH}" rx="4" fill="${color}"/>`;
+    labels += `<text class="catlabel" x="${padL-10}" y="${cy+4}" text-anchor="end">${x.c}</text>`;
+    const valX = isPos ? bx + w + 8 : bx - 8;
+    const anchor = isPos ? 'start' : 'end';
+    labels += `<text class="barlabel" x="${valX}" y="${cy+4}" text-anchor="${anchor}" fill="${isPos?'var(--good)':'var(--s-red)'}">${isPos?'+':''}${fmt(x.gain)}</text>`;
+  });
+
+  const svg = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}">
+    <line class="axisline" x1="${midX}" x2="${midX}" y1="${padT}" y2="${H-padB}"/>
+    ${bars}
+    ${labels}
+  </svg>`;
+  const container = document.getElementById('chart-gain');
+  container.innerHTML = svg;
+  container.querySelectorAll('.gain-bar').forEach(el=>{
+    el.addEventListener('mousemove', evt=>{
+      const x = items[+el.dataset.i];
+      showTip(evt, `<b>${x.c}</b><br>환차익: ${x.gain>=0?'+':''}${fmt(x.gain)}원<br>환차익률: ${fmtPct(x.pct)}`);
+    });
+    el.addEventListener('mouseleave', hideTip);
+  });
+}
+
+// ---- transaction tables (paginated, 20 rows/page) ----
+const PAGE_SIZE = 20;
+
+function renderPager(pagerEl, total, page, pageSize, onGoto){
+  const totalPages = Math.max(1, Math.ceil(total/pageSize));
+  page = Math.min(Math.max(1,page), totalPages);
+  const from = total===0 ? 0 : (page-1)*pageSize+1;
+  const to = Math.min(total, page*pageSize);
+
+  const btn = (label, target, opts={}) => {
+    const disabled = opts.disabled ? 'disabled' : '';
+    const active = opts.active ? 'active' : '';
+    return `<button class="${active}" ${disabled} data-goto="${target}">${label}</button>`;
+  };
+
+  let pageBtns = '';
+  const windowSize = 1;
+  const pages = new Set([1, totalPages]);
+  for(let p=page-windowSize;p<=page+windowSize;p++){ if(p>=1 && p<=totalPages) pages.add(p); }
+  const sorted = Array.from(pages).sort((a,b)=>a-b);
+  let prevP = 0;
+  sorted.forEach(p=>{
+    if(prevP && p-prevP>1) pageBtns += `<span class="pager-ellipsis">…</span>`;
+    pageBtns += btn(p, p, {active: p===page});
+    prevP = p;
+  });
+
+  pagerEl.innerHTML = `
+    <div class="pager-info">${total===0?'0건':`${from.toLocaleString()}–${to.toLocaleString()} / 총 ${total.toLocaleString()}건`}</div>
+    <div class="pager-btns">
+      ${btn('이전', page-1, {disabled: page<=1})}
+      ${pageBtns}
+      ${btn('다음', page+1, {disabled: page>=totalPages})}
+    </div>`;
+  pagerEl.querySelectorAll('button[data-goto]').forEach(b=>{
+    b.addEventListener('click', ()=> onGoto(+b.dataset.goto));
+  });
+}
+
+// columns: {key, label, filter:bool, sortVal(row), render(row), cellClass(row), align:'left'}
+function setupDataTable(tableId, pagerId, allRows, columns, defaultSort){
+  const state = { sortKey: defaultSort.key, sortDir: defaultSort.dir, filters: {}, page: 1 };
+
+  function filteredSortedRows(){
+    let rows = allRows.filter(row=>{
+      return columns.every(col=>{
+        if(!col.filter) return true;
+        const f = state.filters[col.key];
+        if(!f) return true;
+        return String(col.sortVal(row)) === f;
+      });
+    });
+    const col = columns.find(c=>c.key===state.sortKey);
+    if(col){
+      rows = rows.slice().sort((a,b)=>{
+        const av = col.sortVal(a), bv = col.sortVal(b);
+        let cmp;
+        if(typeof av === 'number' && typeof bv === 'number') cmp = av-bv;
+        else cmp = String(av).localeCompare(String(bv));
+        return state.sortDir==='asc' ? cmp : -cmp;
+      });
+    }
+    return rows;
+  }
+
+  function renderHead(){
+    const theadRow = columns.map(col=>{
+      const isSorted = state.sortKey===col.key;
+      const arrow = isSorted ? (state.sortDir==='asc' ? '▲' : '▼') : '↕';
+      let filterHtml = '';
+      if(col.filter){
+        const values = Array.from(new Set(allRows.map(r=>String(col.sortVal(r))))).sort((a,b)=>a.localeCompare(b,'ko'));
+        const cur = state.filters[col.key] || '';
+        const opts = ['<option value="">전체</option>'].concat(
+          values.map(v=>`<option value="${v}" ${v===cur?'selected':''}>${v}</option>`)
+        ).join('');
+        filterHtml = `<select class="th-filter ${cur?'active':''}" data-filter-key="${col.key}">${opts}</select>`;
+      }
+      const style = col.filter ? ' style="min-width:150px"' : '';
+      return `<th${style}>
+        <div class="th-inner ${col.filter?'has-filter':''}">
+          <span class="th-label" data-sort-key="${col.key}">${col.label}<span class="sort-arrow ${isSorted?'active':''}">${arrow}</span></span>
+          ${filterHtml}
+        </div>
+      </th>`;
+    }).join('');
+    return `<tr>${theadRow}</tr>`;
+  }
+
+  function render(){
+    const table = document.getElementById(tableId);
+    table.innerHTML = `<thead>${renderHead()}</thead><tbody></tbody>`;
+
+    table.querySelectorAll('[data-sort-key]').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const key = el.dataset.sortKey;
+        if(state.sortKey===key) state.sortDir = state.sortDir==='asc' ? 'desc' : 'asc';
+        else { state.sortKey = key; state.sortDir = 'asc'; }
+        state.page = 1;
+        render();
+      });
+    });
+    table.querySelectorAll('.th-filter').forEach(el=>{
+      el.addEventListener('click', evt=>evt.stopPropagation());
+      el.addEventListener('change', ()=>{
+        state.filters[el.dataset.filterKey] = el.value;
+        state.page = 1;
+        render();
+      });
+    });
+
+    const rows = filteredSortedRows();
+    const total = rows.length;
+    const totalPages = Math.max(1, Math.ceil(total/PAGE_SIZE));
+    state.page = Math.min(Math.max(1,state.page), totalPages);
+    const start = (state.page-1)*PAGE_SIZE;
+    const pageRows = rows.slice(start, start+PAGE_SIZE);
+
+    table.querySelector('tbody').innerHTML = pageRows.map(row=>{
+      const tds = columns.map(col=>{
+        const cls = [col.cellClass ? col.cellClass(row) : '', col.align==='left' ? '' : ''].filter(Boolean).join(' ');
+        const style = col.align==='left' ? ' style="text-align:left"' : '';
+        return `<td class="${cls}"${style}>${col.render(row)}</td>`;
+      }).join('');
+      return `<tr>${tds}</tr>`;
+    }).join('');
+
+    renderPager(document.getElementById(pagerId), total, state.page, PAGE_SIZE, p=>{ state.page=p; render(); });
+  }
+
+  render();
+}
+
+{
+  const remitCols = [
+    {key:'no', label:'No', sortVal:r=>r.no, render:r=>r.no},
+    {key:'date', label:'송금일자', sortVal:r=>r.date, render:r=>r.date},
+    {key:'party', label:'거래처', filter:true, align:'left', sortVal:r=>r.party, render:r=>r.party},
+    {key:'corp', label:'법인', filter:true, sortVal:r=>r.corp, render:r=>r.corp},
+    {key:'usd', label:'송금액(USD)', sortVal:r=>r.usd, render:r=>fmtUsd(r.usd)},
+    {key:'mkt_rate', label:'시장환율', sortVal:r=>r.mkt_rate, render:r=>fmtRate(r.mkt_rate)},
+    {key:'cost_rate', label:'매입원가환율', sortVal:r=>r.cost_rate, render:r=>fmtRate(r.cost_rate)},
+    {key:'gain', label:'환차익(원)', sortVal:r=>r.gain, render:r=>(r.gain>=0?'+':'')+fmt(r.gain), cellClass:r=>r.gain>=0?'gain-pos':'gain-neg'},
+    {key:'gain_pct', label:'환차익률', sortVal:r=>r.gain_pct, render:r=>fmtPct(r.gain_pct*100), cellClass:r=>r.gain>=0?'gain-pos':'gain-neg'},
+  ];
+  setupDataTable('remit-table','remit-pager', DATA.remits, remitCols, {key:'date', dir:'desc'});
+}
+{
+  const purchasesWithCorp = DATA.purchases.map(p=>({
+    ...p, corp: corpFromMemo(p.memo), type: p.memo.includes('이자수익') ? '이자수익' : '외화매입'
+  }));
+  const purchaseCols = [
+    {key:'no', label:'No', sortVal:p=>p.no, render:p=>p.no},
+    {key:'date', label:'매입일자', sortVal:p=>p.date, render:p=>p.date},
+    {key:'corp', label:'법인', filter:true, align:'left', sortVal:p=>p.corp, render:p=>p.corp},
+    {key:'type', label:'구분', filter:true, sortVal:p=>p.type, render:p=>p.type},
+    {key:'usd', label:'매입금액(USD)', sortVal:p=>p.usd, render:p=>fmtUsd(p.usd)},
+    {key:'rate', label:'매입환율', sortVal:p=>p.rate, render:p=>fmtRate(p.rate)},
+    {key:'krw', label:'매입금액(원)', sortVal:p=>p.krw, render:p=>fmt(p.krw)},
+  ];
+  setupDataTable('purchase-table','purchase-pager', purchasesWithCorp, purchaseCols, {key:'date', dir:'desc'});
+}
+
+// ---- tabs ----
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tabpane').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pane-'+btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
