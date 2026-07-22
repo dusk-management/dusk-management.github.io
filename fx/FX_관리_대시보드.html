@@ -43,6 +43,22 @@ body{margin:0;background:var(--surface-2);}
 .site-pbtn:hover{background:rgba(255,255,255,.18);}
 @media print{.site-pbtn{display:none;}}
 
+/* 특이사항 card (matches weekly report style) */
+.card.nc{background:#fffcf2;border-color:#e0d08a;padding:0;overflow:hidden;}
+.nc .ct-toggle{padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase;font-size:11px;font-weight:600;color:#8090b0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;}
+.nc .ct-toggle:hover{background:#eef1f8;}
+.nc .ct-arrow{font-size:10px;color:#8090b0;transition:transform .15s;}
+.nc .ct-arrow.open{transform:rotate(90deg);}
+.nc .ni{padding:11px 20px;border-bottom:1px solid #ede8bc;font-size:12.5px;color:#5c4818;}
+.nc .ni:last-child{border-bottom:none;}
+.nc .nl{display:inline-block;min-width:4px;height:15px;background:#f2b62d;border-radius:2px;flex-shrink:0;}
+.nc .ni-hd{display:flex;align-items:center;gap:12px;}
+.nc .ni-body{margin:6px 0 0 16px;font-size:11.5px;color:#1e2841;line-height:1.7;}
+.nc .ni-sub{color:#8a6a10;font-weight:600;}
+.nc .ni-foot{margin-top:4px;color:#8090b0;font-size:11px;}
+.nc-body{display:none;}
+.nc-body.open{display:block;}
+
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:20px;}
 .tile{background:var(--surface-1);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
 .tile .label{font-size:12px;color:var(--text-secondary);margin-bottom:6px;}
@@ -131,10 +147,40 @@ th select.th-filter.active{border-color:var(--s-blue);color:var(--s-blue);}
 <div class="wrap">
   <div class="tiles" id="tiles"></div>
 
-  <div class="card">
-    <h2>사업자별 요약</h2>
-    <div class="desc">매입원가는 선입선출(FIFO) 기준으로 자동 매칭된 값입니다.</div>
-    <div class="tbl-scroll"><table id="corp-table"></table></div>
+  <div class="card nc">
+    <div class="ct-toggle" id="notes-toggle">
+      <span>특이사항 · 환차익 분석 (2026-07-22 기준)</span>
+      <span class="ct-arrow" id="notes-arrow">▸</span>
+    </div>
+    <div class="nc-body" id="notes-body">
+      <div class="ni">
+        <div class="ni-hd"><span class="nl"></span><b style="color:#1e2841">기간별 환차익</b></div>
+        <div class="ni-body">
+          <div>- 누적 환차익 <b>+23,447,098원(+0.495%)</b>은 ~6/26 기존 52건(<b>+28,612,854원</b>)과 6/27~7/22 신규 19건(<b>-5,165,757원</b>)이 합산된 값. 최근 한 달만 떼어보면 이미 손실 구간으로 전환됨.</div>
+        </div>
+      </div>
+      <div class="ni">
+        <div class="ni-hd"><span class="nl"></span><span style="font-weight:600;color:#1e2841">원인</span></div>
+        <div class="ni-body">
+          <div>- 1~2월 저가 매입 물량(매입환율 1,446~1,470원대)이 FIFO 순서상 5~6월 고환율 송금(시장환율 1,500~1,550원대)에 먼저 쓰이며 건당 +250만~360만원 이익 발생 → 누적 이익의 대부분을 차지.</div>
+          <div>- 반면 3월 말 매입한 고가 물량(매입환율 1,538원)이 최근 들어서야 FIFO로 소진되기 시작했는데, 최근 시장환율은 오히려 1,480~1,510원대로 하락해 최근 송금은 구조적으로 손실 발생(7/14~7/21 데이즈 3건 합산 -720만원).</div>
+        </div>
+      </div>
+      <div class="ni">
+        <div class="ni-hd"><span class="nl"></span><span style="font-weight:600;color:#1e2841">법인별 환차익</span></div>
+        <div class="ni-body">
+          <div>- 드래프터 +15,816,306원 · 데이즈 +10,880,537원 · <b>더스크랙 -3,249,745원</b>(전체 기준 이미 손실)</div>
+        </div>
+      </div>
+      <div class="ni">
+        <div class="ni-hd"><span class="nl"></span><span style="font-weight:600;color:#1e2841">시사점</span></div>
+        <div class="ni-body">
+          <div>- 누적 지표만 보면 안정적이나 최근 한 달 실질 흐름은 이미 마이너스로 전환됨.</div>
+          <div>- 저가 재고가 소진될수록 FIFO 매입원가가 점점 높아지는 추세라, 환율이 현재 수준(1,480~1,510원대)에서 반등하지 않으면 향후 송금분의 환차손 가능성 확대.</div>
+          <div class="ni-foot">※ 더스크랙은 이미 순손실 상태, 데이즈·드래프터도 신규 구간 기준 이익 폭 축소 중 — 추가 모니터링 필요.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="grid2">
@@ -152,6 +198,12 @@ th select.th-filter.active{border-color:var(--s-blue);color:var(--s-blue);}
       <div class="desc">송금시장가치 − 매입원가(FIFO), 단위: 원</div>
       <div id="chart-gain" style="position:relative;"></div>
     </div>
+  </div>
+
+  <div class="card">
+    <h2>사업자별 요약</h2>
+    <div class="desc">매입원가는 선입선출(FIFO) 기준으로 자동 매칭된 값입니다.</div>
+    <div class="tbl-scroll"><table id="corp-table"></table></div>
   </div>
 
   <div class="card">
@@ -532,6 +584,12 @@ function setupDataTable(tableId, pagerId, allRows, columns, defaultSort){
   ];
   setupDataTable('purchase-table','purchase-pager', purchasesWithCorp, purchaseCols, {key:'date', dir:'desc'});
 }
+
+// ---- 특이사항 toggle ----
+document.getElementById('notes-toggle').addEventListener('click', ()=>{
+  document.getElementById('notes-body').classList.toggle('open');
+  document.getElementById('notes-arrow').classList.toggle('open');
+});
 
 // ---- tabs ----
 document.querySelectorAll('.tab-btn').forEach(btn=>{
