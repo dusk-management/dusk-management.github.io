@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -12,22 +12,19 @@ a{color:inherit;text-decoration:none}
 .hdr-l p{font-size:11px;color:#7a90b8;margin-top:4px}
 .logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.5px}
 .logo span{color:#4e8ef7}
-.main{padding:36px}
-.section-title{font-size:11px;font-weight:600;color:#8090b0;letter-spacing:.8px;text-transform:uppercase;margin-bottom:14px;margin-top:32px}
-.section-title:first-child{margin-top:0}
-.grid{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:8px;align-items:flex-start}
-.card{background:#fff;border:1px solid #d8e0ee;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(30,40,65,.06);transition:box-shadow .15s,transform .15s;cursor:pointer;width:220px;flex-shrink:0}
-.card:hover{box-shadow:0 4px 16px rgba(30,40,65,.13);transform:translateY(-2px)}
-.card a{display:block;padding:20px 20px 14px}
-.card-icon{font-size:26px;margin-bottom:10px}
-.card-week{font-size:14px;font-weight:700;color:#1e2841;margin-bottom:4px}
-.card-period{font-size:11px;color:#8090b0;margin-bottom:10px}
-.card-type{font-size:10px;font-weight:600;color:#8090b0;letter-spacing:.6px;text-transform:uppercase}
-.card-footer{background:#f4f6fc;border-top:1px solid #d8e0ee;padding:9px 20px;display:flex;align-items:center;justify-content:space-between}
-.card-date{font-size:11px;color:#8090b0}
-.card-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;background:#e8eef8;color:#5a70a0}
-.card-badge.new{background:#e6f9f0;color:#12874a}
+.main{padding:48px 36px}
+.hub{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:960px;margin:0 auto}
+.hub-card{background:#fff;border:1px solid #d8e0ee;border-radius:16px;padding:32px 26px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 4px rgba(30,40,65,.06);transition:box-shadow .15s,transform .15s}
+.hub-card:hover{box-shadow:0 6px 20px rgba(30,40,65,.14);transform:translateY(-3px)}
+.hub-card.featured{border:2px solid #3a78d2}
+.hub-icon{font-size:32px}
+.hub-title{font-size:18px;font-weight:700;color:#1e2841}
+.hub-desc{font-size:12px;color:#8090b0}
+.hub-badge{font-size:10px;font-weight:600;padding:4px 12px;border-radius:20px;width:fit-content;margin-top:auto}
+.hub-badge.ready{background:#e6f9f0;color:#12874a}
+.hub-badge.soon{background:#fdf3e2;color:#8a6414}
 .footer{text-align:center;padding:32px;color:#a0adc4;font-size:11px;margin-top:8px}
+@media(max-width:720px){.hub{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -42,150 +39,30 @@ a{color:inherit;text-decoration:none}
 </div>
 
 <div class="main">
+  <div class="hub">
 
-  <div class="section-title">자금 관리</div>
-  <div class="grid">
-    <div class="card">
-      <a href="/fx/FX_관리_대시보드.html">
-        <div class="card-icon">💱</div>
-        <div class="card-week">FX 관리 대시보드</div>
-        <div class="card-period">외화매입 · 해외송금 · 환차익</div>
-        <div class="card-type">FX Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-07-22</span>
-        <span class="card-badge">실시간</span>
-      </div>
-    </div>
-  </div>
+    <a class="hub-card" href="/fx/FX_관리_대시보드.html">
+      <div class="hub-icon">💱</div>
+      <div class="hub-title">FX 관리</div>
+      <div class="hub-desc">더스크랙 · 드래프터 · 데이즈 외화 대시보드</div>
+      <span class="hub-badge ready">실시간</span>
+    </a>
 
-  <div class="section-title">주간 보고 · 2026년 7월</div>
-  <div class="grid">
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260705.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 1주차</div>
-        <div class="card-period">06/29 – 07/05</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-07-05</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
+    <a class="hub-card featured" href="/weekly.html">
+      <div class="hub-icon">📊</div>
+      <div class="hub-title">주간 보고</div>
+      <div class="hub-desc">주차별 현금흐름 보고서</div>
+      <span class="hub-badge ready">최신 08/02 · 총 9건</span>
+    </a>
 
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260712.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 2주차</div>
-        <div class="card-period">07/06 – 07/12</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-07-12</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260719.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 3주차</div>
-        <div class="card-period">07/13 – 07/19</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-07-19</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260726.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 4주차</div>
-        <div class="card-period">07/20 – 07/26</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-07-26</span>
-        <span class="card-badge new">최신</span>
-      </div>
-    </div>
+    <a class="hub-card" href="/monthly.html">
+      <div class="hub-icon">📋</div>
+      <div class="hub-title">월간 보고</div>
+      <div class="hub-desc">월별 재무 현황 보고서</div>
+      <span class="hub-badge ready">최신 6월 · 총 1건</span>
+    </a>
 
   </div>
-
-  <div style="display:grid;grid-template-columns:repeat(4,220px) 260px;gap:14px 16px;margin-top:32px;margin-bottom:8px;align-items:start">
-    <div class="section-title" style="margin:0;grid-column:1/5">주간 보고 · 2026년 6월</div>
-    <div class="section-title" style="margin:0">월간 보고 · 2026년 6월</div>
-
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260607.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 1주차</div>
-        <div class="card-period">06/01 – 06/07</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-06-07</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260614.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 2주차</div>
-        <div class="card-period">06/08 – 06/14</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-06-14</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260621.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 3주차</div>
-        <div class="card-period">06/15 – 06/21</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-06-21</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
-
-    <div class="card">
-      <a href="/weekly/DUSK_주간보고_260630.html">
-        <div class="card-icon">📊</div>
-        <div class="card-week">주간 현금흐름 보고 - 4주차</div>
-        <div class="card-period">06/22 – 06/30</div>
-        <div class="card-type">Weekly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-06-30</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
-
-    <div class="card" style="width:260px">
-      <a href="/monthly/DUSK_월간보고_2606.html">
-        <div class="card-icon">📋</div>
-        <div class="card-week">월간 재무 보고 - 2026년 6월</div>
-        <div class="card-period">06/01 – 06/30</div>
-        <div class="card-type">Monthly Report</div>
-      </a>
-      <div class="card-footer">
-        <span class="card-date">2026-06-30</span>
-        <span class="card-badge">완료</span>
-      </div>
-    </div>
-
-  </div>
-
 </div>
 
 <div class="footer">
