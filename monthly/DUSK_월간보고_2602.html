@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>더스크그룹 | 월간 재무보고 2602</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#eef1f8;color:#1e2841;font-size:13px;line-height:1.5}
+.hdr{background:#16213e;color:#fff;padding:20px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-l h1{font-size:16px;font-weight:500}.hdr-l p{font-size:11px;color:#7a90b8;margin-top:3px}
+.hdr-r{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit;text-decoration:none;display:inline-block}
+.pbtn:hover{background:rgba(255,255,255,.18)}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 36px 0}
+.kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
+.kc.g{border-color:#a8dcbc;background:#f5fcf8}.kc.r{border-color:#e0b4b4;background:#fff7f7}
+.kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}
+.pos{color:#12874a}.neg{color:#be1c1c}.pos-val{color:#12874a;font-weight:600}.neg-val{color:#be1c1c;font-weight:600}
+.ks{font-size:11px;color:#8090b0;margin-top:4px}
+.main{padding:16px 36px 36px}
+.card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+.ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap;text-align:right}
+th:first-child{text-align:left}
+td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle;text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fafbfe}
+tr:hover td{background:#edf1fc!important}
+.total-row td{font-weight:700;background:#f0f4fb!important;border-top:2px solid #d0d8ee}
+.expense-th th{background:#1e3a5f;color:#c8d8f0;border-bottom:1px solid #2a4a70}
+.expense-th th:first-child{color:#e8f0fc}
+.gcol{background:#dce8f7!important;color:#2563a8!important;font-weight:700!important}
+.gcol-h{background:#2563a8!important;color:#e0ecff!important}
+.note{font-size:11px;color:#8090b0;padding:8px 20px 10px;background:#f9fafd;border-top:1px solid #f0f3fa}
+.foot{text-align:center;font-size:11px;color:#a8b4c8;padding:18px 36px;border-top:1px solid #d8e0ee;background:#fff;margin-top:8px}
+.two-col{display:flex;gap:14px;align-items:flex-start}.two-col .card{flex:1;min-width:0;margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-l">
+    <h1>더스크그룹 | 월간 재무 보고</h1>
+    <p>2026년 02월 기준 &nbsp;·&nbsp; 기준일: 2/28</p>
+  </div>
+  <div class="hdr-r">
+    <a href="https://dusk-management.github.io/monthly.html" class="pbtn">← 월간 보고</a>
+    <a href="https://dusk-management.github.io" class="pbtn">← 메인으로</a>
+    <button class="pbtn" onclick="window.print()">인쇄 / PDF</button>
+  </div>
+</div>
+<div class="kpi">
+  <div class="kc">
+    <div class="kl">월간 총 입금 (실질)</div>
+    <div class="kv">160.7억</div>
+    <div class="ks">계좌간이체 제외 | 16,065,685,409원</div>
+  </div>
+  <div class="kc r">
+    <div class="kl">월간 총 출금 (실질)</div>
+    <div class="kv neg">142.4억</div>
+    <div class="ks">계좌간이체 제외 | 14,235,297,357원</div>
+  </div>
+  <div class="kc g">
+    <div class="kl">순현금흐름</div>
+    <div class="kv pos">+18.3억</div>
+    <div class="ks">입금 − 출금 | 1,830,388,052원</div>
+  </div>
+  <div class="kc">
+    <div class="kl">총 자산 (월말 기준)</div>
+    <div class="kv">111.9억</div>
+    <div class="ks">원화+외화KRW+재고자산 | 11,186,613,054원</div>
+  </div>
+</div>
+<div class="main">
+<div class="two-col">
+  <div class="card">
+    <div class="ct">총 자산 현황</div>
+    <table>
+      <thead><tr><th>법인명</th><th>원화잔액</th><th>외화 (KRW 환산)</th><th>재고자산</th><th>자산합계</th></tr></thead>
+      <tbody>
+<tr><td>가론지</td><td>1,037,671,367</td><td>—</td><td>14,099,200</td><td>1,051,770,567</td></tr>
+<tr><td>더스크랙</td><td>2,125,361,874</td><td>—</td><td>48,334,320</td><td>2,173,696,194</td></tr>
+<tr><td>데이즈</td><td>927,142,154</td><td>362,675,000</td><td>337,438,175</td><td>1,627,255,329</td></tr>
+<tr><td>드래프터</td><td>1,312,631,251</td><td>541,310,000</td><td>663,477,694</td><td>2,517,418,945</td></tr>
+<tr><td>발전존중</td><td>132,674,502</td><td>370,370,000</td><td>543,243,924</td><td>1,046,288,426</td></tr>
+<tr><td>썸웨어코드</td><td>579,187,706</td><td>—</td><td>79,728,898</td><td>658,916,604</td></tr>
+<tr><td>제노바</td><td>13,630,869</td><td>—</td><td>59,961,000</td><td>73,591,869</td></tr>
+<tr><td>크롬스</td><td>802,495,840</td><td>1,082,620,000</td><td>152,559,280</td><td>2,037,675,120</td></tr>
+<tr class='total-row'><td>그룹 합계</td><td>6,930,795,563</td><td>2,356,975,000</td><td>1,898,842,491</td><td>11,186,613,054</td></tr>
+
+      </tbody>
+    </table>
+    <div class="note">※ 전 법인 2/28 기준. 재고자산은 일계표 기타 항목 기준. ※ 전 법인 원화잔액은 CF시트 값이 아닌 1/1 시작잔액 + 입금/지출data 원시 거래 누적합산으로 재구성한 값(외화계좌 목적 거래는 제외). 대부분 CF시트 기록값과 원단위까지 일치하나, 더스크랙(3월 이후)·썸웨어코드(4월 이후)는 원장에 없는 항목(수수료 등 추정)으로 각각 500,000원·1,014,700원의 소액 잔차가 있음(잔액 대비 0.1%~0.3% 수준).</div>
+  </div>
+  <div class="card">
+    <div class="ct">법인별 월간 현금흐름 요약</div>
+    <table>
+      <thead><tr><th>법인명</th><th>입금합계 (실질)</th><th>출금합계 (실질)</th><th>순현금</th><th>비고</th></tr></thead>
+      <tbody>
+<tr><td>가론지</td><td>434,972,867</td><td>39,139,554</td><td class='pos-val'>+395,833,313</td><td></td></tr>
+<tr><td>더스크랙</td><td>2,479,108,192</td><td>2,286,360,370</td><td class='pos-val'>+192,747,822</td><td></td></tr>
+<tr><td>데이즈</td><td>2,840,550,714</td><td>2,069,120,490</td><td class='pos-val'>+771,430,224</td><td></td></tr>
+<tr><td>드래프터</td><td>4,043,864,449</td><td>3,215,311,014</td><td class='pos-val'>+828,553,435</td><td></td></tr>
+<tr><td>발전존중</td><td>2,622,706,156</td><td>2,846,755,306</td><td class='neg-val'>-224,049,150</td><td></td></tr>
+<tr><td>썸웨어코드</td><td>1,063,094,763</td><td>1,088,939,829</td><td class='neg-val'>-25,845,066</td><td></td></tr>
+<tr><td>제노바</td><td>113,054,825</td><td>134,202,215</td><td class='neg-val'>-21,147,390</td><td></td></tr>
+<tr><td>크롬스</td><td>2,468,333,443</td><td>2,555,468,579</td><td class='neg-val'>-87,135,136</td><td></td></tr>
+<tr class='total-row'><td>그룹 합계</td><td>16,065,685,409</td><td>14,235,297,357</td><td class='pos-val'>+1,830,388,052</td><td></td></tr>
+
+      </tbody>
+    </table>
+    <div class="note">※ 계좌간이체(법인 내부 이체) 및 외화매입(환전) 제외 후 실질 입출금 기준.</div>
+  </div>
+</div>
+  <div class="card">
+    <div class="ct">지출항목 법인별 상세</div>
+    <table>
+      <thead class="expense-th"><tr><th>항목</th><th>가론지</th><th>더스크랙</th><th>데이즈</th><th>드래프터</th><th>발전존중</th><th>썸웨어코드</th><th>제노바</th><th>크롬스</th><th class='gcol-h'>그룹합계</th><th>비율(%)</th></tr></thead>
+      <tbody>
+<tr><td>광고선전비</td><td>—</td><td>1,432,502,519</td><td>1,256,646,426</td><td>2,253,026,100</td><td>2,039,922,411</td><td>950,669,000</td><td>72,617,570</td><td>1,983,184,500</td><td class='gcol'>9,988,568,526</td><td>70.2%</td></tr>
+<tr><td>원재료</td><td>—</td><td>455,941,621</td><td>262,720,157</td><td>729,306,568</td><td>720,023,040</td><td>134,205,500</td><td>48,474,801</td><td>509,694,460</td><td class='gcol'>2,860,366,147</td><td>20.1%</td></tr>
+<tr><td>운영비</td><td>33,919,554</td><td>145,892,703</td><td>221,224,514</td><td>21,884,452</td><td>36,047,530</td><td>1,936,052</td><td>9,386,044</td><td>56,275,781</td><td class='gcol'>526,566,630</td><td>3.7%</td></tr>
+<tr><td>운반비</td><td>—</td><td>155,159,524</td><td>257,020,996</td><td>90,678,800</td><td>—</td><td>210,537</td><td>—</td><td>—</td><td class='gcol'>503,069,857</td><td>3.5%</td></tr>
+<tr><td>기타</td><td>5,220,000</td><td>70,221,235</td><td>56,069,907</td><td>99,823,856</td><td>—</td><td>—</td><td>—</td><td>—</td><td class='gcol'>231,334,998</td><td>1.6%</td></tr>
+<tr><td>용역비</td><td>—</td><td>24,286,496</td><td>12,242,224</td><td>13,236,898</td><td>46,878,135</td><td>209,390</td><td>3,655,700</td><td>3,147,313</td><td class='gcol'>103,656,156</td><td>0.7%</td></tr>
+<tr><td>가구매/환불</td><td>—</td><td>2,356,272</td><td>3,196,266</td><td>7,354,340</td><td>3,884,190</td><td>1,709,350</td><td>68,100</td><td>3,166,525</td><td class='gcol'>21,735,043</td><td>0.2%</td></tr>
+<tr class='total-row'><td>합계</td><td>39,139,554</td><td>2,286,360,370</td><td>2,069,120,490</td><td>3,215,311,014</td><td>2,846,755,306</td><td>1,088,939,829</td><td>134,202,215</td><td>2,555,468,579</td><td class='gcol'>14,235,297,357</td><td>100%</td></tr>
+
+      </tbody>
+    </table>
+    <div class="note">※ 계좌간이체 및 외화매입(환전) 제외 실질 지출 기준. 운영비에는 급여·세금·지급수수료·복리후생비·임차료 등 포함.</div>
+  </div>
+</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 월간재무보고 &nbsp;·&nbsp; 생성: 2026-08-07</div>
+</body>
+</html>
