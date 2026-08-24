@@ -40,7 +40,8 @@ tr:hover td{background:#edf1fc!important}
 .section-heading{font-size:13.5px;font-weight:700;color:#1e2841;margin:4px 0 4px}
 .section-sub{font-size:11.5px;color:#8090b0;margin-bottom:12px;line-height:1.6}
 .note-plain{font-size:11px;color:#8090b0;margin:10px 0 26px;line-height:1.6}
-#companyList{display:grid;grid-template-columns:1fr;gap:12px}
+#companyList{display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;align-items:start}
+@media(max-width:900px){#companyList{grid-template-columns:1fr}}
 .co-card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(30,40,65,.06)}
 .co-head{display:flex;align-items:center;gap:10px;padding:13px 20px;cursor:pointer}
 .co-head:hover{background:#edf1fc}
