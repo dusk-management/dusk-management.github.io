@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>더스크그룹 | 분기 재무보고 2026Q2</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#eef1f8;color:#1e2841;font-size:13px;line-height:1.5}
+.hdr{background:#16213e;color:#fff;padding:20px 36px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-l h1{font-size:16px;font-weight:500}.hdr-l p{font-size:11px;color:#7a90b8;margin-top:3px}
+.hdr-r{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit;text-decoration:none;display:inline-block}
+.pbtn:hover{background:rgba(255,255,255,.18)}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 36px 0}
+.kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
+.kc.g{border-color:#a8dcbc;background:#f5fcf8}
+.kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}
+.pos{color:#12874a}.neg{color:#be1c1c}
+.ks{font-size:11px;color:#8090b0;margin-top:4px}
+.main{padding:16px 36px 36px}
+.card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;margin-bottom:14px;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+.ct{font-size:11px;font-weight:600;color:#8090b0;padding:10px 20px;background:#f4f6fc;border-bottom:1px solid #d8e0ee;letter-spacing:.5px;text-transform:uppercase}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#8090b0;font-weight:500;padding:9px 16px;border-bottom:1px solid #e4eaf5;background:#f9fafd;white-space:nowrap;text-align:right}
+th:first-child{text-align:left}
+td{padding:10px 16px;border-bottom:1px solid #f0f3fa;vertical-align:middle;text-align:right}
+td:first-child{text-align:left;font-weight:500}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#fafbfe}
+tr:hover td{background:#edf1fc!important}
+.total-row td{font-weight:700;background:#f0f4fb!important;border-top:2px solid #d0d8ee}
+.note{font-size:11px;color:#8090b0;padding:8px 20px 10px;background:#f9fafd;border-top:1px solid #f0f3fa}
+.foot{text-align:center;font-size:11px;color:#a8b4c8;padding:18px 36px;border-top:1px solid #d8e0ee;background:#fff;margin-top:8px}
+.trend{display:flex;gap:24px;align-items:flex-end;padding:18px 20px 20px}
+.trend-col{display:flex;flex-direction:column;align-items:center;gap:6px;width:70px}
+.trend-bar{width:34px;border-radius:5px 5px 0 0;background:#3a78d2}
+.trend-val{font-size:11.5px;font-weight:700}
+.trend-lbl{font-size:10.5px;color:#8090b0}
+.section-heading{font-size:13.5px;font-weight:700;color:#1e2841;margin:4px 0 4px}
+.section-sub{font-size:11.5px;color:#8090b0;margin-bottom:12px;line-height:1.6}
+.note-plain{font-size:11px;color:#8090b0;margin:10px 0 26px;line-height:1.6}
+#companyList{display:grid;grid-template-columns:1fr;gap:12px}
+.co-card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(30,40,65,.06)}
+.co-head{display:flex;align-items:center;gap:10px;padding:13px 20px;cursor:pointer}
+.co-head:hover{background:#edf1fc}
+.co-name{font-weight:700;flex:0 0 96px}
+.co-chip{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:#f0f3fa;color:#5a70a0}
+.co-chip.pos{background:#e6f9f0;color:#12874a}
+.co-chip.neg{background:#fff2f2;color:#be1c1c}
+.co-body{padding:2px 20px 18px 46px;background:#fbfcff}
+.co-sub-title{font-size:11px;font-weight:700;color:#8090b0;margin:12px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+.co-row{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12px}
+.co-row .amt{margin-left:auto;font-weight:600;padding:2px 8px;border-radius:5px}
+.tree-head{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:7px;font-weight:700;font-size:12.5px}
+.tree-head.pos{background:#e6f9f0;color:#12874a}
+.tree-head.neg{background:#fff2f2;color:#be1c1c}
+.tree-head.exp{background:#eef4fc;color:#2c4a7c}
+.tree-head .amt{margin-left:auto}
+.tree-chev{font-size:10px}
+.tree-row{display:flex;align-items:center;gap:9px;padding:6px 6px 6px 30px;font-size:12px;color:#3a4560}
+.tree-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.tree-row .amt{margin-left:auto;font-weight:600}
+.donut-wrap{display:flex;align-items:center;gap:22px;padding:12px 6px 4px}
+.donut{width:92px;height:92px;border-radius:50%;flex-shrink:0;position:relative}
+.donut-center{position:absolute;inset:20px;border-radius:50%;background:#fbfcff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#1e2841}
+.donut-legend{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.donut-legend-item{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#3a4560}
+.donut-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.donut-legend-item .pct{font-size:10.5px;color:#8090b0;margin-left:auto}
+.donut-legend-item .amt{font-weight:600;width:96px;text-align:right}
+.cardsub{font-size:11.5px;color:#8090b0;padding:10px 20px 0;line-height:1.6}
+.issues{padding:14px 20px;font-size:12px;color:#1e2841;line-height:1.85}
+.issues div{margin-bottom:2px}
+.chev{display:inline-block;width:14px;color:#8090b0}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-l"><h1>더스크그룹 | 분기 재무 보고</h1><p>2026년 2분기(4~6월) 기준 &nbsp;·&nbsp; 기준일: 6/30</p></div>
+  <div class="hdr-r">
+    <a href="https://dusk-management.github.io/quarterly.html" class="pbtn">← 분기 보고</a>
+    <a href="https://dusk-management.github.io" class="pbtn">← 메인으로</a>
+    <button class="pbtn" onclick="window.print()">인쇄 / PDF</button>
+  </div>
+</div>
+
+<div class="kpi">
+  <div class="kc"><div class="kl">분기 총입금 (실질)</div><div class="kv">655.0억</div><div class="ks pos">전분기 대비 +27.3%</div></div>
+  <div class="kc"><div class="kl">분기 총출금 (실질)</div><div class="kv">569.9억</div><div class="ks pos">전분기 대비 +22.6%</div></div>
+  <div class="kc g"><div class="kl">분기 순현금</div><div class="kv pos">+85.1억</div><div class="ks pos">전분기 대비 +70.9%</div></div>
+  <div class="kc"><div class="kl">총 자산 (분기말)</div><div class="kv">239.6억</div><div class="ks pos">전분기말 대비 +81.7%</div></div>
+</div>
+
+<div class="main">
+
+  <div class="card">
+    <div class="ct">분기 내 월별 순현금 추이</div>
+    <div class="trend">
+      <div class="trend-col"><div class="trend-val">+24.3억</div><div class="trend-bar" style="height:62px"></div><div class="trend-lbl">4월</div></div>
+      <div class="trend-col"><div class="trend-val">+28.7억</div><div class="trend-bar" style="height:72px"></div><div class="trend-lbl">5월</div></div>
+      <div class="trend-col"><div class="trend-val">+32.1억</div><div class="trend-bar" style="height:80px;background:#6d54c9"></div><div class="trend-lbl">6월</div></div>
+    </div>
+    <div class="note">※ 3개월 연속 순현금 개선. 4~6월 월간보고(2604·2605·2606) 그룹합계 기준</div>
+  </div>
+
+  <div class="section-heading">법인별 상세</div>
+  <div class="section-sub">법인명을 클릭하면 그 법인의 총자산 변동(원화·외화·재고자산)과 이번 분기 지출 구조가 펼쳐집니다.</div>
+  <div id="companyList"></div>
+  <div class="note-plain">※ 총자산은 원화 통장 + 외화 통장(KRW 환산) + 재고자산 합계. 지출은 계좌간이체 및 외화매입(환전) 제외 실질 기준</div>
+
+  <div class="card">
+    <div class="ct">법인별 분기 순현금 현황</div>
+    <div class="cardsub">법인별로 이번 분기(2Q)와 전분기(1Q) 순현금을 나란히 비교합니다. 증감 열의 막대는 전 법인 중 가장 큰 변화폭을 기준으로 한 상대적 크기이며, 초록은 흑자·빨강은 적자입니다.</div>
+    <table id="netcashTable">
+      <tr><th>법인</th><th>1분기 순현금</th><th>2분기 순현금</th><th>증감</th></tr>
+    </table>
+    <div class="note">※ 플라이코퍼레이션은 6월 편입되어 1개월치만 반영 — 3분기부터 정상적인 3개월 비교 가능. 법인 순서는 ㄱㄴㄷ</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">2분기 특이사항 종합</div>
+    <div class="issues">
+      <div>- 더스크랙: 2분기 유일하게 순현금 적자로 전환(-2.5억). 5월 -3.1억이 주요 원인이며, 전분기 대비 순현금이 2.7억 감소</div>
+      <div>- 제노바: 순현금이 전분기 +4.4억 → 이번 분기 +19.8억로 15.4억 증가, 그룹 내 개선폭이 가장 컸던 법인</div>
+      <div>- 데이즈: 4~6월 3개월 모두 흑자를 유지하며 이번 분기 순현금 +44.2억으로 그룹 내 최대</div>
+      <div>- 플라이코퍼레이션: 6월 편입, 아직 1개월치만 반영되어 3분기부터 정상적인 분기 비교 가능</div>
+    </div>
+  </div>
+
+</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 분기재무보고 &nbsp;·&nbsp; 생성: 2026-08-21</div>
+
+<script>
+const COS = ['가론지','더스크랙','데이즈','드래프터','발전존중','썸웨어코드','제노바','크롬스','플라이코퍼레이션'];
+
+function fmtSigned(n){
+  if (n === null || n === undefined) return null;
+  return (n < 0 ? '-' : '+') + Math.abs(n).toLocaleString();
+}
+function signClass(n){
+  if (n === null || n === undefined) return '';
+  return n < 0 ? 'neg' : 'pos';
+}
+function barBg(value, maxAbs, posColor, negColor){
+  if (value === null || value === undefined || !maxAbs) return '';
+  const pct = Math.min(100, Math.abs(value) / maxAbs * 100).toFixed(1);
+  const color = value < 0 ? negColor : posColor;
+  return `background:linear-gradient(to right, ${color} ${pct}%, transparent ${pct}%)`;
+}
+
+const NETCASH = {
+  가론지: {q1:1265931558, q2:212203644},
+  더스크랙: {q1:17194685, q2:-252766867},
+  데이즈: {q1:1806040104, q2:4424559583},
+  드래프터: {q1:1777081022, q2:1227328789},
+  발전존중: {q1:-667317600, q2:-138463243},
+  썸웨어코드: {q1:-520585582, q2:26355204},
+  제노바: {q1:440233423, q2:1977679585},
+  크롬스: {q1:859597182, q2:1026658639},
+  플라이코퍼레이션: {q1:null, q2:2951254},
+};
+const NETCASH_TOTAL = {q1:4978174792, q2:8506506587, diff:3528331795};
+
+(function renderNetcash(){
+  const tbl = document.getElementById('netcashTable');
+  const q1vals = COS.map(c => NETCASH[c].q1).filter(v => v !== null);
+  const q2vals = COS.map(c => NETCASH[c].q2);
+  const diffs = COS.map(c => NETCASH[c].q1 !== null ? NETCASH[c].q2 - NETCASH[c].q1 : null);
+  const maxQ1 = Math.max(...q1vals.map(Math.abs));
+  const maxQ2 = Math.max(...q2vals.map(Math.abs));
+  const maxDiff = Math.max(...diffs.filter(d => d !== null).map(Math.abs));
+  COS.forEach((c, i) => {
+    const v = NETCASH[c];
+    const diff = diffs[i];
+    const tr = document.createElement('tr');
+    const q1cell = v.q1 !== null
+      ? `<td class="${signClass(v.q1)}">${fmtSigned(v.q1)}</td>`
+      : `<td>—</td>`;
+    const q2cell = `<td class="${signClass(v.q2)}">${fmtSigned(v.q2)}</td>`;
+    const diffCell = diff !== null
+      ? `<td class="${signClass(diff)}" style="${barBg(diff, maxDiff, '#d7f2e3', '#fbe0de')}">${fmtSigned(diff)}</td>`
+      : `<td>신규 편입</td>`;
+    tr.innerHTML = `<td>${c}</td>${q1cell}${q2cell}${diffCell}`;
+    tbl.appendChild(tr);
+  });
+  const totalTr = document.createElement('tr');
+  totalTr.className = 'total-row';
+  totalTr.innerHTML = `<td>그룹 합계</td><td class="pos">${fmtSigned(NETCASH_TOTAL.q1)}</td><td class="pos">${fmtSigned(NETCASH_TOTAL.q2)}</td><td class="pos">${fmtSigned(NETCASH_TOTAL.diff)}</td>`;
+  tbl.appendChild(totalTr);
+})();
+
+const ASSETS = {
+  가론지: {q1:1639257269, q2:1873100713},
+  더스크랙: {q1:973535959, q2:1767144381},
+  데이즈: {q1:2379689281, q2:6929681998},
+  드래프터: {q1:3041140314, q2:4809212224},
+  발전존중: {q1:1525114148, q2:1976252782},
+  썸웨어코드: {q1:490040023, q2:327353993},
+  제노바: {q1:512639503, q2:2474538498},
+  크롬스: {q1:2628877544, q2:3801693492},
+  플라이코퍼레이션: {q1:null, q2:2951254},
+};
+const ASSETS_TOTAL = {q1:13190294041, q2:23961929335, diff:10771635294};
+
+const ASSETS_DETAIL = {
+  가론지: {원화:{q1:1625785069,q2:1837988713}, 외화:{q1:0,q2:0}, 재고자산:{q1:13472200,q2:35112000}},
+  더스크랙: {원화:{q1:925217139,q2:667778869}, 외화:{q1:0,q2:-26975125}, 재고자산:{q1:48318820,q2:1126340637}},
+  데이즈: {원화:{q1:596829436,q2:4793205110}, 외화:{q1:1513400000,q2:1851012658}, 재고자산:{q1:269459845,q2:285464230}},
+  드래프터: {원화:{q1:743944609,q2:1965645251}, 외화:{q1:1710142000,q2:1854626462}, 재고자산:{q1:587053705,q2:988940511}},
+  발전존중: {원화:{q1:518712144,q2:376609916}, 외화:{q1:393484000,q2:400804752}, 재고자산:{q1:612918004,q2:1198838114}},
+  썸웨어코드: {원화:{q1:302953219,q2:327074503}, 외화:{q1:0,q2:0}, 재고자산:{q1:187086804,q2:279490}},
+  제노바: {원화:{q1:497303303,q2:2474393298}, 외화:{q1:0,q2:0}, 재고자산:{q1:15336200,q2:145200}},
+  크롬스: {원화:{q1:1254851496,q2:2273259603}, 외화:{q1:1150184000,q2:1171578584}, 재고자산:{q1:223842048,q2:356855305}},
+  플라이코퍼레이션: {원화:{q1:null,q2:2951254}, 외화:{q1:null,q2:0}, 재고자산:{q1:null,q2:0}},
+};
+
+const EXP = [
+  {name:'광고선전비', total:36344507853, pct:'63.8%', co:{가론지:2287465,더스크랙:7487380722,데이즈:4433412000,드래프터:9623084342,발전존중:3801208242,썸웨어코드:1770815136,제노바:1810065304,크롬스:7416254642,플라이코퍼레이션:0}},
+  {name:'원재료', total:10993158155, pct:'19.3%', co:{가론지:591511114,더스크랙:2632303047,데이즈:1209056774,드래프터:3774456767,발전존중:874585360,썸웨어코드:175005298,제노바:483255000,크롬스:1252984795,플라이코퍼레이션:0}},
+  {name:'운영비', total:6289734758, pct:'11.0%', co:{가론지:527850301,더스크랙:1197242273,데이즈:949845739,드래프터:1110318161,발전존중:1219428648,썸웨어코드:316116227,제노바:141244923,크롬스:820639686,플라이코퍼레이션:7048800}},
+  {name:'기타', total:1620839075, pct:'2.8%', co:{가론지:96575400,더스크랙:579004111,데이즈:509591056,드래프터:435499668,발전존중:0,썸웨어코드:168840,제노바:0,크롬스:0,플라이코퍼레이션:0}},
+  {name:'운반비', total:1351437334, pct:'2.4%', co:{가론지:0,더스크랙:247161218,데이즈:933889695,드래프터:170315500,발전존중:0,썸웨어코드:70921,제노바:0,크롬스:0,플라이코퍼레이션:0}},
+  {name:'용역비', total:333006104, pct:'0.6%', co:{가론지:0,더스크랙:51784697,데이즈:52653549,드래프터:27443995,발전존중:122672028,썸웨어코드:1590800,제노바:6696475,크롬스:70164560,플라이코퍼레이션:0}},
+  {name:'가구매/환불', total:57725632, pct:'0.1%', co:{가론지:0,더스크랙:8850800,데이즈:4115487,드래프터:15775150,발전존중:11212750,썸웨어코드:2119500,제노바:1682020,크롬스:13969925,플라이코퍼레이션:0}},
+];
+const ASSET_DOT = {원화:'#2563a8', 외화:'#12874a', 재고자산:'#8a6414'};
+const EXP_COLOR = {
+  광고선전비:'#16213e', 원재료:'#2c4a7c', 운영비:'#3a78d2',
+  운반비:'#5a94e0', 용역비:'#7db0ea', '가구매/환불':'#a8cbf2', 기타:'#d3e5fa',
+};
+function donutCss(items){
+  const total = items.reduce((s, i) => s + i.amt, 0);
+  let acc = 0;
+  const stops = items.map(item => {
+    const start = (acc / total * 100).toFixed(2);
+    acc += item.amt;
+    const end = (acc / total * 100).toFixed(2);
+    return `${EXP_COLOR[item.name] || '#c8d8f0'} ${start}% ${end}%`;
+  });
+  return `conic-gradient(${stops.join(', ')})`;
+}
+
+(function renderCompanyList(){
+  const wrap = document.getElementById('companyList');
+  let openBody = null;
+  COS.forEach(c => {
+    const nc = NETCASH[c];
+    const as = ASSETS[c];
+
+    const card = document.createElement('div');
+    card.className = 'co-card';
+
+    const head = document.createElement('div');
+    head.className = 'co-head';
+    head.innerHTML = `<span class="chev">▸</span><span class="co-name">${c}</span>` +
+      `<span class="co-chip ${signClass(nc.q2)}">2Q 순현금 ${fmtSigned(nc.q2)}</span>` +
+      `<span class="co-chip">총자산 ${(as.q2/100000000).toFixed(1)}억</span>`;
+
+    const body = document.createElement('div');
+    body.className = 'co-body';
+    body.style.display = 'none';
+
+    // 총자산 변동 트리
+    const detail = ASSETS_DETAIL[c];
+    const cats = ['원화', '외화', '재고자산'];
+    const subDiffs = cats.map(k => detail[k].q1 !== null ? detail[k].q2 - detail[k].q1 : null);
+    const assetTotalDiff = as.q1 !== null ? as.q2 - as.q1 : null;
+    const assetRows = cats.map((k, j) => {
+      const dDiff = subDiffs[j];
+      const diffTxt = dDiff !== null ? fmtSigned(dDiff) : '신설';
+      const cls = dDiff !== null ? signClass(dDiff) : '';
+      return `<div class="tree-row"><span class="tree-dot" style="background:${ASSET_DOT[k]}"></span>${k}<span class="amt ${cls}">${diffTxt}</span></div>`;
+    }).join('');
+    const assetHead = assetTotalDiff !== null
+      ? `<div class="tree-head ${signClass(assetTotalDiff)}"><span class="tree-chev">▾</span>총자산 변동<span class="amt">${fmtSigned(assetTotalDiff)}</span></div>`
+      : `<div class="tree-head pos"><span class="tree-chev">▾</span>총자산 변동<span class="amt">신규 편입</span></div>`;
+
+    // 지출 구조 도넛
+    const expItems = EXP.map(cat => ({name: cat.name, amt: cat.co[c] || 0})).filter(item => item.amt > 0);
+    const expTotal = expItems.reduce((s, i) => s + i.amt, 0);
+    const expHead = `<div class="tree-head exp"><span class="tree-chev">▾</span>지출 합계<span class="amt">${expTotal.toLocaleString()}</span></div>`;
+    let donutBlock = '';
+    if (expItems.length) {
+      const legend = expItems.map(item => {
+        const pct = (item.amt / expTotal * 100).toFixed(1);
+        return `<div class="donut-legend-item"><span class="donut-dot" style="background:${EXP_COLOR[item.name] || '#c8d8f0'}"></span>${item.name}<span class="pct">${pct}%</span><span class="amt">${item.amt.toLocaleString()}</span></div>`;
+      }).join('');
+      donutBlock = `<div class="donut-wrap">
+        <div class="donut" style="background:${donutCss(expItems)}"><div class="donut-center">${(expTotal/100000000).toFixed(1)}억</div></div>
+        <div class="donut-legend">${legend}</div>
+      </div>`;
+    } else {
+      donutBlock = `<div class="co-row">이번 분기 지출 내역 없음</div>`;
+    }
+
+    body.innerHTML = `<div class="co-sub-title">총자산 변동 (1분기말 → 2분기말)</div>${assetHead}${assetRows}` +
+      `<div class="co-sub-title">이번 분기 지출 구조</div>${expHead}${donutBlock}`;
+
+    head.addEventListener('click', () => {
+      const open = body.style.display !== 'none';
+      if (openBody && openBody !== body) {
+        openBody.style.display = 'none';
+        openBody.previousElementSibling.querySelector('.chev').textContent = '▸';
+      }
+      body.style.display = open ? 'none' : '';
+      head.querySelector('.chev').textContent = open ? '▸' : '▾';
+      openBody = open ? null : body;
+    });
+
+    card.appendChild(head);
+    card.appendChild(body);
+    wrap.appendChild(card);
+  });
+})();
+</script>
+</body>
+</html>
