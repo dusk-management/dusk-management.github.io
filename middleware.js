@@ -72,7 +72,7 @@ export default async function middleware(request) {
         status: 303,
         headers: {
           Location: url.pathname,
-          'Set-Cookie': `${COOKIE_NAME}=${expectedToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=2592000`,
+          'Set-Cookie': `${COOKIE_NAME}=${expectedToken}; Path=/; HttpOnly; Secure; SameSite=Lax`,
         },
       });
     }
