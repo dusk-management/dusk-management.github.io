@@ -3,6 +3,7 @@ export const config = {
 };
 
 const COOKIE_NAME = 'site_auth';
+const ROOT_BYPASS_COOKIE = 'root_ok';
 const SITE_TITLE = '더스크그룹 경영보고';
 
 async function sha256(text) {
@@ -68,13 +69,10 @@ export default async function middleware(request) {
     const password = form.get('password');
 
     if (expectedPassword && password === expectedPassword) {
-      return new Response(null, {
-        status: 303,
-        headers: {
-          Location: url.pathname,
-          'Set-Cookie': `${COOKIE_NAME}=${expectedToken}; Path=/; HttpOnly; Secure; SameSite=Lax`,
-        },
-      });
+      const headers = new Headers({ Location: url.pathname });
+      headers.append('Set-Cookie', `${COOKIE_NAME}=${expectedToken}; Path=/; HttpOnly; Secure; SameSite=Lax`);
+      headers.append('Set-Cookie', `${ROOT_BYPASS_COOKIE}=${expectedToken}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=10`);
+      return new Response(null, { status: 303, headers });
     }
 
     return new Response(loginPage(true), {
@@ -84,9 +82,16 @@ export default async function middleware(request) {
   }
 
   const cookieHeader = request.headers.get('cookie') || '';
-  const match = cookieHeader.match(new RegExp(`${COOKIE_NAME}=([^;]+)`));
+  const siteAuthMatch = cookieHeader.match(new RegExp(`${COOKIE_NAME}=([^;]+)`));
+  const rootOkMatch = cookieHeader.match(new RegExp(`${ROOT_BYPASS_COOKIE}=([^;]+)`));
+  const siteAuthValid = siteAuthMatch && expectedToken && siteAuthMatch[1] === expectedToken;
+  const rootOkValid = rootOkMatch && expectedToken && rootOkMatch[1] === expectedToken;
 
-  if (match && expectedToken && match[1] === expectedToken) {
+  if (url.pathname === '/') {
+    if (rootOkValid) {
+      return;
+    }
+  } else if (siteAuthValid) {
     return;
   }
 
