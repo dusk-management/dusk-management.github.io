@@ -12,7 +12,8 @@ body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#ee
 .hdr-r{display:flex;gap:8px;align-items:center;flex-shrink:0}
 .pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit;text-decoration:none;display:inline-block}
 .pbtn:hover{background:rgba(255,255,255,.18)}
-.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:20px 36px 0}
+.disclaimer{margin:16px 36px 0;background:#fdf3e2;border:1px solid #f0dfb0;border-left:4px solid #c99a2e;border-radius:8px;padding:12px 18px;font-size:11.5px;color:#6b5312;line-height:1.7}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px 36px 0}
 .kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
 .kc.g{border-color:#a8dcbc;background:#f5fcf8}
 .kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}
@@ -40,6 +41,17 @@ tr:hover td{background:#edf1fc!important}
 .section-heading{font-size:13.5px;font-weight:700;color:#1e2841;margin:4px 0 4px}
 .section-sub{font-size:11.5px;color:#8090b0;margin-bottom:12px;line-height:1.6}
 .note-plain{font-size:11px;color:#8090b0;margin:10px 0 26px;line-height:1.6}
+.cardsub{font-size:11.5px;color:#8090b0;padding:10px 20px 0;line-height:1.6}
+.issues{padding:14px 20px;font-size:12px;color:#1e2841;line-height:1.85}
+.issues div{margin-bottom:2px}
+.chev{display:inline-block;width:14px;color:#8090b0}
+
+/* Executive Summary */
+.exec{padding:16px 20px;font-size:12.5px;color:#1e2841;line-height:1.85}
+.exec b{color:#16213e}
+.exec-note{font-size:11px;color:#8090b0;margin-top:8px}
+
+/* Company cards */
 #companyList{display:grid;grid-template-columns:repeat(2, 1fr);gap:12px;align-items:start}
 @media(max-width:900px){#companyList{grid-template-columns:1fr}}
 .co-card{background:#fff;border:1px solid #d8e0ee;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(30,40,65,.06)}
@@ -53,6 +65,10 @@ tr:hover td{background:#edf1fc!important}
 .co-sub-title{font-size:11px;font-weight:700;color:#8090b0;margin:12px 0 6px;text-transform:uppercase;letter-spacing:.5px}
 .co-row{display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12px}
 .co-row .amt{margin-left:auto;font-weight:600;padding:2px 8px;border-radius:5px}
+.co-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 0 2px}
+.co-stat{background:#fff;border:1px solid #e4eaf5;border-radius:8px;padding:7px 10px}
+.co-stat-l{font-size:9.5px;color:#8090b0;margin-bottom:3px}
+.co-stat-v{font-size:12px;font-weight:700}
 .tree-head{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:7px;font-weight:700;font-size:12.5px}
 .tree-head.pos{background:#e6f9f0;color:#12874a}
 .tree-head.neg{background:#fff2f2;color:#be1c1c}
@@ -70,10 +86,20 @@ tr:hover td{background:#edf1fc!important}
 .donut-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
 .donut-legend-item .pct{font-size:10.5px;color:#8090b0;margin-left:auto}
 .donut-legend-item .amt{font-weight:600;width:96px;text-align:right}
-.cardsub{font-size:11.5px;color:#8090b0;padding:10px 20px 0;line-height:1.6}
-.issues{padding:14px 20px;font-size:12px;color:#1e2841;line-height:1.85}
-.issues div{margin-bottom:2px}
-.chev{display:inline-block;width:14px;color:#8090b0}
+
+/* Risk table */
+.risk-imp{font-size:10.5px;font-weight:700;padding:2px 9px;border-radius:10px;display:inline-block}
+.risk-imp.high{background:#fff2f2;color:#be1c1c}
+.risk-imp.mid{background:#fdf3e2;color:#8a6414}
+.risk-imp.low{background:#f0f3fa;color:#5a70a0}
+
+/* placeholder table for next-quarter outlook */
+.placeholder-row td{color:#a8b4c8;font-style:italic}
+
+/* future work list */
+.future-list{padding:14px 20px;font-size:12.5px;color:#1e2841;line-height:2}
+.future-list div{padding-left:16px;position:relative}
+.future-list div::before{content:"—";position:absolute;left:0;color:#8090b0}
 </style>
 </head>
 <body>
@@ -86,32 +112,73 @@ tr:hover td{background:#edf1fc!important}
   </div>
 </div>
 
+<div class="disclaimer">
+  본 보고서는 회계상 손익계산서가 아닌, 일계표 및 통장 입출금 내역을 기반으로 한 <b>현금흐름 보고서</b>입니다. 발생주의 기준의 매출·비용·손익, 미수금·미지급금, 예산 대비 실적과는 차이가 있을 수 있으며, 경영진의 분기별 자금흐름 파악과 단기 자금 관리 의사결정을 지원하는 데 목적이 있습니다.
+</div>
+
 <div class="kpi">
   <div class="kc"><div class="kl">분기 총입금 (실질)</div><div class="kv">655.0억</div><div class="ks pos">전분기 대비 +27.3%</div></div>
   <div class="kc"><div class="kl">분기 총출금 (실질)</div><div class="kv">569.9억</div><div class="ks pos">전분기 대비 +22.6%</div></div>
-  <div class="kc g"><div class="kl">분기 순현금</div><div class="kv pos">+85.1억</div><div class="ks pos">전분기 대비 +70.9%</div></div>
-  <div class="kc"><div class="kl">총 자산 (분기말)</div><div class="kv">239.6억</div><div class="ks pos">전분기말 대비 +81.7%</div></div>
+  <div class="kc g"><div class="kl">분기 순현금흐름</div><div class="kv pos">+85.1억</div><div class="ks pos">전분기 대비 +70.9%</div></div>
+  <div class="kc"><div class="kl">기말 현금잔액 (원화+외화)</div><div class="kv">199.7억</div><div class="ks pos">기초 대비 +77.9%</div></div>
 </div>
 
 <div class="main">
 
   <div class="card">
-    <div class="ct">분기 내 월별 순현금 추이</div>
+    <div class="ct">1. Executive Summary</div>
+    <div class="exec">
+      이번 분기(4~6월) 전체 현금흐름은 총입금 <b>655.0억원</b>, 총출금 <b>569.9억원</b>으로 순현금흐름 <b>+85.1억원</b>을 기록했습니다.
+      기초(3/31) 현금성 자산(원화+외화) <b>112.3억원</b>에서 기말(6/30) <b>199.7억원</b>으로 늘었으며,
+      순현금흐름(+85.1억) 외 차액 약 2.3억원은 외화 환산 환율 변동 등에 따른 것으로 추정됩니다.
+      전분기 대비 총입금은 <b>+27.3%</b>, 총출금은 <b>+22.6%</b> 늘어 입금 증가폭이 더 커지며 순현금흐름이 전분기 대비 <b>+70.9%</b> 개선됐습니다.
+      <br><br>
+      법인별로는 <b>데이즈</b>가 그룹 내 최대 순현금(+44.2억)을 기록했고, <b>제노바</b>는 전분기(+4.4억) 대비 +15.4억 늘며 개선폭이 가장 컸습니다.
+      반면 <b>더스크랙</b>은 2분기 유일하게 순현금 적자(-2.5억)로 전환됐고, 같은 법인의 외화 잔액이 마이너스(-2,698만원)로 나타나 확인이 필요합니다.
+      <b>플라이코퍼레이션</b>은 6월부터 편입되어 1개월치만 반영되어 있어 3분기부터 정상적인 분기 비교가 가능합니다.
+      <br><br>
+      경영진 확인이 필요한 사항: <b>더스크랙 외화 잔액 이상치 확인</b>, <b>썸웨어코드 기말 현금잔액(3.3억, 그룹 내 최소) 대비 다음 분기 예정 지출 여력 점검</b>.
+      <div class="exec-note">※ 위 서술은 아래 2~7번 섹션의 수치를 요약한 것입니다.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">2. 현금 기준 주요 지표</div>
+    <div class="cardsub">"손익"이 아니라 통장에 실제로 오간 현금 기준입니다. 재고자산은 현금성 자산이 아니므로 별도로 표기합니다.</div>
+    <table>
+      <tr><th>지표</th><th>금액</th><th>비고</th></tr>
+      <tr><td>기초 현금잔액 (3/31, 원화+외화)</td><td>11,232,806,415</td><td></td></tr>
+      <tr><td>분기 총입금</td><td class="pos">65,496,915,498</td><td>전분기 대비 +27.3%</td></tr>
+      <tr><td>분기 총출금</td><td class="neg">56,990,408,911</td><td>전분기 대비 +22.6%</td></tr>
+      <tr><td>분기 순현금흐름</td><td class="pos">+8,506,506,587</td><td>전분기 대비 +70.9%</td></tr>
+      <tr><td>기말 현금잔액 (6/30, 원화+외화)</td><td>19,969,953,848</td><td>기초 대비 +77.9%</td></tr>
+      <tr><td>월평균 입금</td><td>21,832,305,166</td><td>분기 총입금 ÷ 3개월</td></tr>
+      <tr><td>월평균 출금</td><td>18,996,802,970</td><td>분기 총출금 ÷ 3개월</td></tr>
+      <tr><td style="color:#8090b0">재고자산 (참고, 현금성 아님)</td><td style="color:#8090b0">3,991,975,487</td><td style="color:#8090b0">기말 기준</td></tr>
+    </table>
+    <div class="note">※ 원화 통장 잔액 + 외화 통장(KRW 환산) 합계 기준. 재고자산은 별도 참고용으로만 표기(자금 유동성에는 포함되지 않음)</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">3. 월별 현금흐름 추이</div>
     <div class="trend">
       <div class="trend-col"><div class="trend-val">+24.3억</div><div class="trend-bar" style="height:62px"></div><div class="trend-lbl">4월</div></div>
       <div class="trend-col"><div class="trend-val">+28.7억</div><div class="trend-bar" style="height:72px"></div><div class="trend-lbl">5월</div></div>
       <div class="trend-col"><div class="trend-val">+32.1억</div><div class="trend-bar" style="height:80px;background:#6d54c9"></div><div class="trend-lbl">6월</div></div>
     </div>
-    <div class="note">※ 3개월 연속 순현금 개선. 4~6월 월간보고(2604·2605·2606) 그룹합계 기준</div>
+    <table id="monthlyTable">
+      <tr><th>월</th><th>총입금</th><th>총출금</th><th>순현금흐름</th><th>월말 현금잔액</th><th>비고</th></tr>
+    </table>
+    <div class="note">※ 월말 현금잔액은 원화+외화(KRW 환산) 합계. 3개월 연속 순현금 개선, 4~6월 월간보고(2604·2605·2606) 그룹합계 기준</div>
   </div>
 
-  <div class="section-heading">법인별 상세</div>
-  <div class="section-sub">법인명을 클릭하면 그 법인의 총자산 변동(원화·외화·재고자산)과 이번 분기 지출 구조가 펼쳐집니다.</div>
+  <div class="section-heading">4. 법인별 현금흐름 상세</div>
+  <div class="section-sub">법인명을 클릭하면 이번 분기 총입금·총출금·순현금흐름·기말 현금잔액과, 자산 구성(원화·외화·재고자산) 변동, 지출 구조가 펼쳐집니다.</div>
   <div id="companyList"></div>
-  <div class="note-plain">※ 총자산은 원화 통장 + 외화 통장(KRW 환산) + 재고자산 합계. 지출은 계좌간이체 및 외화매입(환전) 제외 실질 기준</div>
+  <div class="note-plain">※ 기말 현금잔액은 원화+외화(KRW 환산) 합계(재고자산 제외). 지출은 계좌간이체 및 외화매입(환전) 제외 실질 기준</div>
 
   <div class="card">
-    <div class="ct">법인별 분기 순현금 현황</div>
+    <div class="ct">법인별 분기 순현금 현황 (전분기 비교)</div>
     <div class="cardsub">법인별로 이번 분기(2Q)와 전분기(1Q) 순현금을 나란히 비교합니다. 증감 열의 막대는 전 법인 중 가장 큰 변화폭을 기준으로 한 상대적 크기이며, 초록은 흑자·빨강은 적자입니다.</div>
     <table id="netcashTable">
       <tr><th>법인</th><th>1분기 순현금</th><th>2분기 순현금</th><th>증감</th></tr>
@@ -120,12 +187,84 @@ tr:hover td{background:#edf1fc!important}
   </div>
 
   <div class="card">
-    <div class="ct">2분기 특이사항 종합</div>
+    <div class="ct">5. 출금 항목 분석</div>
+    <div class="cardsub">일계표에 기록된 계정 카테고리 기준입니다. 인건비·세금·수수료·임차료 등은 현재 "운영비" 안에 통합되어 있어 더 세부적으로 나누려면 일계표 원본 구분값 확인이 필요합니다(9번 참고).</div>
+    <table>
+      <tr><th>항목</th><th>분기 합산액</th><th>비중</th></tr>
+      <tr><td>광고선전비</td><td>36,344,507,853</td><td>63.8%</td></tr>
+      <tr><td>원재료</td><td>10,993,158,155</td><td>19.3%</td></tr>
+      <tr><td>운영비 <span style="color:#8090b0;font-weight:400">(급여·세금·수수료·임차료 등 포함)</span></td><td>6,289,734,758</td><td>11.0%</td></tr>
+      <tr><td>기타</td><td>1,620,839,075</td><td>2.8%</td></tr>
+      <tr><td>운반비</td><td>1,351,437,334</td><td>2.4%</td></tr>
+      <tr><td>용역비</td><td>333,006,104</td><td>0.6%</td></tr>
+      <tr><td>가구매/환불</td><td>57,725,632</td><td>0.1%</td></tr>
+      <tr class="total-row"><td>합계</td><td>56,990,408,911</td><td>100%</td></tr>
+    </table>
+    <div class="note">※ 계좌간이체 및 외화매입(환전) 제외 실질 지출 기준. 입금 항목(매출성/정산금/환급금 등) 성격별 분류는 현재 데이터로는 어려워 이번 보고서에서 제외 — 9번 참고</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">6. 주요 변동 및 특이사항</div>
     <div class="issues">
       <div>- 더스크랙: 2분기 유일하게 순현금 적자로 전환(-2.5억). 5월 -3.1억이 주요 원인이며, 전분기 대비 순현금이 2.7억 감소</div>
       <div>- 제노바: 순현금이 전분기 +4.4억 → 이번 분기 +19.8억로 15.4억 증가, 그룹 내 개선폭이 가장 컸던 법인</div>
       <div>- 데이즈: 4~6월 3개월 모두 흑자를 유지하며 이번 분기 순현금 +44.2억으로 그룹 내 최대</div>
       <div>- 플라이코퍼레이션: 6월 편입, 아직 1개월치만 반영되어 3분기부터 정상적인 분기 비교 가능</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">7. 리스크 및 관리 포인트</div>
+    <table>
+      <tr><th style="text-align:left">리스크</th><th style="text-align:left">영향도</th><th style="text-align:left">내용</th><th style="text-align:left">대응</th></tr>
+      <tr>
+        <td>더스크랙 외화 잔액 이상치</td>
+        <td><span class="risk-imp high">높음</span></td>
+        <td style="text-align:left;font-weight:400">2분기말 외화 잔액이 -26,975,125원으로 음수 — 정상적인 외화 통장이라면 나올 수 없는 값</td>
+        <td style="text-align:left;font-weight:400">계좌 확인 및 원인 파악(오기재·환전 처리 오류 가능성)</td>
+      </tr>
+      <tr>
+        <td>더스크랙 순현금 적자 전환</td>
+        <td><span class="risk-imp mid">중간</span></td>
+        <td style="text-align:left;font-weight:400">2분기 유일한 마이너스 법인(-2.5억), 5월 지출 집중이 주요 원인</td>
+        <td style="text-align:left;font-weight:400">6월 이후 지출 패턴 모니터링</td>
+      </tr>
+      <tr>
+        <td>썸웨어코드 기말 현금잔액 최소</td>
+        <td><span class="risk-imp mid">중간</span></td>
+        <td style="text-align:left;font-weight:400">기말 현금잔액 3.3억원으로 그룹 내 최소 수준</td>
+        <td style="text-align:left;font-weight:400">다음 분기 예정 지출 대비 잔액 확인</td>
+      </tr>
+      <tr>
+        <td>입출금 성격 분류 한계</td>
+        <td><span class="risk-imp low">낮음</span></td>
+        <td style="text-align:left;font-weight:400">통장 내역만으로 매출성/정산금/환급금 등 입금 성격 구분이 어려움</td>
+        <td style="text-align:left;font-weight:400">적요·거래처 기준 분류 체계 보완 검토(9번 참고)</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="ct">8. 다음 분기 자금 전망</div>
+    <div class="cardsub">아래는 아직 채워지지 않은 항목입니다 — 다음 분기 예정된 세금 납부·외주비 지급·대형 지출 등을 알려주시면 반영하겠습니다(기존 특이사항과 동일한 방식).</div>
+    <table>
+      <tr><th>예정월</th><th>예정 입금</th><th>예정 출금</th><th>주요 내용</th></tr>
+      <tr class="placeholder-row"><td>7월</td><td>—</td><td>—</td><td>내용 확인 필요</td></tr>
+      <tr class="placeholder-row"><td>8월</td><td>—</td><td>—</td><td>내용 확인 필요</td></tr>
+      <tr class="placeholder-row"><td>9월</td><td>—</td><td>—</td><td>내용 확인 필요</td></tr>
+    </table>
+    <div class="note">※ 확실히 아는 사항 하나: 플라이코퍼레이션은 3분기부터 정상적인 3개월 비교가 가능해집니다.</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">9. 향후 고도화 과제</div>
+    <div class="future-list">
+      <div>발생주의 손익계산서 (매출총이익·영업이익·당기순이익) — 회계법인 재무제표 연동 필요</div>
+      <div>예산 대비 실적 — 분기별 예산 수립 프로세스 신설 필요</div>
+      <div>미수금·미지급금 Aging — 채권채무 장부 신설 필요</div>
+      <div>세무 신고 일정 관리 — 기존 세무 툴(있는 경우) 연동 여부 확인 필요</div>
+      <div>입금 항목 성격별 분류 (매출성/정산금/환급금/법인간이동 등) — 일계표 구분값 정비 필요</div>
+      <div>채널·상품·PG사별 매출 분석 — PG사 정산자료 연동 필요</div>
     </div>
   </div>
 
@@ -149,6 +288,27 @@ function barBg(value, maxAbs, posColor, negColor){
   const color = value < 0 ? negColor : posColor;
   return `background:linear-gradient(to right, ${color} ${pct}%, transparent ${pct}%)`;
 }
+
+const MONTHLY = [
+  {label:'4월', in:22272499791, out:19847245550, net:2425254241, bal:13540441856, note:'분기 시작'},
+  {label:'5월', in:22144444753, out:19276572996, net:2867871757, bal:16905150099, note:''},
+  {label:'6월', in:21079970954, out:17866590365, net:3213380589, bal:19969953848, note:'분기 최대 순현금'},
+];
+(function renderMonthly(){
+  const tbl = document.getElementById('monthlyTable');
+  MONTHLY.forEach(m => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${m.label}</td><td class="pos">${m.in.toLocaleString()}</td><td>${m.out.toLocaleString()}</td><td class="pos">${fmtSigned(m.net)}</td><td>${m.bal.toLocaleString()}</td><td style="text-align:left;color:#8090b0;font-weight:400">${m.note}</td>`;
+    tbl.appendChild(tr);
+  });
+  const totalIn = MONTHLY.reduce((s,m)=>s+m.in,0);
+  const totalOut = MONTHLY.reduce((s,m)=>s+m.out,0);
+  const totalNet = MONTHLY.reduce((s,m)=>s+m.net,0);
+  const totalTr = document.createElement('tr');
+  totalTr.className = 'total-row';
+  totalTr.innerHTML = `<td>합계</td><td class="pos">${totalIn.toLocaleString()}</td><td>${totalOut.toLocaleString()}</td><td class="pos">${fmtSigned(totalNet)}</td><td>${MONTHLY[2].bal.toLocaleString()}</td><td></td>`;
+  tbl.appendChild(totalTr);
+})();
 
 const NETCASH = {
   가론지: {q1:1265931558, q2:212203644},
@@ -191,18 +351,17 @@ const NETCASH_TOTAL = {q1:4978174792, q2:8506506587, diff:3528331795};
   tbl.appendChild(totalTr);
 })();
 
-const ASSETS = {
-  가론지: {q1:1639257269, q2:1873100713},
-  더스크랙: {q1:973535959, q2:1767144381},
-  데이즈: {q1:2379689281, q2:6929681998},
-  드래프터: {q1:3041140314, q2:4809212224},
-  발전존중: {q1:1525114148, q2:1976252782},
-  썸웨어코드: {q1:490040023, q2:327353993},
-  제노바: {q1:512639503, q2:2474538498},
-  크롬스: {q1:2628877544, q2:3801693492},
-  플라이코퍼레이션: {q1:null, q2:2951254},
+const GROSS = {
+  가론지: {in:1430427924, out:1218224280},
+  더스크랙: {in:11950960001, out:12203726868},
+  데이즈: {in:12517123883, out:8092564300},
+  드래프터: {in:16384222372, out:15156893583},
+  발전존중: {in:5890643785, out:6029107028},
+  썸웨어코드: {in:2292241926, out:2265886722},
+  제노바: {in:4420623307, out:2442943722},
+  크롬스: {in:10600672247, out:9574013608},
+  플라이코퍼레이션: {in:10000054, out:7048800},
 };
-const ASSETS_TOTAL = {q1:13190294041, q2:23961929335, diff:10771635294};
 
 const ASSETS_DETAIL = {
   가론지: {원화:{q1:1625785069,q2:1837988713}, 외화:{q1:0,q2:0}, 재고자산:{q1:13472200,q2:35112000}},
@@ -215,6 +374,11 @@ const ASSETS_DETAIL = {
   크롬스: {원화:{q1:1254851496,q2:2273259603}, 외화:{q1:1150184000,q2:1171578584}, 재고자산:{q1:223842048,q2:356855305}},
   플라이코퍼레이션: {원화:{q1:null,q2:2951254}, 외화:{q1:null,q2:0}, 재고자산:{q1:null,q2:0}},
 };
+function cashBalance(c, period){
+  const d = ASSETS_DETAIL[c];
+  if (d.원화[period] === null) return null;
+  return d.원화[period] + d.외화[period];
+}
 
 const EXP = [
   {name:'광고선전비', total:36344507853, pct:'63.8%', co:{가론지:2287465,더스크랙:7487380722,데이즈:4433412000,드래프터:9623084342,발전존중:3801208242,썸웨어코드:1770815136,제노바:1810065304,크롬스:7416254642,플라이코퍼레이션:0}},
@@ -247,7 +411,8 @@ function donutCss(items){
   let openBody = null;
   COS.forEach(c => {
     const nc = NETCASH[c];
-    const as = ASSETS[c];
+    const g = GROSS[c];
+    const cashQ2 = cashBalance(c, 'q2');
 
     const card = document.createElement('div');
     card.className = 'co-card';
@@ -256,26 +421,32 @@ function donutCss(items){
     head.className = 'co-head';
     head.innerHTML = `<span class="chev">▸</span><span class="co-name">${c}</span>` +
       `<span class="co-chip ${signClass(nc.q2)}">2Q 순현금 ${fmtSigned(nc.q2)}</span>` +
-      `<span class="co-chip">총자산 ${(as.q2/100000000).toFixed(1)}억</span>`;
+      `<span class="co-chip">기말현금 ${(cashQ2/100000000).toFixed(1)}억</span>`;
 
     const body = document.createElement('div');
     body.className = 'co-body';
     body.style.display = 'none';
 
-    // 총자산 변동 트리
+    // 현금흐름 요약 (신규)
+    const statsBlock = `<div class="co-stats">
+      <div class="co-stat"><div class="co-stat-l">총입금</div><div class="co-stat-v pos">${g.in.toLocaleString()}</div></div>
+      <div class="co-stat"><div class="co-stat-l">총출금</div><div class="co-stat-v">${g.out.toLocaleString()}</div></div>
+      <div class="co-stat"><div class="co-stat-l">순현금흐름</div><div class="co-stat-v ${signClass(nc.q2)}">${fmtSigned(nc.q2)}</div></div>
+      <div class="co-stat"><div class="co-stat-l">기말 현금잔액</div><div class="co-stat-v">${cashQ2.toLocaleString()}</div></div>
+    </div>`;
+
+    // 자산 구성 변동 트리
     const detail = ASSETS_DETAIL[c];
     const cats = ['원화', '외화', '재고자산'];
     const subDiffs = cats.map(k => detail[k].q1 !== null ? detail[k].q2 - detail[k].q1 : null);
-    const assetTotalDiff = as.q1 !== null ? as.q2 - as.q1 : null;
+    const cashQ1 = cashBalance(c, 'q1');
+    const assetTotalDiff = cashQ1 !== null ? cashQ2 - cashQ1 : null;
     const assetRows = cats.map((k, j) => {
       const dDiff = subDiffs[j];
       const diffTxt = dDiff !== null ? fmtSigned(dDiff) : '신설';
       const cls = dDiff !== null ? signClass(dDiff) : '';
       return `<div class="tree-row"><span class="tree-dot" style="background:${ASSET_DOT[k]}"></span>${k}<span class="amt ${cls}">${diffTxt}</span></div>`;
     }).join('');
-    const assetHead = assetTotalDiff !== null
-      ? `<div class="tree-head ${signClass(assetTotalDiff)}"><span class="tree-chev">▾</span>총자산 변동<span class="amt">${fmtSigned(assetTotalDiff)}</span></div>`
-      : `<div class="tree-head pos"><span class="tree-chev">▾</span>총자산 변동<span class="amt">신규 편입</span></div>`;
 
     // 지출 구조 도넛
     const expItems = EXP.map(cat => ({name: cat.name, amt: cat.co[c] || 0})).filter(item => item.amt > 0);
@@ -295,7 +466,8 @@ function donutCss(items){
       donutBlock = `<div class="co-row">이번 분기 지출 내역 없음</div>`;
     }
 
-    body.innerHTML = `<div class="co-sub-title">총자산 변동 (1분기말 → 2분기말)</div>${assetHead}${assetRows}` +
+    body.innerHTML = `<div class="co-sub-title">이번 분기 현금흐름</div>${statsBlock}` +
+      `<div class="co-sub-title">자산 구성 변동 (1분기말 → 2분기말)</div>${assetRows}` +
       `<div class="co-sub-title">이번 분기 지출 구조</div>${expHead}${donutBlock}`;
 
     head.addEventListener('click', () => {
