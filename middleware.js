@@ -46,11 +46,11 @@ button:hover{background:#1e2841}
 <div class="wrap">
 <div class="card">
 <h2>${SITE_TITLE}</h2>
-<p class="desc">사내 전용 대시보드입니다.<br>접속 비밀번호를 입력하세요.</p>
+<p class="desc">본 페이지는 내부 관계자 전용입니다.<br>안전한 열람을 위해 비밀번호를 입력해주세요.</p>
 ${showError ? '<p class="err">비밀번호가 올바르지 않습니다.</p>' : ''}
 <form method="POST">
 <input type="password" name="password" placeholder="비밀번호" autofocus required>
-<button type="submit">입장</button>
+<button type="submit">확인</button>
 </form>
 </div>
 </div>
