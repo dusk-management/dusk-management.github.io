@@ -11,9 +11,7 @@ body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#ee
 .hdr-r{display:flex;gap:8px;align-items:center;flex-shrink:0}
 .pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit;text-decoration:none;display:inline-block}
 .pbtn:hover{background:rgba(255,255,255,.18)}
-.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:0 36px}
-.kpi-section{padding-top:20px}
-.kpi-title{font-size:15px;font-weight:600;color:#1e2841;padding:0 36px;margin:0 0 10px}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px 20px}
 .kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
 .kc.g{border-color:#a8dcbc;background:#f5fcf8}.kc.r{border-color:#e0b4b4;background:#fff7f7}
 .kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}
@@ -71,63 +69,63 @@ tr:hover td{background:#edf1fc!important}
     <button class="pbtn" onclick="window.print()">인쇄 / PDF</button>
   </div>
 </div>
-<div class="kpi-section">
-<div class="kpi-title">원화 기준</div>
-<div class="kpi">
-  <div class="kc">
-    <div class="kl">전월 원화 잔액 (월말 기준)</div>
-    <div class="kv">154.3억</div>
-    <div class="ks">원화만 | 15,431,557,238원</div>
-  </div>
-  <div class="kc g">
-    <div class="kl">월간 총 입금 (실질)</div>
-    <div class="kv pos">215.1억</div>
-    <div class="ks">계좌간이체 제외 | 21,511,394,422원</div>
-    <div class="kv-mom neg">▼ 전월대비 -22.7억 (-9.6%)</div>
-  </div>
-  <div class="kc r">
-    <div class="kl">월간 총 출금 (실질)</div>
-    <div class="kv neg">182.2억</div>
-    <div class="ks">계좌간이체 제외 | 18,218,040,232원</div>
-    <div class="kv-mom pos">▼ 전월대비 -17.2억 (-8.6%)</div>
-  </div>
-  <div class="kc">
-    <div class="kl">원화 잔액 (월말 기준)</div>
-    <div class="kv">141.2억</div>
-    <div class="ks">원화만 | 14,122,037,272원</div>
-    <div class="kv-mom neg">▼ 전월대비 -13.1억 (-8.5%)</div>
-  </div>
-</div>
-</div>
-<div class="kpi-section">
-<div class="kpi-title">그룹 총자산 기준</div>
-<div class="kpi">
-  <div class="kc">
-    <div class="kl">전월 총 자산 (월말 기준)</div>
-    <div class="kv">283.8억</div>
-    <div class="ks">원화+외화KRW+재고자산 | 28,377,653,570원</div>
-  </div>
-  <div class="kc g">
-    <div class="kl">월간 총 입금 (실질)</div>
-    <div class="kv pos">215.1억</div>
-    <div class="ks">계좌간이체 제외 | 21,511,394,422원</div>
-    <div class="kv-mom neg">▼ 전월대비 -22.7억 (-9.6%)</div>
-  </div>
-  <div class="kc r">
-    <div class="kl">월간 총 출금 (실질)</div>
-    <div class="kv neg">182.2억</div>
-    <div class="ks">계좌간이체 제외 | 18,218,040,232원</div>
-    <div class="kv-mom pos">▼ 전월대비 -17.2억 (-8.6%)</div>
-  </div>
-  <div class="kc">
-    <div class="kl">총 자산 (월말 기준)</div>
-    <div class="kv">275.4억</div>
-    <div class="ks">원화+외화KRW+재고자산 | 27,544,591,334원</div>
-    <div class="kv-mom neg">▼ 전월대비 -8.3억 (-2.9%)</div>
-  </div>
-</div>
-</div>
 <div class="main">
+  <div class="card">
+    <div class="ct">원화 기준</div>
+    <div class="kpi">
+      <div class="kc">
+        <div class="kl">전월 원화 잔액 (월말 기준)</div>
+        <div class="kv">154.3억</div>
+        <div class="ks">원화만 | 15,431,557,238원</div>
+      </div>
+      <div class="kc g">
+        <div class="kl">월간 총 입금 (실질)</div>
+        <div class="kv pos">215.1억</div>
+        <div class="ks">계좌간이체 제외 | 21,511,394,422원</div>
+        <div class="kv-mom neg">▼ 전월대비 -22.7억 (-9.6%)</div>
+      </div>
+      <div class="kc r">
+        <div class="kl">월간 총 출금 (실질)</div>
+        <div class="kv neg">182.2억</div>
+        <div class="ks">계좌간이체 제외 | 18,218,040,232원</div>
+        <div class="kv-mom pos">▼ 전월대비 -17.2억 (-8.6%)</div>
+      </div>
+      <div class="kc">
+        <div class="kl">원화 잔액 (월말 기준)</div>
+        <div class="kv">141.2억</div>
+        <div class="ks">원화만 | 14,122,037,272원</div>
+        <div class="kv-mom neg">▼ 전월대비 -13.1억 (-8.5%)</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">그룹 총자산 기준</div>
+    <div class="kpi">
+      <div class="kc">
+        <div class="kl">전월 총 자산 (월말 기준)</div>
+        <div class="kv">283.8억</div>
+        <div class="ks">원화+외화KRW+재고자산 | 28,377,653,570원</div>
+      </div>
+      <div class="kc g">
+        <div class="kl">월간 총 입금 (실질)</div>
+        <div class="kv pos">215.1억</div>
+        <div class="ks">계좌간이체 제외 | 21,511,394,422원</div>
+        <div class="kv-mom neg">▼ 전월대비 -22.7억 (-9.6%)</div>
+      </div>
+      <div class="kc r">
+        <div class="kl">월간 총 출금 (실질)</div>
+        <div class="kv neg">182.2억</div>
+        <div class="ks">계좌간이체 제외 | 18,218,040,232원</div>
+        <div class="kv-mom pos">▼ 전월대비 -17.2억 (-8.6%)</div>
+      </div>
+      <div class="kc">
+        <div class="kl">총 자산 (월말 기준)</div>
+        <div class="kv">275.4억</div>
+        <div class="ks">원화+외화KRW+재고자산 | 27,544,591,334원</div>
+        <div class="kv-mom neg">▼ 전월대비 -8.3억 (-2.9%)</div>
+      </div>
+    </div>
+  </div>
   <div class="card">
     <div class="ct">이번 달 총평</div>
     <div class="summary-body">8월 순현금흐름은 <b>+32.9억</b>으로 전월보다 <b class="neg">5.6억 줄었지만</b>, 대부분 <b>드래프터의 일회성 지출</b>(세금·상표권·외화매입)이 겹친 영향입니다. 원재료 매입과 광고비가 늘어난 법인들이 있어, 아래 특이사항에서 자세히 확인하실 수 있습니다.</div>
