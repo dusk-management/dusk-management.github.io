@@ -32,6 +32,9 @@ tr:last-child td{border-bottom:none}
 tr:nth-child(even) td{background:#fafbfe}
 tr:hover td{background:#edf1fc!important}
 .total-row td{font-weight:700;background:#f0f4fb!important;border-top:2px solid #d0d8ee}
+.tr2{text-align:right;font-variant-numeric:tabular-nums;position:relative}
+.bar{position:absolute;inset:0 auto 0 0;border-radius:0 2px 2px 0}
+.rv{position:relative;z-index:1}
 .expense-th th{background:#1e3a5f;color:#c8d8f0;border-bottom:1px solid #2a4a70}
 .expense-th th:first-child{color:#e8f0fc}
 .gcol{background:#dce8f7!important;color:#2563a8!important;font-weight:700!important}
@@ -242,6 +245,24 @@ tr:hover td{background:#edf1fc!important}
       </tbody>
     </table>
     <div class="note">※ 계좌간이체 및 외화매입(환전) 제외 실질 지출 기준. 운영비에는 급여·세금·지급수수료·복리후생비·임차료 등 포함. 더스크랙: 수입통관비용(147861494); 데이즈: 수입통관비용(157954710), 세금(320587750); 드래프터: 수입통관비용(86748559)은(는) 기타로 합산.</div>
+  </div>
+  <div class="card">
+    <div class="ct">지출 항목 전월대비</div>
+    <table>
+      <thead>
+        <tr><th>항목</th><th>7월</th><th>8월</th><th>전월대비</th></tr>
+      </thead>
+      <tbody>
+<tr><td class='tn'>광고선전비</td><td class='tr2'>11,438,648,560</td><td class='tr2'>11,501,386,582</td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>+62,738,022</span></td></tr>
+<tr><td class='tn'>원재료</td><td class='tr2'>2,837,456,841</td><td class='tr2'>3,355,912,332</td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:24%;background:#be1c1c30'></div><span class='rv'>+518,455,491</span></td></tr>
+<tr><td class='tn'>운영비</td><td class='tr2'>3,619,203,965</td><td class='tr2'>1,934,724,966</td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:80%;background:#12874430'></div><span class='rv'>-1,684,478,999</span></td></tr>
+<tr><td class='tn'>기타</td><td class='tr2'>1,415,893,890</td><td class='tr2'>719,602,513</td><td class='tr2 pos' style='position:relative'><div class='bar' style='width:33%;background:#12874430'></div><span class='rv'>-696,291,377</span></td></tr>
+<tr><td class='tn'>운반비</td><td class='tr2'>479,189,551</td><td class='tr2'>521,725,791</td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>+42,536,240</span></td></tr>
+<tr><td class='tn'>용역비</td><td class='tr2'>123,306,352</td><td class='tr2'>149,444,858</td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>+26,138,506</span></td></tr>
+<tr><td class='tn'>가구매/환불</td><td class='tr2'>23,346,542</td><td class='tr2'>35,243,190</td><td class='tr2 neg' style='position:relative'><div class='bar' style='width:3%;background:#be1c1c30'></div><span class='rv'>+11,896,648</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note">※ 지출 증가(빨강)·감소(초록) 기준. 원재료·운반비·용역비 등 증가 항목과 운영비·기타 감소 항목이 함께 나타남.</div>
   </div>
 </div>
 <div class="foot">DUSK GROUP &nbsp;·&nbsp; 월간재무보고 &nbsp;·&nbsp; 생성: 2026-09-01</div>
