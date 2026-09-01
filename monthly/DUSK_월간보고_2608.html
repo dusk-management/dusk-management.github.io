@@ -42,6 +42,9 @@ tr:hover td{background:#edf1fc!important}
 .note{font-size:11px;color:#8090b0;padding:8px 20px 10px;background:#f9fafd;border-top:1px solid #f0f3fa}
 .foot{text-align:center;font-size:11px;color:#a8b4c8;padding:18px 36px;border-top:1px solid #d8e0ee;background:#fff;margin-top:8px}
 .two-col{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px}.two-col .card{flex:1;min-width:0;margin-bottom:0}
+.ct-toggle{cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center}
+.ct-toggle .ct-arrow{font-size:10px;transition:transform .15s}
+.ct-toggle.open .ct-arrow{transform:rotate(90deg)}
 .card.nc{border-color:#e0d08a;background:#fffcf2}
 .ni{padding:11px 20px;border-bottom:1px solid #ede8bc;font-size:12.5px;color:#5c4818}
 .ni:last-child{border-bottom:none}
@@ -71,7 +74,8 @@ tr:hover td{background:#edf1fc!important}
 </div>
 <div class="main">
   <div class="card">
-    <div class="ct">원화 기준</div>
+    <div class="ct ct-toggle" onclick="toggleNi(this)">원화 기준<span class="ct-arrow">&#9656;</span></div>
+    <div style="display:none">
     <div class="kpi">
       <div class="kc">
         <div class="kl">전월 원화 잔액 (월말 기준)</div>
@@ -96,6 +100,46 @@ tr:hover td{background:#edf1fc!important}
         <div class="ks">원화만 | 14,122,037,272원</div>
         <div class="kv-mom neg">▼ 전월대비 -13.1억 (-8.5%)</div>
       </div>
+    </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct ct-toggle" onclick="toggleNi(this)">외화 기준 (KRW 환산)<span class="ct-arrow">&#9656;</span></div>
+    <div style="display:none">
+    <div class="note" style="border-top:none;border-bottom:1px solid #f0f3fa">※ 실제 외화 원금 — 전월: $4,744,936.23 · ¥107,500,000 &nbsp;→&nbsp; 이번달: $5,544,936.23 · ¥107,500,000</div>
+    <div class="kpi" style="grid-template-columns:repeat(2,1fr)">
+      <div class="kc">
+        <div class="kl">전월 외화 잔액 (월말 기준)</div>
+        <div class="kv">80.0억</div>
+        <div class="ks">KRW 환산 | 7,997,305,570원</div>
+      </div>
+      <div class="kc">
+        <div class="kl">외화 잔액 (월말 기준)</div>
+        <div class="kv">87.4억</div>
+        <div class="ks">KRW 환산 | 8,744,996,427원</div>
+        <div class="kv-mom neg">▲ 전월대비 +7.5억 (+9.3%)</div>
+      </div>
+    </div>
+    <div class="note">※ 외화 증가는 원재료 수입결제용 환전(8월 11.0억)이 주요인 — 아래 특이사항의 "전월대비 매입/광고비 급증" 항목 참고. 증가가 곧 이익을 뜻하지 않음(원화가 그만큼 빠져나간 결과).</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct ct-toggle" onclick="toggleNi(this)">재고자산 기준<span class="ct-arrow">&#9656;</span></div>
+    <div style="display:none">
+    <div class="kpi" style="grid-template-columns:repeat(2,1fr)">
+      <div class="kc">
+        <div class="kl">전월 재고자산 (월말 기준)</div>
+        <div class="kv">49.5억</div>
+        <div class="ks">4,948,790,761원</div>
+      </div>
+      <div class="kc">
+        <div class="kl">재고자산 (월말 기준)</div>
+        <div class="kv">46.8억</div>
+        <div class="ks">4,677,557,635원</div>
+        <div class="kv-mom pos">▼ 전월대비 -2.7억 (-5.5%)</div>
+      </div>
+    </div>
+    <div class="note">※ 재고자산 감소는 판매 소진 등 정상적인 재고 흐름 범위 — 법인별 상세는 위 "총 자산 현황" 표 참고.</div>
     </div>
   </div>
   <div class="card">
@@ -125,40 +169,6 @@ tr:hover td{background:#edf1fc!important}
         <div class="kv-mom neg">▼ 전월대비 -8.3억 (-2.9%)</div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="ct">외화 기준 (KRW 환산)</div>
-    <div class="kpi" style="grid-template-columns:repeat(2,1fr)">
-      <div class="kc">
-        <div class="kl">전월 외화 잔액 (월말 기준)</div>
-        <div class="kv">80.0억</div>
-        <div class="ks">KRW 환산 | 7,997,305,570원</div>
-      </div>
-      <div class="kc">
-        <div class="kl">외화 잔액 (월말 기준)</div>
-        <div class="kv">87.4억</div>
-        <div class="ks">KRW 환산 | 8,744,996,427원</div>
-        <div class="kv-mom neg">▲ 전월대비 +7.5억 (+9.3%)</div>
-      </div>
-    </div>
-    <div class="note">※ 외화 증가는 원재료 수입결제용 환전(8월 11.0억)이 주요인 — 아래 특이사항의 "전월대비 매입/광고비 급증" 항목 참고. 증가가 곧 이익을 뜻하지 않음(원화가 그만큼 빠져나간 결과).</div>
-  </div>
-  <div class="card">
-    <div class="ct">재고자산 기준</div>
-    <div class="kpi" style="grid-template-columns:repeat(2,1fr)">
-      <div class="kc">
-        <div class="kl">전월 재고자산 (월말 기준)</div>
-        <div class="kv">49.5억</div>
-        <div class="ks">4,948,790,761원</div>
-      </div>
-      <div class="kc">
-        <div class="kl">재고자산 (월말 기준)</div>
-        <div class="kv">46.8억</div>
-        <div class="ks">4,677,557,635원</div>
-        <div class="kv-mom pos">▼ 전월대비 -2.7억 (-5.5%)</div>
-      </div>
-    </div>
-    <div class="note">※ 재고자산 감소는 판매 소진 등 정상적인 재고 흐름 범위 — 법인별 상세는 위 "총 자산 현황" 표 참고.</div>
   </div>
   <div class="card">
     <div class="ct">이번 달 총평</div>
