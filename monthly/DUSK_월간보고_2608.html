@@ -46,6 +46,8 @@ tr:hover td{background:#edf1fc!important}
 .ni-foot{margin-top:4px;color:#8090b0;font-size:11px}
 .ni-toggle{cursor:pointer;user-select:none}
 .ni-arrow{margin-left:auto;font-size:10px;color:#8a6a10;transition:transform .15s}
+.ni-group-label{font-size:10px;font-weight:700;color:#8a9bb8;letter-spacing:.6px;text-transform:uppercase;padding:10px 20px 2px;background:#f7f5ec}
+.ni-nl-co{background:#3a78d2}
 .ni-hd.open .ni-arrow{transform:rotate(90deg)}
 </style>
 </head>
@@ -85,6 +87,7 @@ tr:hover td{background:#edf1fc!important}
 </div>
 <div class="main">
   <div class="card nc"><div class="ct">이번 달 특이사항</div>
+    <div class='ni-group-label'>공통 이슈</div>
     <div class='ni'>
       <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">법인세 중간예납</b><span class='ni-arrow'>&#9656;</span></div>
       <div class='ni-body' style="display:none">
@@ -115,30 +118,6 @@ tr:hover td{background:#edf1fc!important}
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">드래프터</b><span class='ni-arrow'>&#9656;</span></div>
-      <div class='ni-body' style="display:none">
-        <div class='ni-sub'>기타 사항</div>
-        <div>- 쿠팡 고객확인제도 이행 인증 중으로, 정산 보류 되어있습니다. 8/31 월요일 자료 제출하였습니다.</div>
-        <div>- 정산보류(일반, AML) 합계: 704,959,912원 (8월 보류처리 기준 7건)</div>
-        <div>- 로켓그로스 가상계좌(별도 계좌): 568,515,536원</div>
-      </div>
-    </div>
-    <div class='ni'>
-      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">더스크랙</b><span class='ni-arrow'>&#9656;</span></div>
-      <div class='ni-body' style="display:none">
-        <div class='ni-sub'>지출 내역</div>
-        <div>- 중국 원재료 매입 건 다수: Yantai Yeqi Trading Co., Ltd / NINGBO POWERFUL ELECTRICAL APPLIANC 등</div>
-      </div>
-    </div>
-    <div class='ni'>
-      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">크롬스</b><span class='ni-arrow'>&#9656;</span></div>
-      <div class='ni-body' style="display:none">
-        <div class='ni-sub'>지출 내역</div>
-        <div>- 마케팅용도 계좌간이체: 500,000,000원 × 3회(8/10·8/11·8/12, 총 1,500,000,000원)</div>
-        <div class='ni-foot'>※ 8월 광고 집행 규모가 뚜렷하게 확대됨</div>
-      </div>
-    </div>
-    <div class='ni'>
       <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">광고비 집행 확대</b><span class='ni-arrow'>&#9656;</span></div>
       <div class='ni-body' style="display:none">
         <div class='ni-sub'>법인별 내역</div>
@@ -148,8 +127,33 @@ tr:hover td{background:#edf1fc!important}
         <div>- 발전존중: 틱톡/네이버 광고비 200,000,000원(8/10·8/20·8/24 합산)</div>
       </div>
     </div>
+    <div class='ni-group-label'>법인별 특이사항</div>
     <div class='ni'>
-      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">플라이코퍼레이션</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl ni-nl-co'></span><b style="color:#1e2841">더스크랙</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
+        <div class='ni-sub'>지출 내역</div>
+        <div>- 중국 원재료 매입 건 다수: Yantai Yeqi Trading Co., Ltd / NINGBO POWERFUL ELECTRICAL APPLIANC 등</div>
+      </div>
+    </div>
+    <div class='ni'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl ni-nl-co'></span><b style="color:#1e2841">드래프터</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
+        <div class='ni-sub'>기타 사항</div>
+        <div>- 쿠팡 고객확인제도 이행 인증 중으로, 정산 보류 되어있습니다. 8/31 월요일 자료 제출하였습니다.</div>
+        <div>- 정산보류(일반, AML) 합계: 704,959,912원 (8월 보류처리 기준 7건)</div>
+        <div>- 로켓그로스 가상계좌(별도 계좌): 568,515,536원</div>
+      </div>
+    </div>
+    <div class='ni'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl ni-nl-co'></span><b style="color:#1e2841">크롬스</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
+        <div class='ni-sub'>지출 내역</div>
+        <div>- 마케팅용도 계좌간이체: 500,000,000원 × 3회(8/10·8/11·8/12, 총 1,500,000,000원)</div>
+        <div class='ni-foot'>※ 8월 광고 집행 규모가 뚜렷하게 확대됨</div>
+      </div>
+    </div>
+    <div class='ni'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl ni-nl-co'></span><b style="color:#1e2841">플라이코퍼레이션</b><span class='ni-arrow'>&#9656;</span></div>
       <div class='ni-body' style="display:none">
         <div class='ni-sub'>기타 사항</div>
         <div>- 8월이 사실상 첫 정상 영업월. 상표 등록·사무실 임차료·관리비 등 소규모 지출만 발생</div>
