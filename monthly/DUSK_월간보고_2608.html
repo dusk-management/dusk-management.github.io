@@ -44,6 +44,9 @@ tr:hover td{background:#edf1fc!important}
 .ni-body{margin:6px 0 0 16px;font-size:11.5px;color:#1e2841;line-height:1.7}
 .ni-sub{color:#8a6a10;font-weight:600}
 .ni-foot{margin-top:4px;color:#8090b0;font-size:11px}
+.ni-toggle{cursor:pointer;user-select:none}
+.ni-arrow{margin-left:auto;font-size:10px;color:#8a6a10;transition:transform .15s}
+.ni-hd.open .ni-arrow{transform:rotate(90deg)}
 </style>
 </head>
 <body>
@@ -83,8 +86,8 @@ tr:hover td{background:#edf1fc!important}
 <div class="main">
   <div class="card nc"><div class="ct">이번 달 특이사항</div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">법인세 중간예납</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">법인세 중간예납</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>법인별 납부 내역 (8/28)</div>
         <div>- 데이즈: 312,193,810원 (역삼세무서)</div>
         <div>- 드래프터: 351,934,010원 (삼성세무서)</div>
@@ -95,8 +98,8 @@ tr:hover td{background:#edf1fc!important}
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">증권계좌 이체</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">증권계좌 이체</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>법인별 이체 내역</div>
         <div>- 데이즈: 1,000,000,000원 (8/6·8/7, 한국투자증권 주식계좌간이체)</div>
         <div>- 드래프터: 1,000,000,000원 (8/6, 한국투자증권 주식계좌간이체)</div>
@@ -104,16 +107,16 @@ tr:hover td{background:#edf1fc!important}
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">외화 매입 (원재료 수입 결제)</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">외화 매입 (원재료 수입 결제)</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>법인별 매입 내역</div>
         <div>- 데이즈·드래프터: 8월 중 각 2차례(월초 + 8/27) 진행, 8/27 매입금액 데이즈 USD 250,000(KRW 345,300,000)·드래프터 USD 550,000(KRW 759,660,000), 환율 1,381.20</div>
         <div class='ni-foot'>※ 원재료 해외 매입 결제 목적 환전.</div>
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">드래프터</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">드래프터</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>지출 내역</div>
         <div>- 오스템파마(주) 오랄케어사업부 오입금 정정(상계처리) : 120,000,000원 (8/24)</div>
         <div class='ni-foot'>※ 일회성 오입금 정정이니 실제 손실 아님</div>
@@ -123,16 +126,16 @@ tr:hover td{background:#edf1fc!important}
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">더스크랙</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">더스크랙</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>지출 내역</div>
         <div>- 중국 원재료 매입 건 다수: Yantai Yeqi Trading Co., Ltd / NINGBO POWERFUL ELECTRICAL APPLIANC 등</div>
         <div>- 메타 광고비 충전금: 200,000,000원(8/13), 150,000,000원(8/20)</div>
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">크롬스</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">크롬스</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>지출 내역</div>
         <div>- 마케팅용도 계좌간이체: 500,000,000원 × 3회(8/10·8/11·8/12, 총 1,500,000,000원)</div>
         <div>- 광고비 충전: 500,000,000원(8/10·8/20 합산)</div>
@@ -140,16 +143,16 @@ tr:hover td{background:#edf1fc!important}
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">광고비 집행 확대</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">광고비 집행 확대</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>법인별 내역</div>
         <div>- 제노바: 틱톡/메타 충전금 400,000,000원(8/13·8/20·8/24 합산)</div>
         <div>- 발전존중: 틱톡/네이버 광고비 200,000,000원(8/10·8/20·8/24 합산)</div>
       </div>
     </div>
     <div class='ni'>
-      <div class='ni-hd'><span class='nl'></span><b style="color:#1e2841">플라이코퍼레이션</b></div>
-      <div class='ni-body'>
+      <div class='ni-hd ni-toggle' onclick="toggleNi(this)"><span class='nl'></span><b style="color:#1e2841">플라이코퍼레이션</b><span class='ni-arrow'>&#9656;</span></div>
+      <div class='ni-body' style="display:none">
         <div class='ni-sub'>기타 사항</div>
         <div>- 8월이 사실상 첫 정상 영업월. 상표 등록·사무실 임차료·관리비 등 소규모 지출만 발생</div>
         <div class='ni-foot'>※ 이번 달부터 월간보고에 최초 정식 편입</div>
@@ -224,5 +227,13 @@ tr:hover td{background:#edf1fc!important}
   </div>
 </div>
 <div class="foot">DUSK GROUP &nbsp;·&nbsp; 월간재무보고 &nbsp;·&nbsp; 생성: 2026-09-01</div>
+<script>
+function toggleNi(hd){
+  var body = hd.nextElementSibling;
+  var open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  hd.classList.toggle('open', !open);
+}
+</script>
 </body>
 </html>
