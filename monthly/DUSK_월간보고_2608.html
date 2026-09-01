@@ -12,7 +12,9 @@ body{font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#ee
 .pbtn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;padding:7px 16px;border-radius:7px;cursor:pointer;font-size:12px;font-family:inherit;text-decoration:none;display:inline-block}
 .pbtn:hover{background:rgba(255,255,255,.18)}
 .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:16px 20px}
-.kc{background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
+.kc{position:relative;background:#fff;border:1px solid #d8e0ee;border-radius:10px;padding:16px 20px;box-shadow:0 1px 3px rgba(30,40,65,.05)}
+.fx-badge{position:absolute;top:16px;right:16px;display:flex;flex-direction:column;gap:3px}
+.fx-badge span{background:#eef2fa;color:#3a5080;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;white-space:nowrap;text-align:right}
 .kc.g{border-color:#a8dcbc;background:#f5fcf8}.kc.r{border-color:#e0b4b4;background:#fff7f7}
 .kl{font-size:11px;color:#8090b0;margin-bottom:8px}.kv{font-size:24px;font-weight:600;line-height:1.1;color:#1e2841}
 .pos{color:#12874a}.neg{color:#be1c1c}.pos-val{color:#12874a;font-weight:600}.neg-val{color:#be1c1c;font-weight:600}
@@ -106,14 +108,15 @@ tr:hover td{background:#edf1fc!important}
   <div class="card">
     <div class="ct ct-toggle" onclick="toggleNi(this)">외화 기준 (KRW 환산)<span class="ct-arrow">&#9656;</span></div>
     <div style="display:none">
-    <div class="note" style="border-top:none;border-bottom:1px solid #f0f3fa">※ 실제 외화 원금 — 전월: $4,744,936.23 · ¥107,500,000 &nbsp;→&nbsp; 이번달: $5,544,936.23 · ¥107,500,000</div>
     <div class="kpi" style="grid-template-columns:repeat(2,1fr)">
       <div class="kc">
+        <div class="fx-badge"><span>$4,744,936.23</span><span>¥107,500,000</span></div>
         <div class="kl">전월 외화 잔액 (월말 기준)</div>
         <div class="kv">80.0억</div>
         <div class="ks">KRW 환산 | 7,997,305,570원</div>
       </div>
       <div class="kc">
+        <div class="fx-badge"><span>$5,544,936.23</span><span>¥107,500,000</span></div>
         <div class="kl">외화 잔액 (월말 기준)</div>
         <div class="kv">87.4억</div>
         <div class="ks">KRW 환산 | 8,744,996,427원</div>
