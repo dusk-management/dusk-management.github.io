@@ -129,16 +129,29 @@ tr:hover td{background:#edf1fc!important}
   <div class="card">
     <div class="ct ct-toggle" onclick="toggleNi(this)">재고자산 기준<span class="ct-arrow">&#9656;</span></div>
     <div style="display:none">
-    <div class="note">※ 9월말 재고자산은 아직 일계표에 반영되지 않아 이번 보고에서 제외. 아래 총자산은 원화+외화 기준이며, 전월(8월)도 같은 기준으로 비교.</div>
+    <div class="kpi" style="grid-template-columns:repeat(2,1fr)">
+      <div class="kc">
+        <div class="kl">전월 재고자산 (월말 기준)</div>
+        <div class="kv">46.8억</div>
+        <div class="ks">4,677,557,635원</div>
+      </div>
+      <div class="kc">
+        <div class="kl">재고자산 (월말 기준)</div>
+        <div class="kv">42.2억</div>
+        <div class="ks">4,223,315,856원</div>
+        <div class="kv-mom pos">▼ 전월대비 -4.5억 (-9.7%)</div>
+      </div>
+    </div>
+    <div class="note">※ 재고자산은 일계표 기타 항목 기준 — 법인별 상세는 아래 "총 자산 현황" 표 참고.</div>
     </div>
   </div>
   <div class="card">
-    <div class="ct">그룹 총자산 기준 (원화+외화)</div>
+    <div class="ct">그룹 총자산 기준</div>
     <div class="kpi">
       <div class="kc">
         <div class="kl">전월 총 자산 (월말 기준)</div>
-        <div class="kv">228.7억</div>
-        <div class="ks">원화+외화KRW | 22,867,033,699원</div>
+        <div class="kv">275.4억</div>
+        <div class="ks">원화+외화KRW+재고자산 | 27,544,591,334원</div>
       </div>
       <div class="kc g">
         <div class="kl">월간 총 입금 (실질)</div>
@@ -154,9 +167,9 @@ tr:hover td{background:#edf1fc!important}
       </div>
       <div class="kc">
         <div class="kl">총 자산 (월말 기준)</div>
-        <div class="kv">233.8억</div>
-        <div class="ks">원화+외화KRW | 23,381,693,331원</div>
-        <div class="kv-mom pos">▲ 전월대비 +5.1억 (+2.3%)</div>
+        <div class="kv">276.1억</div>
+        <div class="ks">원화+외화KRW+재고자산 | 27,605,009,187원</div>
+        <div class="kv-mom pos">▲ 전월대비 +0.6억 (+0.2%)</div>
       </div>
     </div>
   </div>
@@ -233,23 +246,23 @@ tr:hover td{background:#edf1fc!important}
     <div class="ct">총 자산 현황</div>
     <table>
       <thead>
-        <tr><th>법인명</th><th>원화잔액</th><th>외화 (KRW 환산)</th><th>자산합계</th></tr>
+        <tr><th>법인명</th><th>원화잔액</th><th>외화 (KRW 환산)</th><th>재고자산</th><th>자산합계</th></tr>
       </thead>
       <tbody>
-<tr><td>가론지</td><td>627,743,236</td><td>—</td><td>627,743,236</td></tr>
-<tr><td>더스크랙</td><td>753,045,130</td><td>224,929,998</td><td>977,975,128</td></tr>
-<tr><td>데이즈</td><td>3,455,431,961</td><td>3,219,276,099</td><td>6,674,708,060</td></tr>
-<tr><td>드래프터</td><td>3,381,930,015</td><td>3,699,166,462</td><td>7,081,096,477</td></tr>
-<tr><td>발전존중</td><td>971,641,363</td><td>353,197,000</td><td>1,324,838,363</td></tr>
-<tr><td>썸웨어코드</td><td>1,276,091,565</td><td>—</td><td>1,276,091,565</td></tr>
-<tr><td>제노바</td><td>704,027,259</td><td>927,897,000</td><td>1,631,924,259</td></tr>
-<tr><td>크롬스</td><td>2,754,462,997</td><td>1,032,418,001</td><td>3,786,880,998</td></tr>
-<tr><td>플라이코퍼레이션</td><td>435,245</td><td>—</td><td>435,245</td></tr>
-<tr class='total-row'><td>그룹 합계</td><td>13,924,808,771</td><td>9,456,884,560</td><td>23,381,693,331</td></tr>
+<tr><td>가론지</td><td>627,743,236</td><td>—</td><td>35,112,000</td><td>662,855,236</td></tr>
+<tr><td>더스크랙</td><td>753,045,130</td><td>224,929,998</td><td>1,249,716,054</td><td>2,227,691,182</td></tr>
+<tr><td>데이즈</td><td>3,455,431,961</td><td>3,219,276,099</td><td>483,135,748</td><td>7,157,843,808</td></tr>
+<tr><td>드래프터</td><td>3,381,930,015</td><td>3,699,166,462</td><td>1,282,643,960</td><td>8,363,740,437</td></tr>
+<tr><td>발전존중</td><td>971,641,363</td><td>353,197,000</td><td>884,387,832</td><td>2,209,226,195</td></tr>
+<tr><td>썸웨어코드</td><td>1,276,091,565</td><td>—</td><td>10,247,015</td><td>1,286,338,580</td></tr>
+<tr><td>제노바</td><td>704,027,259</td><td>927,897,000</td><td>64,644,600</td><td>1,696,568,859</td></tr>
+<tr><td>크롬스</td><td>2,754,462,997</td><td>1,032,418,001</td><td>213,428,647</td><td>4,000,309,645</td></tr>
+<tr><td>플라이코퍼레이션</td><td>435,245</td><td>—</td><td>—</td><td>435,245</td></tr>
+<tr class='total-row'><td>그룹 합계</td><td>13,924,808,771</td><td>9,456,884,560</td><td>4,223,315,856</td><td>27,605,009,187</td></tr>
 
       </tbody>
     </table>
-    <div class="note">※ 전 법인 9/30 기준. 9월말 재고자산은 일계표 미반영으로 이번 보고에서 제외(원화+외화 합계).</div>
+    <div class="note">※ 전 법인 9/30 기준. 재고자산은 일계표 기타 항목 기준.</div>
   </div>
   <div class="card">
     <div class="ct">법인별 월간 현금흐름 요약</div>
@@ -313,7 +326,7 @@ tr:hover td{background:#edf1fc!important}
     <div class="note">※ 지출 증가(빨강)·감소(초록) 기준.</div>
   </div>
 </div>
-<div class="foot">DUSK GROUP &nbsp;·&nbsp; 월간재무보고 &nbsp;·&nbsp; 생성: 2026-10-06</div>
+<div class="foot">DUSK GROUP &nbsp;·&nbsp; 월간재무보고 &nbsp;·&nbsp; 생성: 2026-10-07</div>
 <script>
 function toggleNi(hd){
   var body = hd.nextElementSibling;
