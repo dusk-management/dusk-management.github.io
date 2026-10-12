@@ -6,6 +6,81 @@ const COOKIE_NAME = 'site_auth';
 const ROOT_BYPASS_COOKIE = 'root_ok';
 const SITE_TITLE = '더스크그룹 경영보고';
 
+// 사무실 고정 IP 대역에서만 접속 허용(2026-10-12, 새 포털 proxy.ts와 동일 규칙).
+// Vercel 환경변수 ALLOWED_IP_RANGES(쉼표 구분 IP/CIDR)로 재배포 없이 변경 가능,
+// 없으면 사무실 고정 IP 대역(112.217.194.104~111, /29)이 기본값.
+const DEFAULT_ALLOWED_IP_RANGES = '112.217.194.104/29';
+
+function allowedRanges() {
+  return (process.env.ALLOWED_IP_RANGES || DEFAULT_ALLOWED_IP_RANGES)
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function ipToInt(ip) {
+  const parts = ip.split('.').map(Number);
+  if (parts.length !== 4 || parts.some((p) => !Number.isInteger(p) || p < 0 || p > 255)) return null;
+  return ((parts[0] << 24) | (parts[1] << 16) | (parts[2] << 8) | parts[3]) >>> 0;
+}
+
+function ipMatchesRange(ip, range) {
+  if (!range.includes('/')) return ip === range;
+  const [base, bitsStr] = range.split('/');
+  const prefix = Number(bitsStr);
+  const baseInt = ipToInt(base);
+  const ipInt = ipToInt(ip);
+  if (baseInt === null || ipInt === null || !Number.isInteger(prefix) || prefix < 0 || prefix > 32) return false;
+  const mask = prefix === 0 ? 0 : (~0 << (32 - prefix)) >>> 0;
+  return (baseInt & mask) === (ipInt & mask);
+}
+
+function getClientIp(request) {
+  const xff = request.headers.get('x-forwarded-for');
+  if (xff) return xff.split(',')[0].trim();
+  return request.headers.get('x-real-ip') || '';
+}
+
+function escapeHtml(text) {
+  return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function blockedPage(ip) {
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${SITE_TITLE}</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;background:#eef1f8;color:#1e2841;font-family:'Malgun Gothic','Apple SD Gothic Neo',sans-serif}
+.hdr{background:#16213e;color:#fff;padding:20px 36px}
+.hdr h1{font-size:20px;font-weight:700;letter-spacing:.5px}
+.hdr p{font-size:11px;color:#7a90b8;margin-top:4px}
+.wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 78px);padding:40px 20px}
+.card{width:360px;background:#fff;border:1px solid #d8e0ee;border-radius:14px;box-shadow:0 4px 16px rgba(30,40,65,.08);padding:40px 32px;text-align:center}
+.card h2{font-size:17px;font-weight:600;margin-bottom:10px;color:#1e2841}
+.desc{font-size:12.5px;color:#8090b0;line-height:1.6}
+.ip{font-size:11px;color:#a8b4cc;margin-top:16px}
+</style>
+</head>
+<body>
+<div class="hdr">
+<h1>DUSK.</h1>
+<p>경영지원팀 · 경영보고 포털</p>
+</div>
+<div class="wrap">
+<div class="card">
+<h2>${SITE_TITLE}</h2>
+<p class="desc">허용되지 않은 네트워크에서의 접근입니다.<br>사내망에서 다시 접속해주세요.</p>
+<p class="ip">접속 IP: ${escapeHtml(ip || '확인 불가')}</p>
+</div>
+</div>
+</body>
+</html>`;
+}
+
 async function sha256(text) {
   const data = new TextEncoder().encode(text);
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);
@@ -60,6 +135,13 @@ ${showError ? '<p class="err">비밀번호가 올바르지 않습니다.</p>' : 
 
 export default async function middleware(request) {
   const url = new URL(request.url);
+  const clientIp = getClientIp(request);
+  if (!allowedRanges().some((range) => ipMatchesRange(clientIp, range))) {
+    return new Response(blockedPage(clientIp), {
+      status: 403,
+      headers: { 'content-type': 'text/html; charset=utf-8' },
+    });
+  }
   const expectedPassword = process.env.SITE_PASSWORD;
   const secret = process.env.SITE_AUTH_SECRET || expectedPassword || '';
   const expectedToken = expectedPassword ? await sha256(expectedPassword + secret) : null;
@@ -86,6 +168,15 @@ export default async function middleware(request) {
   const rootOkMatch = cookieHeader.match(new RegExp(`${ROOT_BYPASS_COOKIE}=([^;]+)`));
   const siteAuthValid = siteAuthMatch && expectedToken && siteAuthMatch[1] === expectedToken;
   const rootOkValid = rootOkMatch && expectedToken && rootOkMatch[1] === expectedToken;
+
+  // 워터마크(watermark.js)가 접속 IP를 표시할 수 있도록 알려주는 엔드포인트 —
+  // 비밀번호 인증을 통과한 브라우저에만 응답한다.
+  if (url.pathname === '/__ip') {
+    if (!siteAuthValid) return new Response('', { status: 401 });
+    return new Response(JSON.stringify({ ip: clientIp }), {
+      headers: { 'content-type': 'application/json', 'cache-control': 'no-store' },
+    });
+  }
 
   if (url.pathname === '/') {
     if (rootOkValid) {
